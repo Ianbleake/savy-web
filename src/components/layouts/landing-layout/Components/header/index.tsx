@@ -2,6 +2,7 @@ import type React from "react";
 import { Link } from "react-router";
 
 import { ROUTES } from "@/app/router/routes";
+import { ThemeToggle } from "@/components/design-system/primitives/theme-toggle";
 import { Button } from "@/components/ui/button";
 
 export const Header = (): React.ReactElement => {
@@ -16,6 +17,7 @@ export const Header = (): React.ReactElement => {
 				</Link>
 
 				<nav className="flex items-center gap-2">
+					<ThemeToggle />
 					<Button
 						variant="ghost"
 						size="sm"

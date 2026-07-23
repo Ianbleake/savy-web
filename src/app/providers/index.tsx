@@ -1,8 +1,8 @@
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
 import { ThemeProvider } from "next-themes";
 import type React from "react";
 
+import { DevTools } from "@/components/design-system/patterns/layouts/dev-tools";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { persister } from "@/services/persister";
@@ -32,7 +32,7 @@ function App({ children }: ProvidersProps): React.ReactElement {
 						position="bottom-right"
 					/>
 				</TooltipProvider>
-				<ReactQueryDevtools initialIsOpen={false} />
+				{!import.meta.env.PROD && <DevTools />}
 			</PersistQueryClientProvider>
 		</ThemeProvider>
 	);
