@@ -1,0 +1,59 @@
+import type { LucideIcon } from "lucide-react";
+import type React from "react";
+import { Button } from "@/components/ui/button";
+import { merge } from "@/utils/ui/mergeStyles";
+
+type EmptyAction = {
+	label: string;
+	onClick: () => void;
+	icon?: LucideIcon;
+};
+
+type EmptyProps = {
+	title?: string;
+	description?: string;
+	icon?: LucideIcon;
+	action?: EmptyAction;
+	className?: string;
+};
+
+export const Empty = ({
+	title = "No results found",
+	description = "No data to display.",
+	icon: Icon,
+	action,
+	className = "",
+}: EmptyProps): React.ReactElement => {
+	return (
+		<div
+			className={merge(
+				"flex h-full w-full flex-col items-center justify-center gap-3 py-16 text-center",
+				className,
+			)}
+		>
+			{Icon && (
+				<div className="flex h-14 w-14 items-center justify-center rounded-full border border-gray-500/15 bg-gray-100">
+					<Icon className="h-8 w-8 text-gray-500" />
+				</div>
+			)}
+
+			<div className="flex flex-col gap-1">
+				{title && <h3 className="text-lg font-semibold text-gray-900">{title}</h3>}
+
+				{description && <p className="text-sm text-gray-500">{description}</p>}
+			</div>
+
+			{action && (
+				<div className="mt-2">
+					<Button
+						size="sm"
+						onClick={action.onClick}
+					>
+						{action.icon && <action.icon className="mr-1 h-4 w-4" />}
+						{action.label}
+					</Button>
+				</div>
+			)}
+		</div>
+	);
+};
