@@ -1,8 +1,10 @@
 import axios from "axios";
 import type { AxiosError, InternalAxiosRequestConfig } from "axios";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:3001/api";
+
 const api = axios.create({
-	baseURL: import.meta.env.VITE_API_BASE_URL || "http://localhost:3001",
+	baseURL: API_BASE_URL,
 	headers: {
 		"Content-Type": "application/json",
 	},
@@ -32,8 +34,8 @@ api.interceptors.response.use(
 
 			if (refreshToken) {
 				try {
-					const { data } = await axios.post(
-						`${import.meta.env.VITE_API_BASE_URL || "http://localhost:3001"}/auth/refresh`,
+				const { data } = await axios.post(
+					`${API_BASE_URL}/auth/refresh`,
 						{ refreshToken },
 					);
 
