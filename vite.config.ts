@@ -10,16 +10,21 @@ export default defineConfig({
 		tailwindcss(),
 		VitePWA({
 			registerType: "autoUpdate",
-			includeAssets: ["favicon.ico", "apple-touch-icon.png", "mask-icon.svg"],
+			includeAssets: ["favicon.ico", "favicon.svg", "apple-touch-icon-180x180.png"],
 			manifest: {
-				name: "Savy — Personal Finance",
+				name: "Savy — Finanzas Personales",
 				short_name: "Savy",
-				description: "Centralize and manage your personal finances",
+				description: "Centralizá y gestioná tus finanzas personales",
 				theme_color: "#0d9488",
 				background_color: "#ffffff",
 				display: "standalone",
 				start_url: "/",
 				icons: [
+					{
+						src: "pwa-64x64.png",
+						sizes: "64x64",
+						type: "image/png",
+					},
 					{
 						src: "pwa-192x192.png",
 						sizes: "192x192",
@@ -31,10 +36,10 @@ export default defineConfig({
 						type: "image/png",
 					},
 					{
-						src: "pwa-512x512.png",
+						src: "maskable-icon-512x512.png",
 						sizes: "512x512",
 						type: "image/png",
-						purpose: "any maskable",
+						purpose: "maskable",
 					},
 				],
 			},
