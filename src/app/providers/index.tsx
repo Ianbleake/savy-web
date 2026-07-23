@@ -24,7 +24,7 @@ function App({ children }: ProvidersProps): React.ReactElement {
 				client={queryClient}
 				persistOptions={{ persister, maxAge: 30 * 60 * 1000 }}
 			>
-				<TooltipProvider delay={100}>
+				<TooltipProvider delayDuration={100}>
 					{children}
 					<Toaster
 						richColors

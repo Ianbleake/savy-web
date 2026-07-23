@@ -23,7 +23,7 @@ type ConfirmDialogProps = {
 	confirmText?: string;
 	cancelText?: string;
 
-	variant?: "default" | "destructive";
+	variant?: "default" | "destructive" | "success";
 
 	onConfirm: () => void | Promise<void>;
 	loading?: boolean;
@@ -40,8 +40,8 @@ export const ConfirmDialog = ({
 	children,
 	title,
 	description,
-	confirmText = "Confirm",
-	cancelText = "Cancel",
+	confirmText = "Confirmar",
+	cancelText = "Cancelar",
 	variant = "destructive",
 	onConfirm,
 	loading = false,
@@ -55,6 +55,8 @@ export const ConfirmDialog = ({
 
 	const open = controlledOpen ?? internalOpen;
 	const setOpen = setControlledOpen ?? setInternalOpen;
+
+	const buttonVariant = variant === "success" ? "default" : variant;
 
 	const handleConfirm = (e: React.MouseEvent) => {
 		e.preventDefault();
@@ -73,9 +75,11 @@ export const ConfirmDialog = ({
 			onOpenChange={setOpen}
 		>
 		<AlertDialogTrigger
-			render={children}
+			asChild
 			disabled={disabled}
-		/>
+		>
+			{children}
+		</AlertDialogTrigger>
 
 			<AlertDialogContent className="max-w-md p-0 overflow-hidden">
 				<AlertDialogHeader className="px-0 pt-6 pb-4 space-y-2">
@@ -103,9 +107,9 @@ export const ConfirmDialog = ({
 						{cancelText}
 					</AlertDialogCancel>
 
-					<AlertDialogAction
-						variant={variant}
-						className="min-w-32"
+				<AlertDialogAction
+					variant={buttonVariant}
+					className="min-w-32"
 						disabled={loading}
 						onClick={handleConfirm}
 					>

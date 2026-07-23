@@ -40,8 +40,8 @@ export const FormAsyncSelect = <T extends FieldValues>({
 	hasMore = false,
 	onSearch,
 	onLoadMore,
-	placeholder = "Select an option",
-	searchPlaceholder = "Search...",
+	placeholder = "Seleccionar...",
+	searchPlaceholder = "Buscar...",
 	required = false,
 	helperText,
 	className,
@@ -100,23 +100,21 @@ export const FormAsyncSelect = <T extends FieldValues>({
 								if (!isOpen) setSearch("");
 							}}
 						>
-							<PopoverTrigger
-								render={
-									<button
-										type="button"
-										disabled={disabled}
-										className={merge(
-											"flex h-8! w-full items-center justify-between gap-1.5 rounded-md border border-input bg-white px-2 py-1.5 text-xs/relaxed whitespace-nowrap transition-colors outline-none",
-											"focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/30",
-											"disabled:cursor-not-allowed disabled:opacity-50",
-											!field.value && "text-muted-foreground",
-										)}
-									>
-										<span className="truncate">{selectedOption?.label ?? placeholder}</span>
-										<ChevronDown className="pointer-events-none size-3.5 text-muted-foreground shrink-0" />
-									</button>
-								}
-							/>
+							<PopoverTrigger asChild>
+								<button
+									type="button"
+									disabled={disabled}
+									className={merge(
+										"flex h-8! w-full items-center justify-between gap-1.5 rounded-md border border-input bg-white px-2 py-1.5 text-xs/relaxed whitespace-nowrap transition-colors outline-none",
+										"focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/30",
+										"disabled:cursor-not-allowed disabled:opacity-50",
+										!field.value && "text-muted-foreground",
+									)}
+								>
+									<span className="truncate">{selectedOption?.label ?? placeholder}</span>
+									<ChevronDown className="pointer-events-none size-3.5 text-muted-foreground shrink-0" />
+								</button>
+							</PopoverTrigger>
 
 						<PopoverContent
 							className="p-0 gap-0 min-w-32 overflow-x-hidden overflow-y-auto"
@@ -138,9 +136,9 @@ export const FormAsyncSelect = <T extends FieldValues>({
 
 								<div className="max-h-56 overflow-y-auto p-1">
 									{isLoading && options.length === 0 ? (
-										<div className="py-4 text-center text-xs text-gray-400">Searching...</div>
-									) : options.length === 0 ? (
-										<div className="py-4 text-center text-xs text-gray-400">No results</div>
+									<div className="py-4 text-center text-xs text-gray-400">Buscando...</div>
+								) : options.length === 0 ? (
+									<div className="py-4 text-center text-xs text-gray-400">Sin resultados</div>
 									) : (
 										options.map((option) => {
 											const isSelected = field.value === option.value;
@@ -178,7 +176,7 @@ export const FormAsyncSelect = <T extends FieldValues>({
 												onClick={onLoadMore}
 												disabled={isLoading}
 											>
-												{isLoading ? "Loading..." : "Load more"}
+												{isLoading ? "Cargando..." : "Cargar más"}
 											</button>
 										</div>
 									)}

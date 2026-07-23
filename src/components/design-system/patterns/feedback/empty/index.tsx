@@ -18,8 +18,8 @@ type EmptyProps = {
 };
 
 export const Empty = ({
-	title = "No results found",
-	description = "No data to display.",
+	title = "Sin resultados",
+	description = "No hay información para mostrar.",
 	icon: Icon,
 	action,
 	className = "",

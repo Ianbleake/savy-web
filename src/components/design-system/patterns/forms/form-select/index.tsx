@@ -31,7 +31,7 @@ export const FormSelect = <T extends FieldValues>({
 	name,
 	form,
 	options,
-	placeholder = "Select an option",
+	placeholder = "Seleccionar...",
 	required = false,
 	helperText,
 	className,
@@ -39,7 +39,7 @@ export const FormSelect = <T extends FieldValues>({
 	disabled,
 	optional = false,
 	searchable = false,
-	searchPlaceholder = "Search...",
+	searchPlaceholder = "Buscar...",
 	action,
 }: FormSelectProps<T>): React.ReactElement => {
 	const error = form.formState.errors[name];
@@ -75,7 +75,7 @@ export const FormSelect = <T extends FieldValues>({
 				name={name}
 				render={({ field }) => (
 					<Select
-						onValueChange={(value) => field.onChange(value ?? "")}
+						onValueChange={(value) => field.onChange(value)}
 						value={field.value ?? ""}
 						disabled={disabled}
 						onOpenChange={(open) => {
@@ -105,7 +105,7 @@ export const FormSelect = <T extends FieldValues>({
 								</div>
 							)}
 							{filteredOptions.length === 0 ? (
-								<div className="py-4 text-center text-xs text-gray-400">No results</div>
+								<div className="py-4 text-center text-xs text-gray-400">Sin resultados</div>
 							) : (
 								filteredOptions.map((option) => (
 									<SelectOption

@@ -108,7 +108,7 @@ export const AppTable = <T,>({
 					entityLabel={bulkActions.entityLabel}
 					onClear={bulkActions.onClear}
 				>
-					<BulkActionsBar.Group label="Actions">
+					<BulkActionsBar.Group label="Acciones">
 						{bulkActions.actions.map((action) => (
 							<Button
 								key={action.key}

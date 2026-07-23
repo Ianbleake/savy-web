@@ -91,26 +91,24 @@ export const FormMultiSelect = <T extends FieldValues>({
 							open={open}
 							onOpenChange={setOpen}
 						>
-							<PopoverTrigger
-								render={
-									<Button
-										type="button"
-										variant="outline"
-										role="combobox"
-										aria-expanded={open}
-										className="w-full justify-between h-8 overflow-hidden rounded-md pr-2"
-										disabled={disabled}
-									>
-										<span className="truncate text-xs">{displayText}</span>
-										<ChevronDown
-											className={merge(
-												"opacity-50 transition-transform duration-200",
-												open && "rotate-180",
-											)}
-										/>
-									</Button>
-								}
-							/>
+							<PopoverTrigger asChild>
+								<Button
+									type="button"
+									variant="outline"
+									role="combobox"
+									aria-expanded={open}
+									className="w-full justify-between h-8 overflow-hidden rounded-md pr-2"
+									disabled={disabled}
+								>
+									<span className="truncate text-xs">{displayText}</span>
+									<ChevronDown
+										className={merge(
+											"opacity-50 transition-transform duration-200",
+											open && "rotate-180",
+										)}
+									/>
+								</Button>
+							</PopoverTrigger>
 
 							<PopoverContent
 								align="start"
@@ -119,11 +117,11 @@ export const FormMultiSelect = <T extends FieldValues>({
 								onWheel={(e) => e.stopPropagation()}
 							>
 								<Command>
-									<CommandInput placeholder="Search..." />
+									<CommandInput placeholder="Buscar..." />
 
 									<CommandList className="max-h-64 overflow-y-auto">
 										<CommandEmpty className="text-sm text-gray-500">
-											No options found.
+											Sin resultados.
 										</CommandEmpty>
 
 										<CommandGroup className="h-fit w-sm overflow-y-auto">

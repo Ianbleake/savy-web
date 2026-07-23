@@ -30,7 +30,7 @@ export const FlipCardViewer = ({
 					onClick={() => {
 						if (canFlip) setIsFlipped((previous) => !previous);
 					}}
-					aria-label={`ID card of ${ownerName}.${canFlip ? " Click to flip." : ""}`}
+					aria-label={`Credencial de ${ownerName}.${canFlip ? " Click para voltear." : ""}`}
 				>
 					<div
 						className="relative w-full h-full transition-transform duration-600 ease-in-out"
@@ -42,8 +42,8 @@ export const FlipCardViewer = ({
 						<CardFace
 							imageUrl={frontUrl}
 							hasImage={hasFront}
-							label="Front"
-							altText={`ID card front — ${ownerName}`}
+						label="Frente"
+						altText={`Credencial frente — ${ownerName}`}
 							onExpand={() => {
 								setLightboxSide("front");
 								setLightboxOpen(true);
@@ -52,8 +52,8 @@ export const FlipCardViewer = ({
 						<CardFace
 							imageUrl={backUrl}
 							hasImage={hasBack}
-							label="Back"
-							altText={`ID card back — ${ownerName}`}
+						label="Reverso"
+						altText={`Credencial reverso — ${ownerName}`}
 							isBack
 							onExpand={() => {
 								setLightboxSide("back");

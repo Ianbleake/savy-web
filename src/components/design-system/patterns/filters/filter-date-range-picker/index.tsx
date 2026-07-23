@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import { enUS } from "date-fns/locale";
+import { es } from "date-fns/locale";
 import { ChevronDown } from "lucide-react";
 import type React from "react";
 import { useState } from "react";
@@ -26,7 +26,7 @@ export const FilterDateRangePicker = ({
 	dateFrom,
 	dateTo,
 	onChangeRange,
-	placeholder = "Date range",
+	placeholder = "Rango de fechas",
 	disabled = false,
 	className,
 }: Props): React.ReactElement => {
@@ -88,25 +88,23 @@ export const FilterDateRangePicker = ({
 			open={open}
 			onOpenChange={handleOpenChange}
 		>
-			<PopoverTrigger
-				render={
-					<Button
-						variant="outline"
-						disabled={disabled}
-						className={merge(
-							"px-2! min-w-40 h-7 rounded-md! justify-between text-xs/relaxed font-normal bg-white! text-gray-900! cursor-pointer hover:border-gray-500",
-							isActive && "bg-primary/10! border-primary/20 hover:border-primary!",
-							disabled && "cursor-not-allowed opacity-50",
-							className,
-						)}
-					>
-						<span className={isActive ? "text-primary" : "text-gray-900"}>
-							{rangeLabel ?? placeholder}
-						</span>
-						<ChevronDown className="size-3.5 opacity-50" />
-					</Button>
-				}
-			/>
+			<PopoverTrigger asChild>
+				<Button
+					variant="outline"
+					disabled={disabled}
+					className={merge(
+						"px-2! min-w-40 h-7 rounded-md! justify-between text-xs/relaxed font-normal bg-white! text-gray-900! cursor-pointer hover:border-gray-500",
+						isActive && "bg-primary/10! border-primary/20 hover:border-primary!",
+						disabled && "cursor-not-allowed opacity-50",
+						className,
+					)}
+				>
+					<span className={isActive ? "text-primary" : "text-gray-900"}>
+						{rangeLabel ?? placeholder}
+					</span>
+					<ChevronDown className="size-3.5 opacity-50" />
+				</Button>
+			</PopoverTrigger>
 
 			<PopoverContent className="w-auto p-0 py-2">
 				<Calendar
@@ -114,7 +112,7 @@ export const FilterDateRangePicker = ({
 					showOutsideDays={false}
 					selected={pendingRange}
 					onSelect={handleSelect}
-					locale={enUS}
+					locale={es}
 					disabled={disabled}
 					numberOfMonths={2}
 					fixedWeeks

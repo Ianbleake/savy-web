@@ -28,7 +28,7 @@ export const PreviewContent = ({
 				{hasError && (
 					<div className="flex flex-col items-center gap-2 py-12 text-muted-foreground">
 						<FileX className="size-8" />
-						<span className="text-xs">Failed to load file</span>
+						<span className="text-xs">No se pudo cargar el archivo</span>
 					</div>
 				)}
 				<img

@@ -8,7 +8,7 @@ export const SectionTitle = ({
 	description,
 	action,
 	onEdit,
-	editLabel = "Edit",
+	editLabel = "Editar",
 }: SectionTitleProps): React.ReactElement => {
 	if (description !== undefined) {
 		return (

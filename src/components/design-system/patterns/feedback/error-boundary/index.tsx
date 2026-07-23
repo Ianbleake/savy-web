@@ -17,8 +17,8 @@ export function ErrorFallback({ error, resetError }: ErrorFallbackProps): ReactE
 			</div>
 
 			<div className="flex flex-col gap-1">
-				<h3 className="text-lg font-semibold text-gray-900">Something went wrong</h3>
-				<p className="text-sm text-gray-500">An unexpected error occurred. Please try again.</p>
+				<h3 className="text-lg font-semibold text-gray-900">Algo salió mal</h3>
+				<p className="text-sm text-gray-500">Ocurrió un error inesperado. Intentá de nuevo.</p>
 
 				{import.meta.env.DEV && errorMessage && (
 					<p className="mt-1 max-w-md text-xs text-red-400">{errorMessage}</p>
@@ -30,7 +30,7 @@ export function ErrorFallback({ error, resetError }: ErrorFallbackProps): ReactE
 				variant="outline"
 				onClick={resetError}
 			>
-				Retry
+				Reintentar
 			</Button>
 		</div>
 	);

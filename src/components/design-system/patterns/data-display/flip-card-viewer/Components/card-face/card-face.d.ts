@@ -1,7 +1,7 @@
 type CardFaceProps = {
 	imageUrl: string | undefined;
 	hasImage: boolean;
-	label: "Front" | "Back";
+	label: "Frente" | "Reverso";
 	altText: string;
 	isBack?: boolean;
 	onExpand: () => void;

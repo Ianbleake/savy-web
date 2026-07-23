@@ -19,7 +19,7 @@ export const AppBreadcrumbs = ({ backRoute, config }: AppBreadcrumbsProps): Reac
 				variant={"link"}
 				className="px-0 w-fit h-fit"
 				onClick={() => navigate(backRoute)}
-				aria-label="Back"
+				aria-label="Volver"
 			>
 				<ArrowLeftCircle />
 			</Button>

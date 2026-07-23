@@ -67,7 +67,7 @@ export const Modal = ({
 			open={isControlled ? openModal : open}
 			onOpenChange={isControlled ? setOpenModal : setOpen}
 		>
-			{children && <DialogTrigger render={children} />}
+			{children && <DialogTrigger asChild>{children}</DialogTrigger>}
 
 			<DialogContent
 				showCloseButton={showClose}
@@ -104,8 +104,8 @@ export const Modal = ({
 								size="sm"
 								onClick={handleClose}
 							>
-								<Ban />
-								Cancel
+							<Ban />
+							Cancelar
 							</Button>
 						)}
 

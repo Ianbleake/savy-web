@@ -7,6 +7,6 @@ type SectionTitleProps = {
 	action?: import("react").ReactNode;
 	/** Optional callback for inline edit button (candidates variant — small icon) */
 	onEdit?: () => void;
-	/** Edit button label (default: "Edit") */
+	/** Edit button label (default: "Editar") */
 	editLabel?: string;
 };

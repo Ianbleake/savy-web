@@ -16,20 +16,18 @@ export const ActionsMenu = ({
 }: ActionsMenuProps): React.ReactElement => {
 	return (
 		<DropdownMenu>
-			<DropdownMenuTrigger
-				render={
-					<Button
-						variant="ghost"
-						size="icon"
-					>
-						{triggerDirection === "vertical" ? (
-							<EllipsisVertical />
-						) : (
-							<EllipsisVertical className="rotate-90" />
-						)}
-					</Button>
-				}
-			/>
+			<DropdownMenuTrigger asChild>
+				<Button
+					variant="ghost"
+					size="icon"
+				>
+					{triggerDirection === "vertical" ? (
+						<EllipsisVertical />
+					) : (
+						<EllipsisVertical className="rotate-90" />
+					)}
+				</Button>
+			</DropdownMenuTrigger>
 
 			<DropdownMenuContent
 				className="w-[--radix-dropdown-menu-trigger-width]"

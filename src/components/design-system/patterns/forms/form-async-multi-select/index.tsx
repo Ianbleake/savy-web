@@ -109,26 +109,24 @@ export const FormAsyncMultiSelect = <T extends FieldValues>({
 							open={open ?? internalOpen}
 							onOpenChange={onOpenChange ?? setInternalOpen}
 						>
-							<PopoverTrigger
-								render={
-									<Button
-										type="button"
-										variant="outline"
-										role="combobox"
-										aria-expanded={open}
-										className="w-full justify-between h-8 overflow-hidden rounded-md pr-2"
-										disabled={disabled}
-									>
-										<span className="truncate text-xs">{displayText}</span>
-										<ChevronDown
-											className={merge(
-												"opacity-50 transition-transform duration-200",
-												open && "rotate-180",
-											)}
-										/>
-									</Button>
-								}
-							/>
+							<PopoverTrigger asChild>
+								<Button
+									type="button"
+									variant="outline"
+									role="combobox"
+									aria-expanded={open}
+									className="w-full justify-between h-8 overflow-hidden rounded-md pr-2"
+									disabled={disabled}
+								>
+									<span className="truncate text-xs">{displayText}</span>
+									<ChevronDown
+										className={merge(
+											"opacity-50 transition-transform duration-200",
+											open && "rotate-180",
+										)}
+									/>
+								</Button>
+							</PopoverTrigger>
 
 							<PopoverContent
 								align="start"
@@ -142,14 +140,14 @@ export const FormAsyncMultiSelect = <T extends FieldValues>({
 									onKeyDown={(e) => e.stopPropagation()}
 								>
 									<CommandInput
-										placeholder="Search..."
+										placeholder="Buscar..."
 										value={searchValue}
 										onValueChange={onSearch}
 									/>
 
 									<CommandList className="max-h-64 h-fit overflow-y-auto">
 										<CommandEmpty className="text-sm text-gray-500">
-											{isLoading ? "Searching..." : "No options found."}
+											{isLoading ? "Buscando..." : "Sin resultados."}
 										</CommandEmpty>
 
 										<CommandGroup>
@@ -185,7 +183,7 @@ export const FormAsyncMultiSelect = <T extends FieldValues>({
 													disabled={isLoading}
 													onMouseDown={(e) => e.preventDefault()}
 												>
-													{isLoading ? "Loading..." : "Load more"}
+													{isLoading ? "Cargando..." : "Cargar más"}
 												</Button>
 											</div>
 										)}

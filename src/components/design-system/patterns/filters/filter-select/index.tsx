@@ -20,7 +20,7 @@ export const FilterSelect = ({
 	options,
 	value,
 	onChange,
-	placeholder = "Select...",
+	placeholder = "Seleccionar...",
 	disabled = false,
 	className,
 	labelClassName,
@@ -40,7 +40,7 @@ export const FilterSelect = ({
 
 			<Select
 				value={value ?? ""}
-				onValueChange={(value) => value && onChange?.(value)}
+				onValueChange={(value) => onChange?.(value)}
 				disabled={disabled}
 			>
 				<SelectTrigger

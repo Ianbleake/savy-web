@@ -15,13 +15,11 @@ export const TruncatedText = ({
 }: TruncatedTextProps): React.ReactElement => {
 	return (
 		<Tooltip>
-			<TooltipTrigger
-				render={
-					<span className={merge("block truncate min-w-0 w-full cursor-default", className)}>
-						{text}
-					</span>
-				}
-			/>
+			<TooltipTrigger asChild>
+				<span className={merge("block truncate min-w-0 w-full cursor-default", className)}>
+					{text}
+				</span>
+			</TooltipTrigger>
 			<TooltipContent className={tooltipClassName}>
 				<span>{text}</span>
 			</TooltipContent>

@@ -14,7 +14,7 @@ type SearchInputProps = {
 export const SearchInput = ({
 	value,
 	onCommit,
-	placeholder = "Search...",
+	placeholder = "Buscar...",
 	className,
 }: SearchInputProps): React.ReactElement => {
 	const { localValue, onChange } = useSearch({

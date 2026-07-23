@@ -1,5 +1,5 @@
 import { format, isValid, parseISO } from "date-fns";
-import { enUS } from "date-fns/locale";
+import { es } from "date-fns/locale";
 
 type DateInput = string | Date | null | undefined;
 
@@ -16,7 +16,7 @@ export function formatDate(value: DateInput): string {
 
 	if (!parsed) return "-";
 
-	return format(parsed, "MMMM d, yyyy", { locale: enUS });
+	return format(parsed, "d 'de' MMMM 'de' yyyy", { locale: es });
 }
 
 export function toDateOnly(value: DateInput): string {
@@ -32,7 +32,7 @@ export function formatDateTime(value: DateInput): string {
 
 	if (!parsed) return "-";
 
-	return format(parsed, "MMMM d, yyyy HH:mm", { locale: enUS });
+	return format(parsed, "d 'de' MMMM 'de' yyyy HH:mm", { locale: es });
 }
 
 export function formatDateRange(startDate: DateInput, endDate: DateInput): string {
@@ -41,9 +41,9 @@ export function formatDateRange(startDate: DateInput, endDate: DateInput): strin
 
 	if (formattedStartDate === "-" && formattedEndDate === "-") return "-";
 
-	if (formattedStartDate === "-") return `Until ${formattedEndDate}`;
+	if (formattedStartDate === "-") return `Hasta ${formattedEndDate}`;
 
-	if (formattedEndDate === "-") return `From ${formattedStartDate}`;
+	if (formattedEndDate === "-") return `Desde ${formattedStartDate}`;
 
 	return `${formattedStartDate} - ${formattedEndDate}`;
 }

@@ -8,9 +8,9 @@ import { merge } from "@/utils/ui/mergeStyles";
 const DEBOUNCE_MS = 300;
 
 export const SearchFilterSelect = ({
-	placeholder = "Select...",
-	allLabel = "All",
-	searchPlaceholder = "Search...",
+	placeholder = "Seleccionar...",
+	allLabel = "Todos",
+	searchPlaceholder = "Buscar...",
 	value,
 	onChange,
 	options,
@@ -61,23 +61,21 @@ export const SearchFilterSelect = ({
 				open={open}
 				onOpenChange={setOpen}
 			>
-				<PopoverTrigger
-					render={
-						<button
-							type="button"
-							role="combobox"
-							aria-expanded={open}
-							className={merge(
-								"flex h-7 w-fit items-center justify-between gap-1.5 whitespace-nowrap rounded-md border border-input bg-white px-2 py-1.5 text-xs/relaxed cursor-pointer hover:border-gray-500 min-w-40 text-gray-900",
-								isActive &&
-									"bg-primary/10! border-primary/20 text-primary! hover:border-primary!",
-							)}
-						>
-							<span className="truncate">{selectedLabel ?? placeholder}</span>
-							<ChevronDown className="pointer-events-none size-3.5 text-muted-foreground" />
-						</button>
-					}
-				/>
+				<PopoverTrigger asChild>
+					<button
+						type="button"
+						role="combobox"
+						aria-expanded={open}
+						className={merge(
+							"flex h-7 w-fit items-center justify-between gap-1.5 whitespace-nowrap rounded-md border border-input bg-white px-2 py-1.5 text-xs/relaxed cursor-pointer hover:border-gray-500 min-w-40 text-gray-900",
+							isActive &&
+								"bg-primary/10! border-primary/20 text-primary! hover:border-primary!",
+						)}
+					>
+						<span className="truncate">{selectedLabel ?? placeholder}</span>
+						<ChevronDown className="pointer-events-none size-3.5 text-muted-foreground" />
+					</button>
+				</PopoverTrigger>
 
 				<PopoverContent
 					align="start"
@@ -146,7 +144,7 @@ export const SearchFilterSelect = ({
 								})}
 
 								{options.length === 0 && !isLoading && (
-									<p className="py-3 text-center text-xs text-gray-400">No results</p>
+									<p className="py-3 text-center text-xs text-gray-400">Sin resultados</p>
 								)}
 							</>
 						)}

@@ -23,7 +23,7 @@ export const BulkActionsBarInner = ({
 	return (
 		<div
 			role="toolbar"
-			aria-label={`Bulk actions for ${selectedCount} ${entityLabel} selected`}
+			aria-label={`Acciones masivas para ${selectedCount} ${entityLabel} seleccionados`}
 			className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2 animate-in fade-in-0 slide-in-from-bottom-4 duration-200"
 		>
 			<div className="flex items-center gap-3 rounded-xl border border-neutral-200 bg-white px-4 py-2 ring-1 ring-neutral-900/5">
@@ -36,7 +36,7 @@ export const BulkActionsBarInner = ({
 						{selectedCount}
 					</Badge>
 					<span className="whitespace-nowrap text-xs font-medium text-neutral-600">
-						{selectedCount} {entityLabel} selected
+						{selectedCount} {entityLabel} seleccionados
 					</span>
 				</div>
 
@@ -53,7 +53,7 @@ export const BulkActionsBarInner = ({
 					size="icon"
 					onClick={onClear}
 					className="size-7 rounded-lg text-neutral-400 hover:bg-neutral-100 hover:text-neutral-600"
-					aria-label="Clear selection"
+					aria-label="Limpiar selección"
 				>
 					<X className="size-3.5" />
 				</Button>

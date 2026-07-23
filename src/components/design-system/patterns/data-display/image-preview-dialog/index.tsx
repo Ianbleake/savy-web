@@ -12,21 +12,19 @@ export const ImagePreviewDialog = ({
 }: ImagePreviewDialogProps): React.ReactElement => {
 	return (
 		<Dialog>
-			<DialogTrigger
-				render={
-					<img
-						src={src}
-						alt={alt}
-						referrerPolicy="no-referrer"
-						loading="lazy"
-						decoding="async"
-						className={merge(
-							"cursor-pointer rounded-md object-contain transition hover:opacity-80 h-35",
-							previewClassName,
-						)}
-					/>
-				}
-			/>
+			<DialogTrigger asChild>
+				<img
+					src={src}
+					alt={alt}
+					referrerPolicy="no-referrer"
+					loading="lazy"
+					decoding="async"
+					className={merge(
+						"cursor-pointer rounded-md object-contain transition hover:opacity-80 h-35",
+						previewClassName,
+					)}
+				/>
+			</DialogTrigger>
 
 			<DialogContent className={merge("sm:max-w-3xl p-0 gap-0 overflow-hidden", className)}>
 				<PreviewContent

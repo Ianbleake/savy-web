@@ -31,10 +31,10 @@ export const TablePagination = ({
 			{/* Page size selector — left side */}
 			{showPageSizeSelector ? (
 				<div className="flex items-center gap-2">
-					<span className="text-xs text-muted-foreground">Show</span>
+					<span className="text-xs text-muted-foreground">Mostrar</span>
 				<Select
 					value={String(pageSize)}
-					onValueChange={(value) => value && onPageSizeChange(Number(value))}
+					onValueChange={(value) => onPageSizeChange(Number(value))}
 				>
 						<SelectTrigger className="h-8 w-17.5 text-xs">
 							<SelectValue />
@@ -50,7 +50,7 @@ export const TablePagination = ({
 							))}
 						</SelectContent>
 					</Select>
-					<span className="text-xs text-muted-foreground">per page</span>
+					<span className="text-xs text-muted-foreground">por página</span>
 				</div>
 			) : (
 				<div />
@@ -63,13 +63,13 @@ export const TablePagination = ({
 					onClick={() => onPageChange(page - 1)}
 					disabled={page <= 1}
 					className={ARROW_CLASSES}
-					aria-label="Previous page"
+					aria-label="Página anterior"
 				>
 					<ChevronLeft className="size-4" />
 				</button>
 
 				<span className="text-xs text-muted-foreground px-1 select-none">
-					Page {page} of {totalPages}
+					Página {page} de {totalPages}
 				</span>
 
 				<button
@@ -77,7 +77,7 @@ export const TablePagination = ({
 					onClick={() => onPageChange(page + 1)}
 					disabled={page >= totalPages}
 					className={ARROW_CLASSES}
-					aria-label="Next page"
+					aria-label="Página siguiente"
 				>
 					<ChevronRight className="size-4" />
 				</button>

@@ -15,7 +15,7 @@ import { getApiErrorMessage } from "@/utils/errors/getApiErrorMessage";
 const queryCache = new QueryCache({
 	onError: (error, query) => {
 		if (query.meta?.suppressToast) return;
-		toast.error(getApiErrorMessage(error, "An unexpected error occurred"));
+		toast.error(getApiErrorMessage(error, "Ocurrió un error inesperado"));
 	},
 });
 

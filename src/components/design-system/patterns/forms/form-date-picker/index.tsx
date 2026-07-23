@@ -1,4 +1,4 @@
-import { enUS } from "date-fns/locale";
+import { es } from "date-fns/locale";
 import { CalendarIcon } from "lucide-react";
 import type React from "react";
 import { useState } from "react";
@@ -113,27 +113,25 @@ export const FormDatePicker = <T extends FieldValues>({
 								open={open}
 								onOpenChange={setOpen}
 							>
-								<PopoverTrigger
-									render={
-										<Button
-											variant="outline"
-											className="justify-between w-full h-8 text-xs/relaxed font-normal"
-											disabled={disabled}
-										>
-											<span className={date ? "" : "text-muted-foreground"}>
-												{date ? formatDate(date) : "Select date"}
-											</span>
-											<CalendarIcon className="ml-2 size-3.5 opacity-50" />
-										</Button>
-									}
-								/>
+								<PopoverTrigger asChild>
+									<Button
+										variant="outline"
+										className="justify-between w-full h-8 text-xs/relaxed font-normal"
+										disabled={disabled}
+									>
+										<span className={date ? "" : "text-muted-foreground"}>
+											{date ? formatDate(date) : "Select date"}
+										</span>
+										<CalendarIcon className="ml-2 size-3.5 opacity-50" />
+									</Button>
+								</PopoverTrigger>
 
 								<PopoverContent className="w-full p-2">
 									<Calendar
 										mode="single"
 										disabled={disabled ? true : disabledDates}
 										selected={date}
-										locale={enUS}
+										locale={es}
 										onSelect={(d) => {
 											field.onChange(formatSingle(d));
 											setOpen(false);
@@ -151,18 +149,16 @@ export const FormDatePicker = <T extends FieldValues>({
 							open={open}
 							onOpenChange={setOpen}
 						>
-							<PopoverTrigger
-								render={
-									<Button
-										variant="outline"
-										className="justify-between w-full"
-										disabled={disabled}
-									>
-										{formatDateRange(from, to)}
-										<CalendarIcon className="ml-2 h-4 w-4 opacity-50" />
-									</Button>
-								}
-							/>
+							<PopoverTrigger asChild>
+								<Button
+									variant="outline"
+									className="justify-between w-full"
+									disabled={disabled}
+								>
+									{formatDateRange(from, to)}
+									<CalendarIcon className="ml-2 h-4 w-4 opacity-50" />
+								</Button>
+							</PopoverTrigger>
 
 							<PopoverContent className="w-auto p-0">
 								<Calendar

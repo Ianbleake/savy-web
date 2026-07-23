@@ -28,7 +28,7 @@ const CardFace = ({
 		) : (
 			<div className="w-full h-full flex flex-col items-center justify-center bg-gray-50 gap-2">
 				<IdCard className="size-6 text-gray-300" />
-				<p className="text-xs text-gray-400">{label} not available</p>
+				<p className="text-xs text-gray-400">{label} no disponible</p>
 			</div>
 		)}
 
@@ -44,7 +44,7 @@ const CardFace = ({
 					event.stopPropagation();
 					onExpand();
 				}}
-				aria-label="View expanded"
+				aria-label="Ver expandido"
 			>
 				<Expand className="size-3" />
 			</button>

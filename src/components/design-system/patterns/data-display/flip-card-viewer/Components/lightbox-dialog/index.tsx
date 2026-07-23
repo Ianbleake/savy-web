@@ -29,7 +29,7 @@ const LightboxDialog = ({
 				<div className="flex flex-col">
 					<div className="flex items-center justify-between px-5 py-3 pr-12 border-b border-gray-100">
 						<h3 className="text-sm font-semibold text-gray-900">
-							ID Card — {side === "front" ? "Front" : "Back"}
+							Credencial — {side === "front" ? "Frente" : "Reverso"}
 						</h3>
 						{canToggle && (
 							<div className="flex items-center rounded-lg border border-gray-200 p-0.5">
@@ -43,19 +43,19 @@ const LightboxDialog = ({
 									onClick={() => onSideChange("front")}
 									disabled={!hasFront}
 								>
-									Front
-								</Button>
-								<Button
-									variant="ghost"
-									size="sm"
-									className={merge(
-										"text-xs h-7 px-3 rounded-md",
-										side === "back" ? "bg-primary/10 text-primary font-medium" : "text-gray-500",
-									)}
-									onClick={() => onSideChange("back")}
-									disabled={!hasBack}
-								>
-									Back
+								Frente
+							</Button>
+							<Button
+								variant="ghost"
+								size="sm"
+								className={merge(
+									"text-xs h-7 px-3 rounded-md",
+									side === "back" ? "bg-primary/10 text-primary font-medium" : "text-gray-500",
+								)}
+								onClick={() => onSideChange("back")}
+								disabled={!hasBack}
+							>
+								Reverso
 								</Button>
 							</div>
 						)}
@@ -65,7 +65,7 @@ const LightboxDialog = ({
 						<div className="flex items-center justify-center bg-gray-50 p-6">
 							<img
 								src={imageUrl}
-								alt={`ID card ${side === "front" ? "front" : "back"} — ${ownerName}`}
+								alt={`Credencial ${side === "front" ? "frente" : "reverso"} — ${ownerName}`}
 								referrerPolicy="no-referrer"
 								loading="lazy"
 								decoding="async"

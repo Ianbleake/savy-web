@@ -30,8 +30,8 @@ export const FormSwitch = <T extends FieldValues>({
 	optional = false,
 	required = false,
 	disabled = false,
-	activeText = "Active",
-	inactiveText = "Inactive",
+	activeText = "Activo",
+	inactiveText = "Inactivo",
 }: FormSwitchProps<T>): React.ReactElement => {
 	const error = form.formState.errors[name];
 

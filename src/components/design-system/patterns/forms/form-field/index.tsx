@@ -80,8 +80,8 @@ export const FormField = <T extends FieldValues>({
 
 	const getNumberRangeError = (value: number | null): string | null => {
 		if (value === null) return null;
-		if (min !== undefined && value < min) return `Minimum value is ${min}`;
-		if (max !== undefined && value > max) return `Maximum value is ${max}`;
+		if (min !== undefined && value < min) return `El valor mínimo es ${min}`;
+		if (max !== undefined && value > max) return `El valor máximo es ${max}`;
 		return null;
 	};
 
@@ -179,12 +179,12 @@ export const FormField = <T extends FieldValues>({
 												if (min !== undefined && parsed < min) {
 													form.setError(name, {
 														type: "min",
-														message: `Minimum value is ${min}`,
+														message: `El valor mínimo es ${min}`,
 													});
 												} else if (max !== undefined && parsed > max) {
 													form.setError(name, {
 														type: "max",
-														message: `Maximum value is ${max}`,
+														message: `El valor máximo es ${max}`,
 													});
 												} else {
 													const currentError = form.formState.errors[name];
@@ -223,12 +223,12 @@ export const FormField = <T extends FieldValues>({
 												if (min !== undefined && value < min) {
 													form.setError(name, {
 														type: "min",
-														message: `Minimum value is ${min}`,
+														message: `El valor mínimo es ${min}`,
 													});
 												} else if (max !== undefined && value > max) {
 													form.setError(name, {
 														type: "max",
-														message: `Maximum value is ${max}`,
+														message: `El valor máximo es ${max}`,
 													});
 												}
 											}
@@ -301,7 +301,7 @@ export const FormField = <T extends FieldValues>({
 										onClick={() => setShowPassword((prev) => !prev)}
 										className="absolute right-0 top-0 flex items-center justify-center h-full w-10 text-text-muted hover:text-text-secondary transition-colors cursor-pointer"
 										tabIndex={-1}
-										aria-label={showPassword ? "Hide password" : "Show password"}
+										aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
 									>
 										{showPassword ? (
 											<EyeOff
