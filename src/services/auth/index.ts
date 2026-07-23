@@ -1,49 +1,48 @@
 import axios from "axios";
-import { unwrap } from "../http-client";
-
-const BASE_API_URL = import.meta.env.VITE_API_BASE_URL;
+import { httpClient, unwrap } from "../http-client";
 
 export const authService: AuthService = {
 	// ====================== LOGIN =========================
+	// Uses raw axios — login happens before any token exists.
 	login: async (credentials: LoginPayload): Promise<AuthResponse> => {
 		const response = await axios.post<APIResponse<AuthResponse>>(
-			`${BASE_API_URL}/auth/login`,
+			`${import.meta.env.VITE_API_BASE_URL}/auth/login`,
 			credentials,
 		);
 		return unwrap<AuthResponse>(response);
 	},
 
 	// ====================== REGISTER =========================
+	// Uses raw axios — register happens before any token exists.
 	register: async (userData: RegisterPayload): Promise<AuthResponse> => {
 		const response = await axios.post<APIResponse<AuthResponse>>(
-			`${BASE_API_URL}/auth/register`,
+			`${import.meta.env.VITE_API_BASE_URL}/auth/register`,
 			userData,
 		);
 		return unwrap<AuthResponse>(response);
 	},
 
 	// ====================== REFRESH TOKEN =========================
+	// Uses raw axios — called from inside the 401 interceptor.
+	// Using httpClient here would cause infinite recursion.
 	refresh: async (refreshToken: string): Promise<AuthTokens> => {
-		const response = await axios.post<APIResponse<AuthTokens>>(`${BASE_API_URL}/auth/refresh`, {
-			refreshToken,
-		});
+		const response = await axios.post<APIResponse<AuthTokens>>(
+			`${import.meta.env.VITE_API_BASE_URL}/auth/refresh`,
+			{ refreshToken },
+		);
 		return unwrap<AuthTokens>(response);
 	},
 
 	// ====================== LOGOUT =========================
-	logout: async (accessToken: string): Promise<void> => {
-		await axios.post<APIResponse<null>>(
-			`${BASE_API_URL}/auth/logout`,
-			{},
-			{ headers: { Authorization: `Bearer ${accessToken}` } },
-		);
+	// Uses httpClient — token is injected by the request interceptor.
+	logout: async (): Promise<void> => {
+		await httpClient.post<APIResponse<null>>("/auth/logout");
 	},
 
 	// ====================== GET ME =========================
-	getMe: async (accessToken: string): Promise<AuthUser> => {
-		const response = await axios.get<APIResponse<AuthUser>>(`${BASE_API_URL}/auth/me`, {
-			headers: { Authorization: `Bearer ${accessToken}` },
-		});
+	// Uses httpClient — token is injected by the request interceptor.
+	getMe: async (): Promise<AuthUser> => {
+		const response = await httpClient.get<APIResponse<AuthUser>>("/auth/me");
 		return unwrap<AuthUser>(response);
 	},
 };
