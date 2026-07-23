@@ -10,10 +10,8 @@ import {
 } from "lucide-react";
 import type React from "react";
 import { Link } from "react-router";
-
 import { ROUTES } from "@/app/router/routes";
 import { Button } from "@/components/ui/button";
-
 import { DashboardMockup } from "./Components/dashboard-mockup";
 import { FeatureItem } from "./Components/feature-item";
 
