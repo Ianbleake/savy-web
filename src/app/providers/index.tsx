@@ -1,20 +1,18 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
 import { ThemeProvider } from "next-themes";
+import type React from "react";
+
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { AppRouter } from "@/app/router";
+import { persister } from "@/services/persister";
+import { queryClient } from "@/services/query-client";
 
-const queryClient = new QueryClient({
-	defaultOptions: {
-		queries: {
-			staleTime: 1000 * 60 * 5,
-			retry: 1,
-		},
-	},
-});
+type ProvidersProps = {
+	children: React.ReactNode;
+};
 
-function App() {
+function App({ children }: ProvidersProps): React.ReactElement {
 	return (
 		<ThemeProvider
 			attribute="class"
@@ -22,13 +20,20 @@ function App() {
 			enableSystem
 			disableTransitionOnChange
 		>
-			<QueryClientProvider client={queryClient}>
-				<TooltipProvider>
-					<AppRouter />
-					<Toaster richColors closeButton position="bottom-right" />
+			<PersistQueryClientProvider
+				client={queryClient}
+				persistOptions={{ persister, maxAge: 30 * 60 * 1000 }}
+			>
+				<TooltipProvider delay={100}>
+					{children}
+					<Toaster
+						richColors
+						closeButton
+						position="bottom-right"
+					/>
 				</TooltipProvider>
 				<ReactQueryDevtools initialIsOpen={false} />
-			</QueryClientProvider>
+			</PersistQueryClientProvider>
 		</ThemeProvider>
 	);
 }

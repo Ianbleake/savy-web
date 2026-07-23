@@ -70,7 +70,7 @@ account-card/
 
 - Helper functions exclusive to a component go in `utils.ts` inside its folder.
 - Constants like label maps or static configuration also go in `utils.ts`.
-- If a helper is reusable across multiple components, it goes in `src/lib/` or `src/utils/`.
+- If a helper is reusable across multiple components, it goes in `src/utils/`.
 
 ---
 
@@ -81,16 +81,42 @@ account-card/
   - **`{name}Controller.ts`** when the store **only manages UI state/filters for a screen** (does not persist domain data): `dashboardController.ts`.
 - Zustand 5 syntax: `create<Type>()((set, get) => ...)` — note the double parentheses.
 - Standalone selectors exported outside `create()`, not inside.
+- Store types go in `{name}.d.ts` inside the storage folder (e.g., `src/storage/auth.d.ts`).
 
 ## Hook conventions
 
 - Hooks in `src/hooks/` named `use{Name}.ts` (camelCase): `useAccounts.ts`, `useAuth.ts`.
 - Domain subfolders use **kebab-case**: `src/hooks/accounts/`, `src/hooks/auth/`.
+- Query hooks auto-toast errors via the global `QueryCache.onError` handler.
+  Use `meta: { suppressToast: true }` to opt out when an error is an expected business state.
+- Mutation hooks must have `onError` with `getApiErrorMessage(error, "fallback")`.
 
 ## Service conventions
 
-- Services in `src/services/`.
+- Services in `src/services/{name}/` (one folder per domain).
 - Service types in `{name}.d.ts` inside the service folder.
+- Services are **pure functions** — no UI logic, no React imports.
+- Services reuse `httpClient`, `unwrap`, and existing utilities.
+- The `/api` prefix is already included in `httpClient` `baseURL` — never add it manually.
+- The backend wraps ALL responses in `{ success: boolean, data: T, message?: string }`.
+  Use `unwrap<T>()` to extract the inner `data` — never access `response.data.data` manually.
+
+### HTTP client
+
+- `src/services/http-client.ts` — shared axios instance with:
+  - `unwrap<T>()` — strips the `APIResponse<T>` envelope, returns clean `T`.
+  - Request interceptor — injects Bearer token from `useAuthStorage.getState()`, resolves `baseURL` by `serviceKey`.
+  - 401 interceptor — queues concurrent requests, refreshes token via `authService.refresh`, retries once, logs out on failure.
+- `src/services/types.d.ts` — `APIResponse<T>` envelope + `QueuedRequest` types (ambient, shared by all services).
+- `src/services/query-client.ts` — global `QueryClient` with `QueryCache.onError` toast handler.
+- `src/services/persister.ts` — async storage persister for React Query cache.
+
+### Error handling
+
+- `src/utils/errors/getApiErrorMessage.ts` — extracts `response.data.message` from the `APIResponse` envelope, falls back to `Error.message`, then to a passed fallback string.
+- `src/types/query-meta.d.ts` — TanStack Query `Register` augmentation for `meta: { suppressToast: true }`.
+- Every mutation hook must call `getApiErrorMessage(error, "fallback")` in its `onError`.
+- The global `QueryCache.onError` handler toasts all failed queries unless `suppressToast` is set.
 
 ## General conventions
 
@@ -102,3 +128,10 @@ account-card/
 - Elevation: ring or box-shadow, whichever looks better for the case.
 - Icons: Lucide React.
 - Toast: Sonner.
+
+## Response style
+
+- **Brief, technical, direct.** No verbose explanations or redundant context.
+- Go straight to the point: what was done, why, and code if applicable.
+- Don't repeat context the user already knows.
+- Prioritize token efficiency in every response.

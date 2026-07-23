@@ -1,27 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-type User = {
-	id: string;
-	email: string;
-	name: string;
-};
-
-type AuthState = {
-	accessToken: string | null;
-	refreshToken: string | null;
-	user: User | null;
-	isAuthenticated: boolean;
-};
-
-type AuthActions = {
-	setTokens: (accessToken: string, refreshToken: string) => void;
-	setUser: (user: User) => void;
-	login: (accessToken: string, refreshToken: string, user: User) => void;
-	logout: () => void;
-};
-
-const useAuthStorage = create<AuthState & AuthActions>()(
+export const useAuthStorage = create<AuthStorage>()(
 	persist(
 		(set) => ({
 			accessToken: null,
@@ -29,26 +9,35 @@ const useAuthStorage = create<AuthState & AuthActions>()(
 			user: null,
 			isAuthenticated: false,
 
-			setTokens: (accessToken: string, refreshToken: string) =>
-				set({ accessToken, refreshToken, isAuthenticated: true }),
+			setTokens: (accessToken: string, refreshToken: string): void => {
+				set({ accessToken, refreshToken, isAuthenticated: true });
+			},
 
-			setUser: (user: User) => set({ user }),
+			setAuth: ({ accessToken, refreshToken, user }): void => {
+				set({
+					accessToken,
+					refreshToken,
+					user,
+					isAuthenticated: true,
+				});
+			},
 
-			login: (accessToken: string, refreshToken: string, user: User) =>
-				set({ accessToken, refreshToken, user, isAuthenticated: true }),
+			setUser: (user: AuthUser): void => {
+				set({ user });
+			},
 
-			logout: () =>
+			logout: (): void => {
 				set({
 					accessToken: null,
 					refreshToken: null,
 					user: null,
 					isAuthenticated: false,
-				}),
+				});
+				useAuthStorage.persist.clearStorage();
+			},
 		}),
 		{
 			name: "auth-storage",
 		},
 	),
 );
-
-export { useAuthStorage };
