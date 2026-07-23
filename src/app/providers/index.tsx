@@ -16,7 +16,7 @@ function App({ children }: ProvidersProps): React.ReactElement {
 	return (
 		<ThemeProvider
 			attribute="class"
-			defaultTheme="system"
+			defaultTheme="light"
 			enableSystem
 			disableTransitionOnChange
 		>
