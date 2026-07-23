@@ -128,3 +128,13 @@
 		@apply font-sans;
 	}
 }
+
+/* Hide TanStack Query Devtools default floating button — controlled by DevTools FAB */
+.tsqd-open-btn {
+	display: none !important;
+	visibility: hidden !important;
+}
+
+.tsqd-open-btn-container {
+	display: none !important;
+}

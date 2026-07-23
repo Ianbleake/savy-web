@@ -1,7 +1,17 @@
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { Wrench } from "lucide-react";
+import { Code, Database, FlaskConical, Wrench } from "lucide-react";
 import { type ReactElement, useEffect, useRef, useState } from "react";
+
 import { Button } from "@/components/ui/button";
+import {
+	ContextMenu,
+	ContextMenuContent,
+	ContextMenuItem,
+	ContextMenuLabel,
+	ContextMenuSeparator,
+	ContextMenuTrigger,
+} from "@/components/ui/context-menu";
+import { useSkeletonStore } from "@/storage/skeletonTestStore";
 import { merge } from "@/utils/ui/mergeStyles";
 
 const STORAGE_KEY = "devtools-position";
@@ -13,11 +23,14 @@ type Position = {
 
 /**
  * Draggable floating action button for development tools.
- * Click toggles React Query Devtools panel.
+ * Left-click toggles Skeleton Testing mode.
+ * Right-click opens a context menu with DevTools options.
  * Drag to reposition — persists position in localStorage.
  * Render conditionally: `{!import.meta.env.PROD && <DevTools />}`
  */
 export const DevTools = (): ReactElement => {
+	const { isTesting, setTesting } = useSkeletonStore();
+
 	const [position, setPosition] = useState<Position>(() => {
 		const saved = localStorage.getItem(STORAGE_KEY);
 		if (saved) return JSON.parse(saved);
@@ -62,7 +75,7 @@ export const DevTools = (): ReactElement => {
 		};
 	}, []);
 
-	const handleToggleQueryTools = () => {
+	const handleReactQueryDevtools = () => {
 		const openButton = document.querySelector(".tsqd-open-btn") as HTMLButtonElement | null;
 		const closeButton = document.querySelector(".tsqd-minimize-btn") as HTMLButtonElement | null;
 
@@ -77,37 +90,77 @@ export const DevTools = (): ReactElement => {
 	return (
 		<>
 			<ReactQueryDevtools initialIsOpen={false} />
+
 			<div
 				className="fixed z-[9999]"
 				style={{ left: position.x, top: position.y }}
 			>
-				<Button
-					size="icon"
-					variant="secondary"
-					className={merge(
-						"size-10 rounded-full shadow-lg cursor-grab active:cursor-grabbing opacity-60 transition-all hover:opacity-100",
-						queryToolsOpen && "bg-primary text-primary-foreground opacity-100 hover:bg-primary/90",
-					)}
-					onMouseDown={(event) => {
-						dragging.current = true;
-						hasMoved.current = false;
-						startPosition.current = { x: event.clientX, y: event.clientY };
-						offset.current = {
-							x: event.clientX - position.x,
-							y: event.clientY - position.y,
-						};
-					}}
-					onClick={(event) => {
-						if (hasMoved.current) {
-							event.preventDefault();
-							event.stopPropagation();
-							return;
-						}
-						handleToggleQueryTools();
-					}}
-				>
-					<Wrench className="size-4" />
-				</Button>
+				<ContextMenu>
+					<ContextMenuTrigger>
+						<Button
+							size="icon"
+							variant="secondary"
+							className={merge(
+								"size-10 rounded-full shadow-lg cursor-grab active:cursor-grabbing opacity-80 transition-all",
+								isTesting &&
+									"bg-primary text-primary-foreground opacity-100 hover:bg-primary/90 hover:opacity-80",
+							)}
+							onMouseDown={(event) => {
+								dragging.current = true;
+								hasMoved.current = false;
+								startPosition.current = { x: event.clientX, y: event.clientY };
+								offset.current = {
+									x: event.clientX - position.x,
+									y: event.clientY - position.y,
+								};
+							}}
+							onClick={(event) => {
+								if (hasMoved.current) {
+									event.preventDefault();
+									event.stopPropagation();
+									return;
+								}
+								setTesting(!isTesting);
+							}}
+						>
+							{isTesting ? <FlaskConical className="size-4" /> : <Wrench className="size-4" />}
+						</Button>
+					</ContextMenuTrigger>
+
+					<ContextMenuContent
+						className="w-60"
+						collisionPadding={50}
+					>
+						<ContextMenuLabel className="flex items-center gap-2">
+							<Code className="size-4 text-muted-foreground" />
+							Dev Tools
+						</ContextMenuLabel>
+
+						<ContextMenuSeparator />
+
+						<ContextMenuItem
+							onClick={() => setTesting(!isTesting)}
+							className={merge(
+								"border border-transparent focus:bg-primary/10 focus:border focus:border-primary/20 focus:**:text-primary! focus:text-primary! focus:cursor-pointer",
+								isTesting && "bg-primary/10 border-primary/20 text-primary cursor-pointer",
+							)}
+						>
+							<FlaskConical className="mr-2 size-4" />
+							{isTesting ? "Desactivar" : "Activar"} Skeleton Testing
+						</ContextMenuItem>
+
+						<ContextMenuItem
+							onClick={handleReactQueryDevtools}
+							className={merge(
+								"border border-transparent focus:bg-primary/10 focus:border focus:border-primary/20 focus:**:text-primary! focus:text-primary! focus:cursor-pointer",
+								queryToolsOpen && "bg-primary/10 border-primary/20 text-primary cursor-pointer",
+							)}
+						>
+							<Database className="mr-2 size-4" />
+							React Query Devtools
+						</ContextMenuItem>
+					</ContextMenuContent>
+				</ContextMenu>
 			</div>
 		</>
 	);

@@ -68,9 +68,8 @@ export const Home = (): React.ReactElement => {
 		<>
 			{/* ── Hero ── */}
 			<section className="relative overflow-hidden py-20 lg:py-32">
-				{/* Hero background glow */}
-				<div className="pointer-events-none absolute inset-y-0 right-0 w-1/2 bg-gradient-to-l from-primary/8 to-transparent" />
-				<div className="pointer-events-none absolute -right-32 top-1/2 size-[500px] -translate-y-1/2 rounded-full bg-primary/6 blur-3xl" />
+				{/* Hero background — solid tinted block covering right half, edge to edge */}
+				<div className="pointer-events-none absolute inset-y-0 right-0 hidden w-1/2 bg-primary/8 lg:block" />
 
 				<div className="relative mx-auto grid max-w-6xl items-center gap-12 px-6 lg:grid-cols-2 lg:gap-16">
 					{/* Text column */}
