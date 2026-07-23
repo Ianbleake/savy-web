@@ -31,46 +31,130 @@ export const Colors: Story = {
 			<div>
 				<h2 className="text-2xl font-bold mb-4">Color Tokens</h2>
 				<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-					<ColorSwatch name="Background" variable="--background" />
-					<ColorSwatch name="Foreground" variable="--foreground" />
-					<ColorSwatch name="Primary" variable="--primary" />
-					<ColorSwatch name="Primary Foreground" variable="--primary-foreground" />
-					<ColorSwatch name="Secondary" variable="--secondary" />
-					<ColorSwatch name="Secondary Foreground" variable="--secondary-foreground" />
-					<ColorSwatch name="Muted" variable="--muted" />
-					<ColorSwatch name="Muted Foreground" variable="--muted-foreground" />
-					<ColorSwatch name="Accent" variable="--accent" />
-					<ColorSwatch name="Accent Foreground" variable="--accent-foreground" />
-					<ColorSwatch name="Destructive" variable="--destructive" />
-					<ColorSwatch name="Border" variable="--border" />
-					<ColorSwatch name="Input" variable="--input" />
-					<ColorSwatch name="Ring" variable="--ring" />
-					<ColorSwatch name="Card" variable="--card" />
-					<ColorSwatch name="Card Foreground" variable="--card-foreground" />
-					<ColorSwatch name="Popover" variable="--popover" />
-					<ColorSwatch name="Popover Foreground" variable="--popover-foreground" />
+					<ColorSwatch
+						name="Background"
+						variable="--background"
+					/>
+					<ColorSwatch
+						name="Foreground"
+						variable="--foreground"
+					/>
+					<ColorSwatch
+						name="Primary"
+						variable="--primary"
+					/>
+					<ColorSwatch
+						name="Primary Foreground"
+						variable="--primary-foreground"
+					/>
+					<ColorSwatch
+						name="Secondary"
+						variable="--secondary"
+					/>
+					<ColorSwatch
+						name="Secondary Foreground"
+						variable="--secondary-foreground"
+					/>
+					<ColorSwatch
+						name="Muted"
+						variable="--muted"
+					/>
+					<ColorSwatch
+						name="Muted Foreground"
+						variable="--muted-foreground"
+					/>
+					<ColorSwatch
+						name="Accent"
+						variable="--accent"
+					/>
+					<ColorSwatch
+						name="Accent Foreground"
+						variable="--accent-foreground"
+					/>
+					<ColorSwatch
+						name="Destructive"
+						variable="--destructive"
+					/>
+					<ColorSwatch
+						name="Border"
+						variable="--border"
+					/>
+					<ColorSwatch
+						name="Input"
+						variable="--input"
+					/>
+					<ColorSwatch
+						name="Ring"
+						variable="--ring"
+					/>
+					<ColorSwatch
+						name="Card"
+						variable="--card"
+					/>
+					<ColorSwatch
+						name="Card Foreground"
+						variable="--card-foreground"
+					/>
+					<ColorSwatch
+						name="Popover"
+						variable="--popover"
+					/>
+					<ColorSwatch
+						name="Popover Foreground"
+						variable="--popover-foreground"
+					/>
 				</div>
 			</div>
 
 			<div>
 				<h3 className="text-xl font-bold mb-4">Chart Colors</h3>
 				<div className="grid grid-cols-5 gap-4">
-					<ColorSwatch name="Chart 1" variable="--chart-1" />
-					<ColorSwatch name="Chart 2" variable="--chart-2" />
-					<ColorSwatch name="Chart 3" variable="--chart-3" />
-					<ColorSwatch name="Chart 4" variable="--chart-4" />
-					<ColorSwatch name="Chart 5" variable="--chart-5" />
+					<ColorSwatch
+						name="Chart 1"
+						variable="--chart-1"
+					/>
+					<ColorSwatch
+						name="Chart 2"
+						variable="--chart-2"
+					/>
+					<ColorSwatch
+						name="Chart 3"
+						variable="--chart-3"
+					/>
+					<ColorSwatch
+						name="Chart 4"
+						variable="--chart-4"
+					/>
+					<ColorSwatch
+						name="Chart 5"
+						variable="--chart-5"
+					/>
 				</div>
 			</div>
 
 			<div>
 				<h3 className="text-xl font-bold mb-4">Sidebar Colors</h3>
 				<div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-					<ColorSwatch name="Sidebar" variable="--sidebar" />
-					<ColorSwatch name="Sidebar Foreground" variable="--sidebar-foreground" />
-					<ColorSwatch name="Sidebar Primary" variable="--sidebar-primary" />
-					<ColorSwatch name="Sidebar Accent" variable="--sidebar-accent" />
-					<ColorSwatch name="Sidebar Border" variable="--sidebar-border" />
+					<ColorSwatch
+						name="Sidebar"
+						variable="--sidebar"
+					/>
+					<ColorSwatch
+						name="Sidebar Foreground"
+						variable="--sidebar-foreground"
+					/>
+					<ColorSwatch
+						name="Sidebar Primary"
+						variable="--sidebar-primary"
+					/>
+					<ColorSwatch
+						name="Sidebar Accent"
+						variable="--sidebar-accent"
+					/>
+					<ColorSwatch
+						name="Sidebar Border"
+						variable="--sidebar-border"
+					/>
 				</div>
 			</div>
 
@@ -119,9 +203,15 @@ export const Colors: Story = {
 				<h2 className="text-2xl font-bold mb-4">Spacing</h2>
 				<div className="space-y-2">
 					{[1, 2, 3, 4, 6, 8, 12, 16, 20, 24].map((space) => (
-						<div key={space} className="flex items-center gap-3">
+						<div
+							key={space}
+							className="flex items-center gap-3"
+						>
 							<span className="text-xs w-8 text-right">{space}</span>
-							<div className="bg-primary h-4" style={{ width: `${space * 4}px` }} />
+							<div
+								className="bg-primary h-4"
+								style={{ width: `${space * 4}px` }}
+							/>
 						</div>
 					))}
 				</div>

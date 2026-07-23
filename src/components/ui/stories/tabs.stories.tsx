@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const meta = {
 	title: "Design System/Tabs",
@@ -16,7 +16,10 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
 	render: () => (
-		<Tabs defaultValue="overview" className="w-[400px]">
+		<Tabs
+			defaultValue="overview"
+			className="w-[400px]"
+		>
 			<TabsList className="grid w-full grid-cols-3">
 				<TabsTrigger value="overview">Overview</TabsTrigger>
 				<TabsTrigger value="transactions">Transactions</TabsTrigger>
