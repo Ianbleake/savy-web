@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import type React from "react";
 
 type SlideUpProps = {
@@ -11,15 +11,17 @@ const variants = {
 	visible: { opacity: 1, y: 0 },
 };
 
-const transition = { duration: 0.35, ease: "easeOut" as const };
-
 export const SlideUp = ({ children, className }: SlideUpProps): React.ReactElement => {
+	const prefersReducedMotion = useReducedMotion();
+
 	return (
 		<motion.div
-			variants={variants}
-			initial="hidden"
+			variants={prefersReducedMotion ? undefined : variants}
+			initial={prefersReducedMotion ? false : "hidden"}
 			animate="visible"
-			transition={transition}
+			transition={
+				prefersReducedMotion ? { duration: 0 } : { duration: 0.35, ease: "easeOut" as const }
+			}
 			className={className}
 		>
 			{children}
