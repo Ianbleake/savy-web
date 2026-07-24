@@ -33,7 +33,7 @@ export const NewPassword = (): React.ReactElement => {
 	const { mutate: resetPassword, isPending } = useResetPassword();
 
 	if (!tokens) {
-		return <Empty />;
+		return <Empty title="El token de accesso ha expirado" />;
 	}
 
 	const onSubmit = (formData: ResetPasswordFormType) => {
