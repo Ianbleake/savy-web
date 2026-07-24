@@ -28,6 +28,18 @@ export const router = createBrowserRouter([
 				path: ROUTES.AUTH.LOGIN,
 				lazy: () => import("@/screens/auth/login").then((m) => ({ Component: m.LoginPage })),
 			},
+			{
+				path: ROUTES.AUTH.REGISTER,
+				lazy: () => import("@/screens/auth/register").then((m) => ({ Component: m.Register })),
+			},
+			{
+				path: ROUTES.AUTH.FORGOT_PASSWORD,
+				lazy: () => import("@/screens/auth/password").then((m) => ({ Component: m.Password })),
+			},
+			{
+				path: ROUTES.AUTH.RESET_PASSWORD,
+				lazy: () => import("@/screens/auth/password").then((m) => ({ Component: m.Password })),
+			},
 		],
 	},
 	{

@@ -1,32 +1,49 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import type React from "react";
+import { useForm } from "react-hook-form";
+import { FormField } from "@/components/design-system/patterns/forms/form-field";
+import { Button } from "@/components/ui/button";
+import { type LoginFormType, loginSchema } from "@/schemas/auth";
 
 export const LoginPage = (): React.ReactElement => {
+	const loginForm = useForm<LoginFormType>({
+		resolver: zodResolver(loginSchema),
+		defaultValues: {
+			email: "",
+			password: "",
+		},
+	});
+
+	const onSubmit = (_data: LoginFormType) => {
+		// TODO: connect login logic
+	};
+
 	return (
 		<div className="flex w-full max-w-sm flex-col gap-6">
 			<div className="flex flex-col gap-2">
-			<h1 className="text-2xl font-bold">Iniciar sesión</h1>
-			<p className="text-sm text-muted-foreground">
-					Ingresá tus credenciales para acceder a tu cuenta.
+				<h1 className="text-2xl font-bold">Iniciar sesión</h1>
+				<p className="text-sm text-muted-foreground">
+					Ingresa tus credenciales para acceder a tu cuenta.
 				</p>
 			</div>
-			<div className="flex flex-col gap-4">
-				<input
+			<form
+				onSubmit={loginForm.handleSubmit(onSubmit)}
+				className="flex flex-col gap-4"
+			>
+				<FormField
 					type="email"
-					placeholder="Correo electrónico"
-					className="rounded-lg border border-input bg-background px-4 py-2.5 text-sm"
+					name="email"
+					form={loginForm}
+					label="Email"
 				/>
-				<input
+				<FormField
 					type="password"
-					placeholder="Contraseña"
-					className="rounded-lg border border-input bg-background px-4 py-2.5 text-sm"
+					name="password"
+					form={loginForm}
+					label="Contraseña"
 				/>
-				<button
-					type="button"
-					className="rounded-lg bg-primary px-4 py-2.5 font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-				>
-					Iniciar sesión
-				</button>
-			</div>
+				<Button type="submit">Iniciar sesión</Button>
+			</form>
 		</div>
 	);
 };
