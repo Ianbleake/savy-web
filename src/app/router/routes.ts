@@ -16,4 +16,7 @@ export const ROUTES = {
 		DASHBOARD: "/app/dashboard",
 		SETTINGS: "/app/settings",
 	},
+	AUX: {
+		ROOT: "/aux",
+	},
 } as const;
