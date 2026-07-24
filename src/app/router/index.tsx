@@ -1,9 +1,9 @@
 import { createBrowserRouter } from "react-router";
-import { AppLayout } from "@/components/layouts/app-layout";
-import { AuthLayout } from "@/components/layouts/auth-layout";
-import { LandingLayout } from "@/components/layouts/landing-layout";
-import { ROUTES } from "./routes";
+import { AppLayout } from "@/components/design-system/patterns/layouts/app-layout";
+import { AuthLayout } from "@/components/design-system/patterns/layouts/auth-layout";
+import { LandingLayout } from "@/components/design-system/patterns/layouts/landing-layout";
 import { ProtectedRoute } from "./protected-route";
+import { ROUTES } from "./routes";
 
 export const router = createBrowserRouter([
 	{

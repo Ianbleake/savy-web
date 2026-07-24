@@ -7,7 +7,12 @@ export const AuthLayout = (): React.ReactElement => {
 	const isAuthenticated = useAuthStorage((state) => state.isAuthenticated);
 
 	if (isAuthenticated) {
-		return <Navigate to={ROUTES.APP.ROOT} replace />;
+		return (
+			<Navigate
+				to={ROUTES.APP.ROOT}
+				replace
+			/>
+		);
 	}
 
 	return (
