@@ -1,7 +1,9 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { RefreshCcw, TriangleAlert } from "lucide-react";
 import type React from "react";
 import { useForm } from "react-hook-form";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
+import { ROUTES } from "@/app/router/routes";
 import { Empty } from "@/components/design-system/patterns/feedback/empty";
 import { FormField } from "@/components/design-system/patterns/forms/form-field";
 import { Button } from "@/components/ui/button";
@@ -30,10 +32,23 @@ export const NewPassword = (): React.ReactElement => {
 		},
 	});
 
+	const navigate = useNavigate();
+
 	const { mutate: resetPassword, isPending } = useResetPassword();
 
 	if (!tokens) {
-		return <Empty title="El token de accesso ha expirado" />;
+		return (
+			<Empty
+				title="El token de accesso ha expirado"
+				description="Recargue la pagina o solicite uno nuevo"
+				icon={TriangleAlert}
+				action={{
+					label: "Recuperar contraseña",
+					onClick: () => navigate(ROUTES.AUTH.FORGOT_PASSWORD),
+					icon: RefreshCcw,
+				}}
+			/>
+		);
 	}
 
 	const onSubmit = (formData: ResetPasswordFormType) => {
