@@ -2,12 +2,13 @@ import { useLocation, useNavigate } from "react-router";
 import { ROUTES } from "@/app/router/routes";
 import { Button } from "@/components/ui/button";
 
-export const AuthNavigator = (): React.ReactElement => {
+export const AuthNavigator = (): React.ReactElement | null => {
 	const navigate = useNavigate();
 	const { pathname } = useLocation();
 
 	const isLogin = pathname === ROUTES.AUTH.LOGIN;
 	const isPasswordRecovery = pathname === ROUTES.AUTH.FORGOT_PASSWORD;
+	const isResetPassword = pathname === ROUTES.AUTH.RESET_PASSWORD;
 
 	const navigatorText = isPasswordRecovery
 		? "Volver al inicio de sesion"
@@ -24,6 +25,10 @@ export const AuthNavigator = (): React.ReactElement => {
 		: isLogin
 			? "¿No tienes cuenta?"
 			: "¿Olvidaste tu contraseña?";
+
+	if (isResetPassword) {
+		return null;
+	}
 
 	return (
 		<div className="absolute top-3 right-6 text-sm">

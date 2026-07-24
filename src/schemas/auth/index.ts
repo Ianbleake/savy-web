@@ -22,3 +22,9 @@ export const registerSchema = z
 	});
 
 export type RegisterFormType = z.infer<typeof registerSchema>;
+
+export const forgotPasswordSchema = z.object({
+	email: z.string().regex(EMAIL_REGEX, "Email inválido"),
+});
+
+export type ForgotPasswordFormType = z.infer<typeof forgotPasswordSchema>;
