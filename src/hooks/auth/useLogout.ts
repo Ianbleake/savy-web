@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
+import { toast } from "sonner";
 import { ROUTES } from "@/app/router/routes";
 import { authService } from "@/services/auth";
 import { useAuthStorage } from "@/storage/authStorage";
@@ -15,6 +16,7 @@ export const useLogout = () => {
 			logout();
 			queryClient.clear();
 			navigate(ROUTES.LANDING.ROOT, { replace: true });
+			toast.success(`Se cerró sesión correctamente!`);
 		},
 	});
 };

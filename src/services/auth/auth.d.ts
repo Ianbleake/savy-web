@@ -1,7 +1,6 @@
 type AuthUser = {
 	id: string;
 	email: string;
-	name: string | null;
 };
 
 type AuthTokens = {
@@ -21,7 +20,8 @@ type LoginPayload = {
 type RegisterPayload = {
 	email: string;
 	password: string;
-	name: string;
+	firstName: string;
+	lastName: string;
 };
 
 type RefreshPayload = {

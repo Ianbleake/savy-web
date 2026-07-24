@@ -9,7 +9,7 @@ export function AppToaster(): React.ReactElement {
 
 	return (
 		<Toaster
-			position="bottom-right"
+			position="top-right"
 			theme={theme as AppTheme}
 			richColors
 			closeButton

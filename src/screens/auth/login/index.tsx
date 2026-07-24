@@ -1,12 +1,15 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import type React from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
+import { ROUTES } from "@/app/router/routes";
 import { FormField } from "@/components/design-system/patterns/forms/form-field";
 import { Button } from "@/components/ui/button";
 import { useLogin } from "@/hooks/auth/useLogin";
 import { type LoginFormType, loginSchema } from "@/schemas/auth";
 
 export const LoginPage = (): React.ReactElement => {
+	const navigate = useNavigate();
 	const loginForm = useForm<LoginFormType>({
 		resolver: zodResolver(loginSchema),
 		defaultValues: {
@@ -29,6 +32,7 @@ export const LoginPage = (): React.ReactElement => {
 					Ingresa tus credenciales para acceder a tu cuenta.
 				</p>
 			</div>
+
 			<form
 				onSubmit={loginForm.handleSubmit(onSubmit)}
 				className="flex flex-col gap-4"
@@ -45,13 +49,22 @@ export const LoginPage = (): React.ReactElement => {
 					form={loginForm}
 					label="Contraseña"
 				/>
-				<Button
-					type="submit"
-					disabled={isPending}
-					className="w-full"
-				>
-					{isPending ? "Iniciando sesión..." : "Iniciar sesión"}
-				</Button>
+				<div className="flex flex-col gap-2 items-center">
+					<Button
+						type="submit"
+						disabled={isPending}
+						className="w-full"
+					>
+						{isPending ? "Iniciando sesión..." : "Iniciar sesión"}
+					</Button>
+					<Button
+						type="button"
+						variant="link"
+						onClick={() => navigate(ROUTES.AUTH.FORGOT_PASSWORD)}
+					>
+						¿Olvidaste tu contraseña?
+					</Button>
+				</div>
 			</form>
 		</div>
 	);

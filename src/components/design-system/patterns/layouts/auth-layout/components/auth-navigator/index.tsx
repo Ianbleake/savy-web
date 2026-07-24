@@ -1,23 +1,24 @@
 import { useLocation, useNavigate } from "react-router";
+import { ROUTES } from "@/app/router/routes";
 import { Button } from "@/components/ui/button";
 
 export const AuthNavigator = (): React.ReactElement => {
 	const navigate = useNavigate();
 	const { pathname } = useLocation();
 
-	const isLogin = pathname === "/auth/login";
-	const isPasswordRecovery = pathname === "/auth/password-recovery";
+	const isLogin = pathname === ROUTES.AUTH.LOGIN;
+	const isPasswordRecovery = pathname === ROUTES.AUTH.FORGOT_PASSWORD;
 
 	const navigatorText = isPasswordRecovery
-		? "Volver al login"
+		? "Volver al inicio de sesion"
 		: isLogin
 			? "Registrarse"
 			: "Iniciar sesión";
 	const navigatorPath = isPasswordRecovery
-		? "/auth/login"
+		? ROUTES.AUTH.LOGIN
 		: isLogin
-			? "/auth/register"
-			: "/auth/login";
+			? ROUTES.AUTH.REGISTER
+			: ROUTES.AUTH.LOGIN;
 	const navigatorCTA = isPasswordRecovery
 		? "¿Recordaste tu contraseña?"
 		: isLogin

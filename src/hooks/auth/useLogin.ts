@@ -19,7 +19,7 @@ export const useLogin = () => {
 				user: data.user,
 			});
 			navigate(ROUTES.APP.ROOT, { replace: true });
-			toast.success(`Bienvenido ${data.user.name}`);
+			toast.success(`Bienvenido!`);
 		},
 		onError: (error: unknown) => {
 			apiErrorToast(error, "No se pudo iniciar sesión");
