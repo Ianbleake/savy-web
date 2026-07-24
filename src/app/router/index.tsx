@@ -38,7 +38,8 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: ROUTES.AUTH.RESET_PASSWORD,
-				lazy: () => import("@/screens/auth/password").then((m) => ({ Component: m.Password })),
+				lazy: () =>
+					import("@/screens/auth/new-password").then((m) => ({ Component: m.NewPassword })),
 			},
 		],
 	},
