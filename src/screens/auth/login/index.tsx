@@ -3,6 +3,7 @@ import type React from "react";
 import { useForm } from "react-hook-form";
 import { FormField } from "@/components/design-system/patterns/forms/form-field";
 import { Button } from "@/components/ui/button";
+import { useLogin } from "@/hooks/auth/useLogin";
 import { type LoginFormType, loginSchema } from "@/schemas/auth";
 
 export const LoginPage = (): React.ReactElement => {
@@ -14,8 +15,10 @@ export const LoginPage = (): React.ReactElement => {
 		},
 	});
 
-	const onSubmit = (_data: LoginFormType) => {
-		// TODO: connect login logic
+	const { mutate: login, isPending } = useLogin();
+
+	const onSubmit = (loginData: LoginFormType) => {
+		login(loginData);
 	};
 
 	return (
@@ -42,7 +45,13 @@ export const LoginPage = (): React.ReactElement => {
 					form={loginForm}
 					label="Contraseña"
 				/>
-				<Button type="submit">Iniciar sesión</Button>
+				<Button
+					type="submit"
+					disabled={isPending}
+					className="w-full"
+				>
+					{isPending ? "Iniciando sesión..." : "Iniciar sesión"}
+				</Button>
 			</form>
 		</div>
 	);

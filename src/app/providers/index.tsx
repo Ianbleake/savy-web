@@ -1,9 +1,8 @@
 import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
 import { ThemeProvider } from "next-themes";
 import type React from "react";
-
+import { AppToaster } from "@/components/design-system/patterns/feedback/app-toaster";
 import { DevTools } from "@/components/design-system/patterns/layouts/dev-tools";
-import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { persister } from "@/services/persister";
 import { queryClient } from "@/services/query-client";
@@ -26,11 +25,7 @@ function App({ children }: ProvidersProps): React.ReactElement {
 			>
 				<TooltipProvider delayDuration={100}>
 					{children}
-					<Toaster
-						richColors
-						closeButton
-						position="bottom-right"
-					/>
+					<AppToaster />
 				</TooltipProvider>
 				{!import.meta.env.PROD && <DevTools />}
 			</PersistQueryClientProvider>

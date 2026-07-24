@@ -1,11 +1,16 @@
+import { useTheme } from "next-themes";
 import type React from "react";
 import { Toaster } from "sonner";
 
+type AppTheme = "light" | "dark" | "system" | undefined;
+
 export function AppToaster(): React.ReactElement {
+	const { theme } = useTheme();
+
 	return (
 		<Toaster
 			position="bottom-right"
-			theme="light"
+			theme={theme as AppTheme}
 			richColors
 			closeButton
 			duration={4000}
