@@ -5,7 +5,7 @@ import { useAuthStorage } from "@/storage/authStorage";
 import { AuthBranding } from "./components/auth-branding";
 import { AuthNavigator } from "./components/auth-navigator";
 
-const AUTH_GUARD_BYPASS = [ROUTES.AUTH.RESET_PASSWORD];
+const AUTH_GUARD_BYPASS: string[] = [ROUTES.AUTH.RESET_PASSWORD];
 
 export const AuthLayout = (): React.ReactElement => {
 	const isAuthenticated = useAuthStorage((state) => state.isAuthenticated);
