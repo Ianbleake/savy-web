@@ -3,6 +3,7 @@ import type React from "react";
 import { useForm } from "react-hook-form";
 import { FormField } from "@/components/design-system/patterns/forms/form-field";
 import { Button } from "@/components/ui/button";
+import { useForgotPassword } from "@/hooks/auth/useForgotPassword";
 import { type ForgotPasswordFormType, forgotPasswordSchema } from "@/schemas/auth";
 
 export const Password = (): React.ReactElement => {
@@ -13,9 +14,10 @@ export const Password = (): React.ReactElement => {
 		},
 	});
 
+	const { mutate: forgotPassword, isPending } = useForgotPassword();
+
 	const onSubmit = (forgotPasswordData: ForgotPasswordFormType) => {
-		// Aquí puedes manejar la lógica para enviar el correo de recuperación de contraseña
-		console.log("Correo para recuperar contraseña:", forgotPasswordData.email);
+		forgotPassword(forgotPasswordData);
 	};
 
 	return (
@@ -36,7 +38,12 @@ export const Password = (): React.ReactElement => {
 					label="Email"
 				/>
 
-				<Button type="submit">Recuperar contraseña</Button>
+				<Button
+					type="submit"
+					disabled={isPending}
+				>
+					{isPending ? "Enviando email..." : "Recuperar contraseña"}
+				</Button>
 			</form>
 		</div>
 	);

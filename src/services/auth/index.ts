@@ -45,4 +45,24 @@ export const authService: AuthService = {
 		const response = await httpClient.get<APIResponse<AuthUser>>("/auth/me");
 		return unwrap<AuthUser>(response);
 	},
+
+	// ====================== FORGOT PASSWORD =========================
+	// Uses raw axios — no token needed.
+	forgotPassword: async (payload: ForgotPasswordPayload): Promise<MessageResponse> => {
+		const response = await axios.post<APIResponse<MessageResponse>>(
+			`${import.meta.env.VITE_API_BASE_URL}/auth/forgot-password`,
+			payload,
+		);
+		return unwrap<MessageResponse>(response);
+	},
+
+	// ====================== RESET PASSWORD =========================
+	// Uses raw axios — tokens come from the Supabase redirect URL, not from storage.
+	resetPassword: async (payload: ResetPasswordPayload): Promise<MessageResponse> => {
+		const response = await axios.post<APIResponse<MessageResponse>>(
+			`${import.meta.env.VITE_API_BASE_URL}/auth/reset-password`,
+			payload,
+		);
+		return unwrap<MessageResponse>(response);
+	},
 };
