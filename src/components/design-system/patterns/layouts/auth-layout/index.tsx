@@ -1,14 +1,17 @@
 import type React from "react";
-import { Navigate, Outlet } from "react-router";
+import { Navigate, Outlet, useLocation } from "react-router";
 import { ROUTES } from "@/app/router/routes";
 import { useAuthStorage } from "@/storage/authStorage";
 import { AuthBranding } from "./components/auth-branding";
 import { AuthNavigator } from "./components/auth-navigator";
 
+const AUTH_GUARD_BYPASS = [ROUTES.AUTH.RESET_PASSWORD];
+
 export const AuthLayout = (): React.ReactElement => {
 	const isAuthenticated = useAuthStorage((state) => state.isAuthenticated);
+	const { pathname } = useLocation();
 
-	if (isAuthenticated) {
+	if (isAuthenticated && !AUTH_GUARD_BYPASS.includes(pathname)) {
 		return (
 			<Navigate
 				to={ROUTES.APP.ROOT}
