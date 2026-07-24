@@ -1,8 +1,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import type React from "react";
 import { useForm } from "react-hook-form";
-import { Navigate, useLocation } from "react-router";
-import { ROUTES } from "@/app/router/routes";
+import { useLocation } from "react-router";
+import { Empty } from "@/components/design-system/patterns/feedback/empty";
 import { FormField } from "@/components/design-system/patterns/forms/form-field";
 import { Button } from "@/components/ui/button";
 import { useResetPassword } from "@/hooks/auth/useResetPassword";
@@ -33,12 +33,7 @@ export const NewPassword = (): React.ReactElement => {
 	const { mutate: resetPassword, isPending } = useResetPassword();
 
 	if (!tokens) {
-		return (
-			<Navigate
-				to={ROUTES.AUTH.LOGIN}
-				replace
-			/>
-		);
+		return <Empty />;
 	}
 
 	const onSubmit = (formData: ResetPasswordFormType) => {
