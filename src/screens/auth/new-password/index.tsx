@@ -1,5 +1,14 @@
 import type React from "react";
 
 export const NewPassword = (): React.ReactElement => {
-	return <div></div>;
+	return (
+		<div className="flex w-full max-w-sm flex-col gap-6">
+			<div className="flex flex-col gap-2">
+				<h1 className="text-2xl font-bold">Crea una nueva contraseña</h1>
+				<p className="text-sm text-muted-foreground">Ingresa tu nueva contraseña.</p>
+			</div>
+
+			<form></form>
+		</div>
+	);
 };

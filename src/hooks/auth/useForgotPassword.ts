@@ -6,8 +6,10 @@ import { apiErrorToast } from "@/utils/errors/apiErrorToast";
 export const useForgotPassword = () => {
 	return useMutation({
 		mutationFn: (payload: ForgotPasswordPayload) => authService.forgotPassword(payload),
-		onSuccess: (data: MessageResponse) => {
-			toast.success(data.message);
+		onSuccess: () => {
+			toast.success(
+				"Si el correo está registrado, recibirás un enlace para restablecer tu contraseña",
+			);
 		},
 		onError: (error: unknown) => {
 			apiErrorToast(error, "No se pudo enviar el correo de recuperación");

@@ -38,16 +38,12 @@ type ResetPasswordPayload = {
 	newPassword: string;
 };
 
-type MessageResponse = {
-	message: string;
-};
-
 type AuthService = {
 	login: (payload: LoginPayload) => Promise<AuthResponse>;
 	register: (payload: RegisterPayload) => Promise<AuthResponse>;
 	refresh: (refreshToken: string) => Promise<AuthTokens>;
 	logout: () => Promise<void>;
 	getMe: () => Promise<AuthUser>;
-	forgotPassword: (payload: ForgotPasswordPayload) => Promise<MessageResponse>;
-	resetPassword: (payload: ResetPasswordPayload) => Promise<MessageResponse>;
+	forgotPassword: (payload: ForgotPasswordPayload) => Promise<void>;
+	resetPassword: (payload: ResetPasswordPayload) => Promise<void>;
 };

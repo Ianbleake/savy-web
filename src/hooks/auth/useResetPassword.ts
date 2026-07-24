@@ -10,8 +10,8 @@ export const useResetPassword = () => {
 
 	return useMutation({
 		mutationFn: (payload: ResetPasswordPayload) => authService.resetPassword(payload),
-		onSuccess: (data: MessageResponse) => {
-			toast.success(data.message);
+		onSuccess: () => {
+			toast.success("Contraseña actualizada correctamente");
 			navigate(ROUTES.AUTH.LOGIN, { replace: true });
 		},
 		onError: (error: unknown) => {
