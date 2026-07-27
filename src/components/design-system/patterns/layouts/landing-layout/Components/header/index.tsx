@@ -15,14 +15,12 @@ export const Header = (): React.ReactElement => {
 					<Button
 						variant="ghost"
 						size="sm"
-						asChild
 						className="hidden sm:block"
 					>
 						<Link to={ROUTES.AUTH.LOGIN}>Iniciar sesión</Link>
 					</Button>
 					<Button
 						size="sm"
-						asChild
 						className="hidden sm:block"
 					>
 						<Link to={ROUTES.AUTH.REGISTER}>Empezar gratis</Link>
