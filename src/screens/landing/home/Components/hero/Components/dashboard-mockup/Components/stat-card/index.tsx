@@ -7,11 +7,12 @@ type Props = {
 	value: string;
 	icon?: React.ReactNode;
 	variant: "positive" | "negative" | "neutral";
+	className?: string;
 };
 
-export const StatCard = ({ label, value, icon, variant }: Props): React.ReactElement => {
+export const StatCard = ({ label, value, icon, variant, className }: Props): React.ReactElement => {
 	return (
-		<div className="rounded-xl border border-border/60 bg-card p-3 shadow-sm">
+		<div className={merge("rounded-xl border border-border/60 bg-card p-3 shadow-sm", className)}>
 			<p className="text-xs text-muted-foreground">{label}</p>
 			<div className="mt-1 flex items-center gap-1">
 				{icon && (

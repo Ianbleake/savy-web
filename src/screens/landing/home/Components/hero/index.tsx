@@ -1,8 +1,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import type React from "react";
-import { Link } from "react-router";
-
+import { useNavigate } from "react-router";
 import { ROUTES } from "@/app/router/routes";
 import { ScaleFadeIn } from "@/components/design-system/patterns/animations/scale-fade-in";
 import { StaggerContainer } from "@/components/design-system/patterns/animations/stagger-container";
@@ -15,6 +14,8 @@ export const Hero = (): React.ReactElement => {
 	const prefersReducedMotion = useReducedMotion();
 	const heroVariants = getHeroVariants(prefersReducedMotion);
 	const heroTransition = getHeroTransition(prefersReducedMotion);
+
+	const navigate = useNavigate();
 
 	return (
 		<section className="relative overflow-hidden py-20 lg:py-32">
@@ -55,23 +56,30 @@ export const Hero = (): React.ReactElement => {
 						className="flex flex-wrap items-center gap-4 pt-2"
 					>
 						<Button
-							size="lg"
-							asChild
+							variant={"ghost"}
+							size={"lg"}
+							onClick={() => navigate(ROUTES.AUTH.LOGIN)}
 						>
-							<Link to={ROUTES.AUTH.REGISTER}>
-								Empezar gratis
-								<ArrowRight className="size-4" />
-							</Link>
+							Iniciar sesión
 						</Button>
-						<button
+						<Button
+							size="lg"
+							onClick={() => navigate(ROUTES.AUTH.REGISTER)}
+						>
+							Empezar gratis
+							<ArrowRight className="size-4" />
+						</Button>
+						<Button
+							size={"lg"}
 							type="button"
-							className="text-sm font-medium text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline"
+							variant={"ghost"}
+							className="hidden sm:block"
 							onClick={() => {
 								document.getElementById("funcionalidades")?.scrollIntoView({ behavior: "smooth" });
 							}}
 						>
 							Ver funcionalidades
-						</button>
+						</Button>
 					</motion.div>
 				</StaggerContainer>
 

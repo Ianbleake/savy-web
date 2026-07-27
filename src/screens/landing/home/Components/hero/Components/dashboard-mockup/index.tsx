@@ -25,7 +25,7 @@ export const DashboardMockup = (): React.ReactElement => {
 				</div>
 
 				{/* Stat cards row */}
-				<div className="grid grid-cols-3 gap-3">
+				<div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
 					<StatCard
 						label="Ingresos"
 						value="$32,000"
@@ -42,6 +42,7 @@ export const DashboardMockup = (): React.ReactElement => {
 						label="Ahorro"
 						value="74%"
 						variant="neutral"
+						className="col-span-2 sm:col-span-1"
 					/>
 				</div>
 			</div>

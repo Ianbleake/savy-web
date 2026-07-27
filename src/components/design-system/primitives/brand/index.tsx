@@ -2,6 +2,7 @@ import { PiggyBank } from "lucide-react";
 import type React from "react";
 import { Link } from "react-router";
 import { ROUTES } from "@/app/router/routes";
+import { useAuthStorage } from "@/storage/authStorage";
 import { merge } from "@/utils/ui/mergeStyles";
 
 type BrandSize = "sm" | "md" | "lg";
@@ -15,18 +16,27 @@ const sizeStyles: Record<BrandSize, { container: string; icon: string; text: str
 type Props = {
 	variant?: "default" | "light";
 	size?: BrandSize;
+	className?: string;
 };
 
-export const Brand = ({ variant = "default", size = "md" }: Props): React.ReactElement => {
+export const Brand = ({
+	variant = "default",
+	size = "md",
+	className,
+}: Props): React.ReactElement => {
 	const styles = sizeStyles[size];
+
+	const isAuthenticated = useAuthStorage((state) => state.isAuthenticated);
+	const homeRoute = isAuthenticated ? ROUTES.APP.ROOT : ROUTES.LANDING.ROOT;
 
 	return (
 		<Link
-			to={ROUTES.LANDING.ROOT}
+			to={homeRoute}
 			className={merge(
 				"font-bold flex flex-row gap-2 items-center",
 				styles.text,
 				variant === "light" ? "text-white" : "text-primary",
+				className,
 			)}
 		>
 			<div
