@@ -37,7 +37,7 @@ export const AppLayout = (): React.ReactElement => {
 							}}
 						/>
 					</div>
-					<div className="relative z-10">
+					<div className="relative z-10 flex flex-1 flex-col">
 						<Outlet />
 					</div>
 				</div>
