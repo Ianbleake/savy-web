@@ -1,0 +1,17 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { CARD_STATEMENTS_QUERY_KEY, cardStatementService } from "@/services/card-statements";
+import { apiErrorToast } from "@/utils/errors/apiErrorToast";
+
+export const useCreateCardStatement = () => {
+	const queryClient = useQueryClient();
+
+	return useMutation({
+		mutationFn: (payload: CreateCardStatementPayload) => cardStatementService.create(payload),
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: CARD_STATEMENTS_QUERY_KEY });
+		},
+		onError: (error: unknown) => {
+			apiErrorToast(error, "Error al crear el estado de cuenta");
+		},
+	});
+};

@@ -7,6 +7,7 @@ type IncomeSource = {
 	amount: number;
 	frequency: IncomeSourceFrequency;
 	paydays: number[];
+	destinationAccountId: string;
 	isActive: boolean;
 	createdAt: string;
 	updatedAt: string;
@@ -17,6 +18,7 @@ type CreateIncomeSourcePayload = {
 	amount: number;
 	frequency: IncomeSourceFrequency;
 	paydays: number[];
+	destinationAccountId: string;
 };
 
 type UpdateIncomeSourcePayload = Partial<CreateIncomeSourcePayload>;
