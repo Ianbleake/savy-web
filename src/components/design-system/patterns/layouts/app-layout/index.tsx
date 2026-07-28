@@ -4,6 +4,11 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppHeader } from "./Components/app-header";
 import { AppSidebar } from "./Components/app-sidebar";
 
+/**
+ * Sidebar + header chrome for the authenticated app area. The profile guard
+ * runs in the surrounding `AppGuardLayout`, so this layout assumes the profile
+ * is already loaded and authorized.
+ */
 export const AppLayout = (): React.ReactElement => {
 	return (
 		<SidebarProvider>

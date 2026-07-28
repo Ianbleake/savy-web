@@ -7,7 +7,12 @@ export function ProtectedRoute(): ReactElement {
 	const isAuthenticated = useAuthStorage((state) => state.isAuthenticated);
 
 	if (!isAuthenticated) {
-		return <Navigate to={ROUTES.AUTH.LOGIN} replace />;
+		return (
+			<Navigate
+				to={ROUTES.AUTH.LOGIN}
+				replace
+			/>
+		);
 	}
 
 	return <Outlet />;

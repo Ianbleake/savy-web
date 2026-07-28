@@ -91,6 +91,8 @@ export const FormSelect = <T extends FieldValues>({
 
 						<SelectContent
 							side="bottom"
+							position="popper"
+							avoidCollisions={false}
 						>
 							{searchable && (
 								<div className="flex items-center gap-2 px-2 py-2 sticky top-0 bg-white border-b border-gray-100 z-10">

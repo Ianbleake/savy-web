@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router";
+import { AppGuardLayout } from "@/components/design-system/patterns/layouts/app-guard-layout";
 import { AppLayout } from "@/components/design-system/patterns/layouts/app-layout";
 import { AuthLayout } from "@/components/design-system/patterns/layouts/auth-layout";
 import { LandingLayout } from "@/components/design-system/patterns/layouts/landing-layout";
@@ -47,12 +48,26 @@ export const router = createBrowserRouter([
 		element: <ProtectedRoute />,
 		children: [
 			{
-				path: ROUTES.APP.ROOT,
-				element: <AppLayout />,
+				// Shared profile guard for every authenticated app route, including
+				// /app/onboarding which intentionally renders without AppLayout chrome.
+				element: <AppGuardLayout />,
 				children: [
 					{
-						index: true,
-						lazy: () => import("@/screens/app/dashboard").then((m) => ({ Component: m.Dashboard })),
+						path: ROUTES.APP.ROOT,
+						element: <AppLayout />,
+						children: [
+							{
+								index: true,
+								lazy: () =>
+									import("@/screens/app/dashboard").then((m) => ({ Component: m.Dashboard })),
+							},
+						],
+					},
+					{
+						// Onboarding wizard — clean full-screen layout, no AppLayout chrome.
+						path: ROUTES.APP.ONBOARDING,
+						lazy: () =>
+							import("@/screens/app/onboarding").then((m) => ({ Component: m.Onboarding })),
 					},
 				],
 			},

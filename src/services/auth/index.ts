@@ -1,12 +1,17 @@
 import axios from "axios";
 import { httpClient, unwrap } from "../http-client";
 
+const API_BASE_URL =
+	import.meta.env.VITE_SCOPE === "dev"
+		? import.meta.env.VITE_DEV_API_BASE_URL
+		: import.meta.env.VITE_PROD_API_BASE_URL;
+
 export const authService: AuthService = {
 	// ====================== LOGIN =========================
 	// Uses raw axios — login happens before any token exists.
 	login: async (credentials: LoginPayload): Promise<AuthResponse> => {
 		const response = await axios.post<APIResponse<AuthResponse>>(
-			`${import.meta.env.VITE_API_BASE_URL}/auth/login`,
+			`${API_BASE_URL}/auth/login`,
 			credentials,
 		);
 		return unwrap<AuthResponse>(response);
@@ -16,7 +21,7 @@ export const authService: AuthService = {
 	// Uses raw axios — register happens before any token exists.
 	register: async (userData: RegisterPayload): Promise<AuthResponse> => {
 		const response = await axios.post<APIResponse<AuthResponse>>(
-			`${import.meta.env.VITE_API_BASE_URL}/auth/register`,
+			`${API_BASE_URL}/auth/register`,
 			userData,
 		);
 		return unwrap<AuthResponse>(response);
@@ -26,10 +31,9 @@ export const authService: AuthService = {
 	// Uses raw axios — called from inside the 401 interceptor.
 	// Using httpClient here would cause infinite recursion.
 	refresh: async (refreshToken: string): Promise<AuthTokens> => {
-		const response = await axios.post<APIResponse<AuthTokens>>(
-			`${import.meta.env.VITE_API_BASE_URL}/auth/refresh`,
-			{ refreshToken },
-		);
+		const response = await axios.post<APIResponse<AuthTokens>>(`${API_BASE_URL}/auth/refresh`, {
+			refreshToken,
+		});
 		return unwrap<AuthTokens>(response);
 	},
 
@@ -49,19 +53,13 @@ export const authService: AuthService = {
 	// ====================== FORGOT PASSWORD =========================
 	// Uses raw axios — no token needed. Response data is null; message lives in the envelope.
 	forgotPassword: async (payload: ForgotPasswordPayload): Promise<void> => {
-		await axios.post<APIResponse<null>>(
-			`${import.meta.env.VITE_API_BASE_URL}/auth/forgot-password`,
-			payload,
-		);
+		await axios.post<APIResponse<null>>(`${API_BASE_URL}/auth/forgot-password`, payload);
 	},
 
 	// ====================== RESET PASSWORD =========================
 	// Uses raw axios — tokens come from the Supabase redirect URL, not from storage.
 	// Response data is null; message lives in the envelope.
 	resetPassword: async (payload: ResetPasswordPayload): Promise<void> => {
-		await axios.post<APIResponse<null>>(
-			`${import.meta.env.VITE_API_BASE_URL}/auth/reset-password`,
-			payload,
-		);
+		await axios.post<APIResponse<null>>(`${API_BASE_URL}/auth/reset-password`, payload);
 	},
 };

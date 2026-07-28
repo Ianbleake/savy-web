@@ -129,6 +129,38 @@
 	}
 }
 
+/* ─── Glass card inner elements ─── */
+
+/* Inputs inside GlassCard get a frosted glass look */
+[data-glass] [data-slot="input"] {
+	background: rgba(255, 255, 255, 0.5);
+	backdrop-filter: blur(8px);
+	border-color: rgba(255, 255, 255, 0.35);
+}
+
+[data-glass] [data-slot="input"]:focus-visible {
+	background: rgba(255, 255, 255, 0.6);
+}
+
+/* Select triggers inside GlassCard */
+[data-glass] [data-slot="select-trigger"] {
+	background: rgba(255, 255, 255, 0.5);
+	backdrop-filter: blur(8px);
+	border-color: rgba(255, 255, 255, 0.35);
+}
+
+/* Progress bar track inside GlassCard */
+[data-glass] [role="progressbar"],
+[data-glass] .bg-muted {
+	background: rgba(255, 255, 255, 0.35);
+}
+
+/* Muted text containers (summary boxes) inside GlassCard */
+[data-glass] .bg-muted\/40 {
+	background: rgba(255, 255, 255, 0.25);
+	backdrop-filter: blur(4px);
+}
+
 /* Hide TanStack Query Devtools default floating button — controlled by DevTools FAB */
 .tsqd-open-btn {
 	display: none !important;

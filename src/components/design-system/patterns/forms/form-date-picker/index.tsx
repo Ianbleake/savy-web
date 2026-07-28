@@ -43,6 +43,18 @@ const formatRange = (from?: Date, to?: Date) => {
 	return "";
 };
 
+const parseMultiple = (value?: string[]): Date[] | undefined => {
+	if (!value || value.length === 0) return undefined;
+	return value.map((iso) => parseDate(iso)).filter((date): date is Date => Boolean(date));
+};
+
+const formatMultiple = (dates?: Date[]): string => {
+	if (!dates || dates.length === 0) return "";
+	const days = dates.map((date) => date.getDate()).sort((prev, next) => prev - next);
+	if (days.length === 1) return `Día ${days[0]}`;
+	return `Días ${days.join(", ")}`;
+};
+
 type BaseProps<T extends FieldValues> = {
 	label: string;
 	form: UseFormReturn<T>;
@@ -55,6 +67,8 @@ type BaseProps<T extends FieldValues> = {
 	minDate?: Date;
 	maxDate?: Date;
 	disabledDates?: Matcher | Matcher[];
+	maxSelected?: number;
+	disableNavigation?: boolean;
 };
 
 type Props<T extends FieldValues> =
@@ -64,6 +78,10 @@ type Props<T extends FieldValues> =
 	  })
 	| (BaseProps<T> & {
 			mode: "range";
+			name: FieldPath<T>;
+	  })
+	| (BaseProps<T> & {
+			mode: "multiple";
 			name: FieldPath<T>;
 	  });
 
@@ -79,6 +97,8 @@ export const FormDatePicker = <T extends FieldValues>({
 	disabledDates,
 	minDate,
 	maxDate,
+	maxSelected,
+	disableNavigation,
 	...props
 }: Props<T>): React.ReactElement => {
 	const [open, setOpen] = useState<boolean>(false);
@@ -142,7 +162,49 @@ export const FormDatePicker = <T extends FieldValues>({
 						);
 					}
 
-					const { from, to } = parseRange(field.value);
+					if (props.mode === "range") {
+						const { from, to } = parseRange(field.value);
+
+						return (
+							<Popover
+								open={open}
+								onOpenChange={setOpen}
+							>
+								<PopoverTrigger asChild>
+									<Button
+										variant="outline"
+										className="justify-between w-full"
+										disabled={disabled}
+									>
+										{formatDateRange(from, to)}
+										<CalendarIcon className="ml-2 h-4 w-4 opacity-50" />
+									</Button>
+								</PopoverTrigger>
+
+								<PopoverContent className="w-auto p-0">
+									<Calendar
+										mode="range"
+										disabled={disabled ? true : disabledDates}
+										selected={{ from, to }}
+										onSelect={(range) => {
+											field.onChange(formatRange(range?.from, range?.to));
+
+											if (range?.from && range?.to) {
+												setOpen(false);
+											}
+										}}
+										numberOfMonths={2}
+										fixedWeeks
+									/>
+								</PopoverContent>
+							</Popover>
+						);
+					}
+
+					const selectedDates = parseMultiple(field.value);
+					const now = new Date();
+					const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+					const monthEnd = new Date(now.getFullYear(), now.getMonth() + 1, 0);
 
 					return (
 						<Popover
@@ -152,28 +214,39 @@ export const FormDatePicker = <T extends FieldValues>({
 							<PopoverTrigger asChild>
 								<Button
 									variant="outline"
-									className="justify-between w-full"
+									className="justify-between w-full h-8 text-xs/relaxed font-normal"
 									disabled={disabled}
 								>
-									{formatDateRange(from, to)}
-									<CalendarIcon className="ml-2 h-4 w-4 opacity-50" />
+									<span
+										className={
+											selectedDates && selectedDates.length > 0 ? "" : "text-muted-foreground"
+										}
+									>
+										{selectedDates && selectedDates.length > 0
+											? formatMultiple(selectedDates)
+											: "Seleccionar días"}
+									</span>
+									<CalendarIcon className="ml-2 size-3.5 opacity-50" />
 								</Button>
 							</PopoverTrigger>
 
 							<PopoverContent className="w-auto p-0">
 								<Calendar
-									mode="range"
+									mode="multiple"
 									disabled={disabled ? true : disabledDates}
-									selected={{ from, to }}
-									onSelect={(range) => {
-										field.onChange(formatRange(range?.from, range?.to));
+									selected={selectedDates}
+									locale={es}
+									startMonth={disableNavigation ? monthStart : undefined}
+									endMonth={disableNavigation ? monthEnd : undefined}
+									max={maxSelected}
+									onSelect={(dates) => {
+										const next = (dates ?? []).map((date) => formatSingle(date));
+										field.onChange(next);
 
-										if (range?.from && range?.to) {
+										if (maxSelected && next.length >= maxSelected) {
 											setOpen(false);
 										}
 									}}
-									numberOfMonths={2}
-									fixedWeeks
 								/>
 							</PopoverContent>
 						</Popover>

@@ -11,6 +11,11 @@ import { useAuthStorage } from "@/storage/authStorage";
 // Maps a service key to its base URL env var.
 // Add new services here as the platform grows.
 
+const API_BASE_URL =
+	import.meta.env.VITE_SCOPE === "dev"
+		? import.meta.env.VITE_DEV_API_BASE_URL
+		: import.meta.env.VITE_PROD_API_BASE_URL;
+
 export type ServiceKey = "core";
 
 declare module "axios" {
@@ -23,7 +28,7 @@ declare module "axios" {
 }
 
 const SERVICE_URLS: Record<ServiceKey, string> = {
-	core: import.meta.env.VITE_API_BASE_URL,
+	core: API_BASE_URL,
 };
 
 const DEFAULT_SERVICE: ServiceKey = "core";

@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { useProfileStorage } from "@/storage/profile/profileStorage";
 
 export const useAuthStorage = create<AuthStorage>()(
 	persist(
@@ -34,6 +35,10 @@ export const useAuthStorage = create<AuthStorage>()(
 					isAuthenticated: false,
 				});
 				useAuthStorage.persist.clearStorage();
+				// Clear the persisted profile so a different user logging in on the
+				// same device does not rehydrate the previous user's profile from
+				// AsyncStorage before their own query resolves.
+				useProfileStorage.getState().clearProfile();
 			},
 		}),
 		{
