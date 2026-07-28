@@ -8,7 +8,7 @@ export const AppSidebar = (): React.ReactElement => {
 	return (
 		<Sidebar
 			collapsible="icon"
-			className="border-r border-white/20 bg-white/15 backdrop-blur-[15px] dark:bg-white/[0.08] dark:border-white/[0.12]"
+			className="border-r border-sidebar-border"
 		>
 			<SidebarHeader className="p-0 gap-0">
 				<SidebarBranding />

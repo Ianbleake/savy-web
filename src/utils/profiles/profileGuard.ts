@@ -11,11 +11,11 @@ export const profileGuard = (
 	profile: Profile | null | undefined,
 	pathname: string,
 ): string | null => {
-	// Still loading — do not redirect yet to avoid flicker.
-	if (profile === undefined) return null;
-
-	// Defensive: no profile at all (shouldn't happen inside ProtectedRoute).
-	if (profile === null) return ROUTES.AUTH.LOGIN;
+	// Still loading or fetch failed — do not redirect.
+	// The 401 interceptor handles invalid tokens via logout; ProtectedRoute
+	// handles unauthenticated users. Redirecting here causes infinite loops
+	// when isAuthenticated is true but the profile fetch fails.
+	if (profile === undefined || profile === null) return null;
 
 	// Onboarding incomplete — force the user into the wizard.
 	if (!profile.onboardingCompleted) {

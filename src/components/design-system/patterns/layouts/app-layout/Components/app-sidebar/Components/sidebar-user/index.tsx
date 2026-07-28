@@ -25,7 +25,7 @@ export const SidebarUser = (): React.ReactElement => {
 	const initial = user?.email?.[0]?.toUpperCase() ?? "?";
 
 	return (
-		<SidebarGroup className="border-t border-white/20 p-2">
+		<SidebarGroup className="border-t border-sidebar-border p-2">
 			<DropdownMenu>
 				<DropdownMenuTrigger asChild>
 					<button

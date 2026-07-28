@@ -42,8 +42,8 @@ export const SidebarNavigation = (): React.ReactElement => {
 											className={merge(
 												"flex items-center gap-3 px-3 py-2 rounded-md border border-transparent",
 												active
-													? "bg-primary/15 border-primary/20 text-primary backdrop-blur-sm shadow-sm shadow-primary/10"
-													: "text-muted-foreground hover:bg-white/30 hover:text-primary hover:backdrop-blur-sm hover:border-white/20",
+													? "bg-primary/15 border-primary/20 text-primary backdrop-blur-sm shadow-sm shadow-primary/10 hover:opacity-85! hover:bg-primary/15! hover:text-primary! hover:border! hover:border-primary/20!"
+													: "text-muted-foreground hover:bg-primary/5! hover:text-primary! hover:border! hover:border-primary/20!",
 											)}
 										>
 											<Icon className="size-5" />
