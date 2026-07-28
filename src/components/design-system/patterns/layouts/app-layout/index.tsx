@@ -27,6 +27,9 @@ export const AppLayout = (): React.ReactElement => {
 						<div className="absolute -left-[10%] top-[5%] size-[500px] rounded-full bg-primary/8 blur-[120px]" />
 						<div className="absolute -right-[5%] top-[40%] size-[450px] rounded-full bg-primary/6 blur-[100px]" />
 						<div className="absolute bottom-[5%] left-[30%] size-[400px] rounded-full bg-primary/5 blur-[100px]" />
+						<div className="absolute right-[30%] bottom-[10%] size-[800px] rounded-full bg-primary/8 blur-[50px]" />
+						<div className="absolute -bottom-[15%] -left-[10%] size-[500px] rounded-full bg-primary/5 blur-[30px]" />
+						<div className="absolute -top-[15%] -right-[10%] size-[500px] rounded-full bg-primary/5 blur-[50px]" />
 						{/* Subtle grid texture */}
 						<div
 							className="absolute inset-0 opacity-[0.02]"
