@@ -61,6 +61,11 @@ export const router = createBrowserRouter([
 								lazy: () =>
 									import("@/screens/app/dashboard").then((m) => ({ Component: m.Dashboard })),
 							},
+							{
+								path: ROUTES.APP.ACCOUNTS,
+								lazy: () =>
+									import("@/screens/app/accounts").then((m) => ({ Component: m.Accounts })),
+							},
 						],
 					},
 					{

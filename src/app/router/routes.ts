@@ -14,6 +14,7 @@ export const ROUTES = {
 	APP: {
 		ROOT: "/app",
 		DASHBOARD: "/app/dashboard",
+		ACCOUNTS: "/app/accounts",
 		ONBOARDING: "/app/onboarding",
 		SETTINGS: "/app/settings",
 	},
