@@ -10,13 +10,13 @@ export const AuthBranding = (): React.ReactElement => {
 				<UIPattern />
 			</div>
 
-			{/* Layer 2: Glass overlay */}
-			<div className="absolute inset-0 bg-[oklch(0.25_0.06_186/0.45)]" />
-			<div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.30_0.06_186/0.20)] via-transparent to-[oklch(0.18_0.05_186/0.40)]" />
+			{/* Layer 2: Glass overlay — lighter to let the teal shine through */}
+			<div className="absolute inset-0 bg-[oklch(0.35_0.08_186/0.30)]" />
+			<div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.40_0.08_186/0.15)] via-transparent to-[oklch(0.25_0.06_186/0.30)]" />
 
-			{/* Layer 2b: Gradient vignettes — focal zones for foreground content */}
-			<div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[oklch(0.25_0.06_186/0.60)] to-transparent" />
-			<div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-[oklch(0.18_0.05_186/0.80)] to-transparent" />
+			{/* Layer 2b: Gradient vignettes — softer for brighter feel */}
+			<div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[oklch(0.30_0.07_186/0.45)] to-transparent" />
+			<div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-[oklch(0.22_0.06_186/0.65)] to-transparent" />
 
 			{/* Layer 3: Foreground content */}
 			<div className="relative z-10 flex h-full flex-col justify-between p-8 pb-12">
