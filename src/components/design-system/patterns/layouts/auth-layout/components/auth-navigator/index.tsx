@@ -31,7 +31,7 @@ export const AuthNavigator = (): React.ReactElement | null => {
 	}
 
 	return (
-		<div className="absolute top-3 right-6 text-sm">
+		<div className="flex items-center justify-end text-sm text-muted-foreground">
 			{navigatorCTA}
 			<Button
 				variant="link"

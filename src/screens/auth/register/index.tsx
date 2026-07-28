@@ -1,8 +1,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import type React from "react";
 import { useForm } from "react-hook-form";
+import { StaggerContainer } from "@/components/design-system/patterns/animations/stagger-container";
 import { FormField } from "@/components/design-system/patterns/forms/form-field";
-import { Brand } from "@/components/design-system/primitives/brand";
 import { Button } from "@/components/ui/button";
 import { useRegister } from "@/hooks/auth/useRegister";
 import { type RegisterFormType, registerSchema } from "@/schemas/auth";
@@ -33,12 +33,8 @@ export const Register = (): React.ReactElement => {
 	};
 
 	return (
-		<div className="flex w-full max-w-sm flex-col gap-6">
+		<StaggerContainer className="flex flex-col gap-6">
 			<div className="flex flex-col gap-2">
-				<Brand
-					className="self-center mb-8 sm:hidden"
-					size="lg"
-				/>
 				<h1 className="text-2xl font-bold">Registro</h1>
 				<p className="text-sm text-muted-foreground">
 					Ingresa tus credenciales para crear una cuenta.
@@ -94,6 +90,6 @@ export const Register = (): React.ReactElement => {
 					{isPending ? "Registrando..." : "Registrarse"}
 				</Button>
 			</form>
-		</div>
+		</StaggerContainer>
 	);
 };

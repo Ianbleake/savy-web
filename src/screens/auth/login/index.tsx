@@ -3,8 +3,8 @@ import type React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { ROUTES } from "@/app/router/routes";
+import { StaggerContainer } from "@/components/design-system/patterns/animations/stagger-container";
 import { FormField } from "@/components/design-system/patterns/forms/form-field";
-import { Brand } from "@/components/design-system/primitives/brand";
 import { Button } from "@/components/ui/button";
 import { useLogin } from "@/hooks/auth/useLogin";
 import { type LoginFormType, loginSchema } from "@/schemas/auth";
@@ -26,12 +26,8 @@ export const LoginPage = (): React.ReactElement => {
 	};
 
 	return (
-		<div className="flex w-full max-w-sm flex-col gap-6">
+		<StaggerContainer className="flex flex-col gap-6">
 			<div className="flex flex-col gap-2">
-				<Brand
-					className="self-center mb-8 sm:hidden"
-					size="lg"
-				/>
 				<h1 className="text-2xl font-bold">Iniciar sesión</h1>
 				<p className="text-sm text-muted-foreground">
 					Ingresa tus credenciales para acceder a tu cuenta.
@@ -71,6 +67,6 @@ export const LoginPage = (): React.ReactElement => {
 					</Button>
 				</div>
 			</form>
-		</div>
+		</StaggerContainer>
 	);
 };

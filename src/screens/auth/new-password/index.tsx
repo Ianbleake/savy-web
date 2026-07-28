@@ -4,9 +4,9 @@ import type React from "react";
 import { useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router";
 import { ROUTES } from "@/app/router/routes";
+import { StaggerContainer } from "@/components/design-system/patterns/animations/stagger-container";
 import { Empty } from "@/components/design-system/patterns/feedback/empty";
 import { FormField } from "@/components/design-system/patterns/forms/form-field";
-import { Brand } from "@/components/design-system/primitives/brand";
 import { Button } from "@/components/ui/button";
 import { useResetPassword } from "@/hooks/auth/useResetPassword";
 import { type ResetPasswordFormType, resetPasswordSchema } from "@/schemas/auth";
@@ -61,12 +61,8 @@ export const NewPassword = (): React.ReactElement => {
 	};
 
 	return (
-		<div className="flex w-full max-w-sm flex-col gap-6">
+		<StaggerContainer className="flex flex-col gap-6">
 			<div className="flex flex-col gap-2">
-				<Brand
-					className="self-center mb-8 sm:hidden"
-					size="lg"
-				/>
 				<h1 className="text-2xl font-bold">Crea una nueva contraseña</h1>
 				<p className="text-sm text-muted-foreground">Ingresa tu nueva contraseña.</p>
 			</div>
@@ -94,6 +90,6 @@ export const NewPassword = (): React.ReactElement => {
 					{isPending ? "Actualizando..." : "Actualizar contraseña"}
 				</Button>
 			</form>
-		</div>
+		</StaggerContainer>
 	);
 };
