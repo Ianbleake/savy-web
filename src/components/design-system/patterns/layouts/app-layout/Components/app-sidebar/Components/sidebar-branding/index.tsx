@@ -9,7 +9,7 @@ export const SidebarBranding = (): React.ReactElement => {
 	return (
 		<SidebarGroup
 			className={merge(
-				"flex flex-row items-center border-b border-border/50 h-14 px-4",
+				"flex flex-row items-center border-b border-white/20 h-14 px-4",
 				open ? "justify-between" : "justify-center",
 			)}
 		>

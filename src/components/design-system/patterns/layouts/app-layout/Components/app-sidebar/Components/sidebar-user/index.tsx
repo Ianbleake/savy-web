@@ -25,13 +25,13 @@ export const SidebarUser = (): React.ReactElement => {
 	const initial = user?.email?.[0]?.toUpperCase() ?? "?";
 
 	return (
-		<SidebarGroup className="border-t border-border/50 p-2">
+		<SidebarGroup className="border-t border-white/20 p-2">
 			<DropdownMenu>
 				<DropdownMenuTrigger asChild>
 					<button
 						type="button"
 						className={merge(
-							"flex w-full items-center gap-3 rounded-md p-2 text-left transition-colors hover:bg-muted",
+							"flex w-full items-center gap-3 rounded-md p-2 text-left transition-colors hover:bg-white/30 hover:backdrop-blur-sm",
 							!open && "justify-center",
 						)}
 					>
