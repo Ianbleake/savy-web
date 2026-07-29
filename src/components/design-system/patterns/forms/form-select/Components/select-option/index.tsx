@@ -10,16 +10,10 @@ export const SelectOption = ({ option }: SelectOptionProps): React.ReactElement 
 		<SelectItem
 			key={option.value as string}
 			value={option.value as string}
+			textValue={option.label}
+			description={option.description}
 		>
-			{option.description ? (
-				<div className="flex flex-col">
-					<p className="text-sm font-medium text-gray-900">{option.label}</p>
-
-					<p className="text-xs font-medium text-gray-500">{option.description}</p>
-				</div>
-			) : (
-				option.label
-			)}
+			{option.label}
 		</SelectItem>
 	);
 };

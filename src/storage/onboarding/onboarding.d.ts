@@ -3,6 +3,8 @@ type OnboardingController = {
 	totalSteps: number;
 	incomeSourceDrafts: CreateIncomeSourcePayload[];
 	createdIncomeSources: IncomeSource[];
+	createdBanks: Bank[];
+	createdAccounts: Account[];
 	setStep: (step: number) => void;
 	nextStep: () => void;
 	prevStep: () => void;
@@ -10,5 +12,11 @@ type OnboardingController = {
 	removeDraft: (index: number) => void;
 	clearDrafts: () => void;
 	setCreatedIncomeSources: (sources: IncomeSource[]) => void;
+	setCreatedBanks: (banks: Bank[]) => void;
+	addCreatedBank: (bank: Bank) => void;
+	removeCreatedBank: (bankId: string) => void;
+	setCreatedAccounts: (accounts: Account[]) => void;
+	addCreatedAccount: (account: Account) => void;
+	removeCreatedAccount: (accountId: string) => void;
 	reset: () => void;
 };

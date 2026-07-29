@@ -12,11 +12,16 @@ export const ONBOARDING_STEPS: OnboardingStep[] = [
 	},
 	{
 		step: 2,
-		label: "Financiero",
-		description: "Tus ingresos y día de pago",
+		label: "Bancos",
+		description: "Tus bancos y cuentas",
 	},
 	{
 		step: 3,
+		label: "Ingresos",
+		description: "Tus fuentes de ingreso",
+	},
+	{
+		step: 4,
 		label: "Preferencias",
 		description: "Moneda, idioma y zona horaria",
 	},

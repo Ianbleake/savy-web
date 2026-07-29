@@ -24,6 +24,7 @@ export const StepFinancial = (): React.ReactElement => {
 	const createdIncomeSources = useOnboardingController((state) => state.createdIncomeSources);
 	const setCreatedIncomeSources = useOnboardingController((state) => state.setCreatedIncomeSources);
 	const clearDrafts = useOnboardingController((state) => state.clearDrafts);
+	const createdAccounts = useOnboardingController((state) => state.createdAccounts);
 
 	const [showMiniForm, setShowMiniForm] = useState<boolean>(false);
 	const [bulkErrors, setBulkErrors] = useState<CreationError[]>([]);
@@ -43,6 +44,13 @@ export const StepFinancial = (): React.ReactElement => {
 	const canContinue =
 		!showMiniForm &&
 		((hasExisting && existingSources.length > 0) || (!hasExisting && drafts.length > 0));
+
+	const accountOptions: Option[] = createdAccounts.map((account) => ({
+		label: account.name,
+		value: account.id,
+	}));
+
+	const accountNameById = new Map(createdAccounts.map((account) => [account.id, account.name]));
 
 	const handleContinue = async (): Promise<void> => {
 		if (hasExisting) {
@@ -122,7 +130,7 @@ export const StepFinancial = (): React.ReactElement => {
 								<InfoItem
 									icon={HandCoins}
 									title={source.name}
-									description={`${formatCurrency(source.amount)} · ${getFrequencyLabel(source.frequency)} · ${formatPaydays(source.paydays)}`}
+									description={`${formatCurrency(source.amount)} · ${getFrequencyLabel(source.frequency)} · ${formatPaydays(source.paydays)} → ${accountNameById.get(source.destinationAccountId) ?? "Cuenta no encontrada"}`}
 								/>
 							</li>
 						))}
@@ -206,6 +214,7 @@ export const StepFinancial = (): React.ReactElement => {
 					<IncomeSourceForm
 						onSave={hasExisting ? handleExistingSave : handleDraftSave}
 						onSaved={() => setShowMiniForm(false)}
+						accountOptions={accountOptions}
 					/>
 				</GlassCard>
 			)}

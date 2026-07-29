@@ -23,6 +23,7 @@ const DEFAULT_VALUES: IncomeSourceFormValues = {
 	amount: 0,
 	frequency: "MONTHLY",
 	paydays: [],
+	destinationAccountId: "",
 };
 
 const buildMonthBounds = () => {
@@ -47,12 +48,14 @@ type IncomeSourceFormProps = {
 	/** Called once after a successful save, when the form is ready for the next decision. */
 	onSaved?: () => void;
 	saveLabel?: string;
+	accountOptions: Option[];
 };
 
 export const IncomeSourceForm = ({
 	onSave,
 	onSaved,
 	saveLabel = "Guardar fuente",
+	accountOptions,
 }: IncomeSourceFormProps): React.ReactElement => {
 	const [open, setOpen] = useState<boolean>(false);
 	const [showFollowUp, setShowFollowUp] = useState<boolean>(false);
@@ -258,6 +261,15 @@ export const IncomeSourceForm = ({
 						required
 					/>
 					{renderPaydayField()}
+					<FormSelect
+						name="destinationAccountId"
+						form={form}
+						label="Cuenta destino"
+						options={accountOptions}
+						placeholder="Selecciona una cuenta..."
+						required
+						helperText="Cuenta donde se depositará el ingreso."
+					/>
 					<Button
 						type="button"
 						onClick={handleSave}

@@ -17,6 +17,9 @@ export const DraftList = ({
 }: DraftListProps): React.ReactElement => {
 	const drafts = useOnboardingController((state) => state.incomeSourceDrafts);
 	const removeDraft = useOnboardingController((state) => state.removeDraft);
+	const createdAccounts = useOnboardingController((state) => state.createdAccounts);
+
+	const accountNameById = new Map(createdAccounts.map((account) => [account.id, account.name]));
 
 	if (drafts.length === 0) {
 		return (
@@ -36,7 +39,7 @@ export const DraftList = ({
 						<InfoItem
 							icon={HandCoins}
 							title={draft.name}
-							description={`${formatCurrency(draft.amount)} · ${getFrequencyLabel(draft.frequency)} · ${formatPaydays(draft.paydays)}`}
+							description={`${formatCurrency(draft.amount)} · ${getFrequencyLabel(draft.frequency)} · ${formatPaydays(draft.paydays)} → ${accountNameById.get(draft.destinationAccountId) ?? "Cuenta"}`}
 							action={
 								!readOnly ? (
 									<Button

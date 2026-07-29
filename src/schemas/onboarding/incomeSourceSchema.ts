@@ -8,6 +8,7 @@ export const incomeSourceSchema = z
 			message: "Selecciona una frecuencia",
 		}),
 		paydays: z.array(z.number().int()),
+		destinationAccountId: z.string().min(1, "Selecciona una cuenta"),
 	})
 	.superRefine((data, ctx) => {
 		if (data.frequency === "WEEKLY") {

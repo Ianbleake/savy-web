@@ -13,6 +13,7 @@ import { merge } from "@/utils/ui/mergeStyles";
 
 import { BackgroundDecor } from "./Components/background-decor";
 import { OnboardingProgress } from "./Components/onboarding-progress";
+import { StepBanks } from "./Components/step-banks";
 import { StepFinancial } from "./Components/step-financial";
 import { StepPersonal } from "./Components/step-personal";
 import { StepPreferences } from "./Components/step-preferences";
@@ -62,7 +63,7 @@ export const Onboarding = (): React.ReactElement => {
 		}
 	}, [profile?.onboardingCompleted, reset]);
 
-	// Step 2 (income sources) needs two cards side by side; a wider container.
+	// Steps 2 (banks/accounts) and 3 (income sources) use two cards side by side; a wider container.
 	return (
 		<div className="relative flex min-h-svh items-center justify-center overflow-hidden bg-background px-4 py-8">
 			<BackgroundDecor />
@@ -72,7 +73,7 @@ export const Onboarding = (): React.ReactElement => {
 					key="onboarding-shell"
 					className={merge(
 						"relative z-10 flex w-full flex-col gap-6",
-						currentStep === 2 ? "max-w-3xl" : "max-w-md",
+						currentStep === 2 || currentStep === 3 ? "max-w-3xl" : "max-w-md",
 					)}
 				>
 					<Brand
@@ -89,6 +90,8 @@ export const Onboarding = (): React.ReactElement => {
 						</div>
 
 						{currentStep === 2 ? (
+							<StepBanks />
+						) : currentStep === 3 ? (
 							<StepFinancial />
 						) : (
 							<GlassCard
@@ -102,7 +105,7 @@ export const Onboarding = (): React.ReactElement => {
 									className="mt-6 flex flex-col gap-5"
 								>
 									{currentStep === 1 && <StepPersonal />}
-									{currentStep === 3 && <StepPreferences />}
+									{currentStep === 4 && <StepPreferences />}
 								</StaggerContainer>
 							</GlassCard>
 						)}

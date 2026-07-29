@@ -15,11 +15,11 @@ const FIELD_TO_STEP: Record<string, number> = {
 	lastName: 1,
 	secondLastName: 1,
 	phone: 1,
-	monthlyIncome: 2,
-	paydayOfMonth: 2,
-	currency: 3,
-	locale: 3,
-	timezone: 3,
+	accounts: 2,
+	incomeSources: 3,
+	currency: 4,
+	locale: 4,
+	timezone: 4,
 };
 
 /**
