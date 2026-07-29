@@ -12,11 +12,11 @@ type QuickAction = {
 };
 
 const ACTIONS: QuickAction[] = [
-	{ label: "Transacción", icon: ArrowLeftRight, path: ROUTES.APP.TRANSACTIONS_NEW },
-	{ label: "Cuenta", icon: Wallet, path: ROUTES.APP.ACCOUNTS_NEW },
-	{ label: "Presupuesto", icon: PiggyBank, path: ROUTES.APP.BUDGETS_NEW },
-	{ label: "Meta", icon: Target, path: ROUTES.APP.GOALS_NEW },
-	{ label: "Ingreso", icon: TrendingUp, path: ROUTES.APP.TRANSACTIONS_NEW },
+	{ label: "Transacción", icon: ArrowLeftRight, path: ROUTES.APP.TRANSACTIONS },
+	{ label: "Cuenta", icon: Wallet, path: ROUTES.APP.ACCOUNTS },
+	{ label: "Presupuesto", icon: PiggyBank, path: ROUTES.APP.BUDGETS },
+	{ label: "Meta", icon: Target, path: ROUTES.APP.GOALS },
+	{ label: "Ingreso", icon: TrendingUp, path: ROUTES.APP.TRANSACTIONS },
 ];
 
 type QuickActionsBarProps = {

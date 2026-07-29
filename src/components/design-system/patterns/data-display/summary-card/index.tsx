@@ -1,4 +1,4 @@
-import { ChevronRight, type LucideIcon } from "lucide-react";
+import { ChevronRight, type LucideIcon, Plus } from "lucide-react";
 import type React from "react";
 import { GlassCard } from "@/components/design-system/patterns/glass-card";
 import { merge } from "@/utils/ui/mergeStyles";
@@ -8,6 +8,7 @@ type SummaryCardProps = {
 	icon?: LucideIcon;
 	actionLabel?: string;
 	onAction?: () => void;
+	onCreate?: () => void;
 	children: React.ReactNode;
 	className?: string;
 };
@@ -17,6 +18,7 @@ export const SummaryCard = ({
 	icon: Icon,
 	actionLabel,
 	onAction,
+	onCreate,
 	children,
 	className,
 }: SummaryCardProps): React.ReactElement => {
@@ -33,16 +35,29 @@ export const SummaryCard = ({
 					<h2 className="text-base font-semibold text-foreground">{title}</h2>
 				</div>
 
-				{hasAction && (
-					<button
-						type="button"
-						onClick={onAction}
-						className="flex items-center gap-0.5 text-sm text-primary hover:underline"
-					>
-						{actionLabel}
-						<ChevronRight className="size-4" />
-					</button>
-				)}
+				<div className="flex items-center gap-2">
+					{onCreate && (
+						<button
+							type="button"
+							onClick={onCreate}
+							aria-label={`Crear ${title.toLowerCase()}`}
+							className="flex size-7 items-center justify-center rounded-md text-primary transition-colors hover:bg-primary/10"
+						>
+							<Plus className="size-4" />
+						</button>
+					)}
+
+					{hasAction && (
+						<button
+							type="button"
+							onClick={onAction}
+							className="flex items-center gap-0.5 text-sm text-primary hover:underline"
+						>
+							{actionLabel}
+							<ChevronRight className="size-4" />
+						</button>
+					)}
+				</div>
 			</div>
 
 			<div className="mt-4">{children}</div>

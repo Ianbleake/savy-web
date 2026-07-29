@@ -31,6 +31,7 @@ export const RecentTransactionsCard = ({
 			icon={Receipt}
 			actionLabel="Ver todo"
 			onAction={() => navigate(ROUTES.APP.TRANSACTIONS)}
+			onCreate={() => navigate(ROUTES.APP.TRANSACTIONS_NEW)}
 			className={className}
 		>
 			{isEmpty ? (
@@ -39,7 +40,7 @@ export const RecentTransactionsCard = ({
 					description="Aún no registras movimientos."
 					action={{
 						label: "Agregar transacción",
-						onClick: () => navigate(`${ROUTES.APP.TRANSACTIONS}?new=1`),
+						onClick: () => navigate(ROUTES.APP.TRANSACTIONS_NEW),
 					}}
 				/>
 			) : (

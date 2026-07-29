@@ -39,6 +39,7 @@ export const CreditOverviewCard = ({
 			icon={CreditCard}
 			actionLabel="Ver todo"
 			onAction={() => navigate(ROUTES.APP.CREDITS)}
+			onCreate={() => navigate(ROUTES.APP.CREDITS)}
 			className={className}
 		>
 			{isEmpty ? (
@@ -47,7 +48,7 @@ export const CreditOverviewCard = ({
 					description="Registra una tarjeta de crédito o préstamo."
 					action={{
 						label: "Agregar crédito",
-						onClick: () => navigate(`${ROUTES.APP.CREDITS}?new=1`),
+						onClick: () => navigate(ROUTES.APP.CREDITS),
 					}}
 				/>
 			) : (

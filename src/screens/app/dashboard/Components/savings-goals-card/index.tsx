@@ -32,6 +32,7 @@ export const SavingsGoalsCard = ({
 			icon={Target}
 			actionLabel="Ver todo"
 			onAction={() => navigate(ROUTES.APP.GOALS)}
+			onCreate={() => navigate(ROUTES.APP.GOALS_NEW)}
 			className={className}
 		>
 			{isEmpty ? (
@@ -40,7 +41,7 @@ export const SavingsGoalsCard = ({
 					description="Define una meta para empezar a ahorrar."
 					action={{
 						label: "Crear meta",
-						onClick: () => navigate(`${ROUTES.APP.GOALS}?new=1`),
+						onClick: () => navigate(ROUTES.APP.GOALS_NEW),
 					}}
 				/>
 			) : (

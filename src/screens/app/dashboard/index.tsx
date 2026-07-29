@@ -79,6 +79,14 @@ export const Dashboard = (): React.ReactElement => {
 				</ScaleFadeIn>
 
 				<ScaleFadeIn className="lg:col-span-1">
+					<BanksCard
+						banks={data.banks}
+						currency={currency}
+						locale={locale}
+					/>
+				</ScaleFadeIn>
+
+				<ScaleFadeIn className="lg:col-span-1">
 					<AccountsDistributionCard
 						distribution={data.accountsDistribution}
 						currency={currency}
@@ -113,14 +121,6 @@ export const Dashboard = (): React.ReactElement => {
 				<ScaleFadeIn className="lg:col-span-1">
 					<CreditOverviewCard
 						creditOverview={data.creditOverview}
-						currency={currency}
-						locale={locale}
-					/>
-				</ScaleFadeIn>
-
-				<ScaleFadeIn className="lg:col-span-1">
-					<BanksCard
-						banks={data.banks}
 						currency={currency}
 						locale={locale}
 					/>

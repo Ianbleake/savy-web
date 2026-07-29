@@ -23,6 +23,7 @@ export const BanksCard = ({ banks, className }: BanksCardProps): React.ReactElem
 			icon={Landmark}
 			actionLabel="Ver todo"
 			onAction={() => navigate(ROUTES.APP.BANKS)}
+			onCreate={() => navigate(ROUTES.APP.BANKS)}
 			className={className}
 		>
 			{isEmpty ? (
@@ -31,7 +32,7 @@ export const BanksCard = ({ banks, className }: BanksCardProps): React.ReactElem
 					description="Registra un banco para organizar tus cuentas."
 					action={{
 						label: "Agregar banco",
-						onClick: () => navigate(`${ROUTES.APP.BANKS}?new=1`),
+						onClick: () => navigate(ROUTES.APP.BANKS),
 					}}
 				/>
 			) : (

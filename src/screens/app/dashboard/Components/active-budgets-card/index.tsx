@@ -31,6 +31,7 @@ export const ActiveBudgetsCard = ({
 			icon={PiggyBank}
 			actionLabel="Ver todo"
 			onAction={() => navigate(ROUTES.APP.BUDGETS)}
+			onCreate={() => navigate(ROUTES.APP.BUDGETS_NEW)}
 			className={className}
 		>
 			{isEmpty ? (
@@ -39,7 +40,7 @@ export const ActiveBudgetsCard = ({
 					description="Crea un presupuesto para controlar tus gastos."
 					action={{
 						label: "Crear presupuesto",
-						onClick: () => navigate(`${ROUTES.APP.BUDGETS}?new=1`),
+						onClick: () => navigate(ROUTES.APP.BUDGETS_NEW),
 					}}
 				/>
 			) : (

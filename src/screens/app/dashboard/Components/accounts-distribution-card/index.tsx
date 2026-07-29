@@ -62,6 +62,7 @@ export const AccountsDistributionCard = ({
 			icon={PieChart}
 			actionLabel="Ver todo"
 			onAction={() => navigate(ROUTES.APP.ACCOUNTS)}
+			onCreate={() => navigate(ROUTES.APP.ACCOUNTS_NEW)}
 			className={className}
 		>
 			{isEmpty ? (
@@ -70,7 +71,7 @@ export const AccountsDistributionCard = ({
 					description="Aún no tienes cuentas registradas."
 					action={{
 						label: "Agregar cuenta",
-						onClick: () => navigate(`${ROUTES.APP.ACCOUNTS}?new=1`),
+						onClick: () => navigate(ROUTES.APP.ACCOUNTS_NEW),
 					}}
 				/>
 			) : (
