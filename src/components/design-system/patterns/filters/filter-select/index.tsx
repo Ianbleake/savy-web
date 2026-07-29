@@ -1,6 +1,13 @@
 import type React from "react";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+	Select,
+	SelectContent,
+	SelectGroup,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select";
 import { merge } from "@/utils/ui/mergeStyles";
 
 type FilterSelectProps = {
@@ -47,8 +54,7 @@ export const FilterSelect = ({
 					id={label}
 					className={merge(
 						"min-w-40 bg-white! text-gray-900! cursor-pointer hover:border-gray-500",
-						isActive &&
-							"bg-primary/10! border-primary/20 **:text-primary! hover:border-primary!",
+						isActive && "bg-primary/10! border-primary/20 **:text-primary! hover:border-primary!",
 						disabled && "cursor-not-allowed opacity-50",
 						inputClassName,
 					)}

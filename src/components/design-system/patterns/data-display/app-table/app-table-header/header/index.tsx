@@ -26,9 +26,7 @@ export const Header = ({
 		const sortDirection = isAsc ? "asc" : isDesc ? "desc" : undefined;
 
 		return (
-			<TableHead
-				className={merge("min-w-48 w-50 max-w-70", headerClassName, header.className)}
-			>
+			<TableHead className={merge("min-w-48 w-50 max-w-70", headerClassName, header.className)}>
 				<button
 					type="button"
 					onClick={() => onSort(header.sortField as string)}

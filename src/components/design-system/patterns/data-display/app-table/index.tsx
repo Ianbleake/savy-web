@@ -81,9 +81,7 @@ export const AppTable = <T,>({
 									</TableRow>
 								) : (
 									safeElements.map((element, index) => (
-										<Fragment key={getRowId(element, index)}>
-											{renderRow(element)}
-										</Fragment>
+										<Fragment key={getRowId(element, index)}>{renderRow(element)}</Fragment>
 									))
 								)}
 							</TableBody>

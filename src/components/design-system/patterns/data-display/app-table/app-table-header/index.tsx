@@ -30,19 +30,15 @@ export const AppTableHeader = ({
 			<TableRow>
 				{selection && (
 					<TableHead className="w-10 px-3">
-					<Checkbox
-						checked={
-							selection.allSelected
-								? true
-								: selection.someSelected
-									? "indeterminate"
-									: false
-						}
-						onCheckedChange={(checked) => {
-							selection.onSelectAll(checked === true);
-						}}
-						aria-label="Select all rows"
-					/>
+						<Checkbox
+							checked={
+								selection.allSelected ? true : selection.someSelected ? "indeterminate" : false
+							}
+							onCheckedChange={(checked) => {
+								selection.onSelectAll(checked === true);
+							}}
+							aria-label="Select all rows"
+						/>
 					</TableHead>
 				)}
 				{headers.map((header) => {

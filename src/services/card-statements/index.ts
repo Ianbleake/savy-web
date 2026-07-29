@@ -3,9 +3,9 @@ import { httpClient, unwrap } from "../http-client";
 export const CARD_STATEMENTS_QUERY_KEY = ["card-statements"] as const;
 
 export const cardStatementService: CardStatementService = {
-	getAll: async (creditCardId?: string): Promise<CardStatement[]> => {
+	getAll: async (filters?: CardStatementFilters): Promise<CardStatement[]> => {
 		const response = await httpClient.get<APIResponse<CardStatement[]>>("/card-statements", {
-			params: creditCardId ? { creditCardId } : undefined,
+			params: filters,
 		});
 		return unwrap<CardStatement[]>(response);
 	},

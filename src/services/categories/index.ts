@@ -3,9 +3,9 @@ import { httpClient, unwrap } from "../http-client";
 export const CATEGORIES_QUERY_KEY = ["categories"] as const;
 
 export const categoryService: CategoryService = {
-	getAll: async (type?: CategoryType): Promise<Category[]> => {
+	getAll: async (filters?: CategoryFilters): Promise<Category[]> => {
 		const response = await httpClient.get<APIResponse<Category[]>>("/categories", {
-			params: type ? { type } : undefined,
+			params: filters,
 		});
 		return unwrap<Category[]>(response);
 	},

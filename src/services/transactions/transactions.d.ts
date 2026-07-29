@@ -18,8 +18,12 @@ type TransactionFilters = {
 	accountId?: string;
 	type?: TransactionType;
 	categoryId?: string;
+	bankId?: string;
+	search?: string;
 	from?: string;
 	to?: string;
+	sortBy?: "date" | "amount" | "createdAt";
+	order?: "asc" | "desc";
 	page?: number;
 	limit?: number;
 };
@@ -47,7 +51,7 @@ type UpdateTransactionPayload = {
 };
 
 type TransactionService = {
-	getAll: (filters?: TransactionFilters) => Promise<Transaction[]>;
+	getAll: (filters?: TransactionFilters) => Promise<PaginatedResponse<Transaction>>;
 	getById: (id: string) => Promise<Transaction>;
 	create: (payload: CreateTransactionPayload) => Promise<Transaction>;
 	update: (id: string, payload: UpdateTransactionPayload) => Promise<Transaction>;

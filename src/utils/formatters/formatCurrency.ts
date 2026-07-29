@@ -18,11 +18,7 @@
  */
 const formatterCache = new Map<string, Intl.NumberFormat>();
 
-export function formatCurrency(
-	cents: number,
-	currency = "MXN",
-	locale = "es-MX",
-): string {
+export function formatCurrency(cents: number, currency = "MXN", locale = "es-MX"): string {
 	const cacheKey = `${currency}:${locale}`;
 
 	let formatter = formatterCache.get(cacheKey);

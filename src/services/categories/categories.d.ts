@@ -23,8 +23,14 @@ type UpdateCategoryPayload = {
 	icon?: string;
 };
 
+type CategoryFilters = {
+	type?: CategoryType;
+	sortBy?: "name" | "createdAt";
+	order?: "asc" | "desc";
+};
+
 type CategoryService = {
-	getAll: (type?: CategoryType) => Promise<Category[]>;
+	getAll: (filters?: CategoryFilters) => Promise<Category[]>;
 	getById: (id: string) => Promise<Category>;
 	create: (payload: CreateCategoryPayload) => Promise<Category>;
 	update: (id: string, payload: UpdateCategoryPayload) => Promise<Category>;

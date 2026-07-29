@@ -1,7 +1,11 @@
 import { EllipsisVertical } from "lucide-react";
 import type React from "react";
 import { Button } from "@/components/ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 type ActionsMenuProps = {
 	children: React.ReactNode;

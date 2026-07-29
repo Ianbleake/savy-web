@@ -42,8 +42,8 @@ export const FlipCardViewer = ({
 						<CardFace
 							imageUrl={frontUrl}
 							hasImage={hasFront}
-						label="Frente"
-						altText={`Credencial frente — ${ownerName}`}
+							label="Frente"
+							altText={`Credencial frente — ${ownerName}`}
 							onExpand={() => {
 								setLightboxSide("front");
 								setLightboxOpen(true);
@@ -52,8 +52,8 @@ export const FlipCardViewer = ({
 						<CardFace
 							imageUrl={backUrl}
 							hasImage={hasBack}
-						label="Reverso"
-						altText={`Credencial reverso — ${ownerName}`}
+							label="Reverso"
+							altText={`Credencial reverso — ${ownerName}`}
 							isBack
 							onExpand={() => {
 								setLightboxSide("back");

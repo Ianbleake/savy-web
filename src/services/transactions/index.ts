@@ -3,11 +3,14 @@ import { httpClient, unwrap } from "../http-client";
 export const TRANSACTIONS_QUERY_KEY = ["transactions"] as const;
 
 export const transactionService: TransactionService = {
-	getAll: async (filters?: TransactionFilters): Promise<Transaction[]> => {
-		const response = await httpClient.get<APIResponse<Transaction[]>>("/transactions", {
-			params: filters,
-		});
-		return unwrap<Transaction[]>(response);
+	getAll: async (filters?: TransactionFilters): Promise<PaginatedResponse<Transaction>> => {
+		const response = await httpClient.get<APIResponse<PaginatedResponse<Transaction>>>(
+			"/transactions",
+			{
+				params: filters,
+			},
+		);
+		return unwrap<PaginatedResponse<Transaction>>(response);
 	},
 
 	getById: async (id: string): Promise<Transaction> => {

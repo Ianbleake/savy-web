@@ -3,8 +3,10 @@ import { httpClient, unwrap } from "../http-client";
 export const BUDGETS_QUERY_KEY = ["budgets"] as const;
 
 export const budgetService: BudgetService = {
-	getAll: async (): Promise<Budget[]> => {
-		const response = await httpClient.get<APIResponse<Budget[]>>("/budgets");
+	getAll: async (filters?: BudgetFilters): Promise<Budget[]> => {
+		const response = await httpClient.get<APIResponse<Budget[]>>("/budgets", {
+			params: filters,
+		});
 		return unwrap<Budget[]>(response);
 	},
 

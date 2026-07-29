@@ -5,7 +5,14 @@ import { Controller, type FieldPath, type FieldValues, type UseFormReturn } from
 
 import { InfoCard } from "@/components/design-system/patterns/data-display/info-card";
 import { Button } from "@/components/ui/button";
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
+import {
+	Command,
+	CommandEmpty,
+	CommandGroup,
+	CommandInput,
+	CommandItem,
+	CommandList,
+} from "@/components/ui/command";
 import { Label } from "@/components/ui/label";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { merge } from "@/utils/ui/mergeStyles";
@@ -120,9 +127,7 @@ export const FormMultiSelect = <T extends FieldValues>({
 									<CommandInput placeholder="Buscar..." />
 
 									<CommandList className="max-h-64 overflow-y-auto">
-										<CommandEmpty className="text-sm text-gray-500">
-											Sin resultados.
-										</CommandEmpty>
+										<CommandEmpty className="text-sm text-gray-500">Sin resultados.</CommandEmpty>
 
 										<CommandGroup className="h-fit w-sm overflow-y-auto">
 											{options.map((option) => {

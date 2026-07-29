@@ -27,8 +27,14 @@ type UpdateBankPayload = {
 	logo?: string;
 };
 
+type BankFilters = {
+	isActive?: boolean;
+	sortBy?: "name" | "createdAt";
+	order?: "asc" | "desc";
+};
+
 type BankService = {
-	getAll: () => Promise<Bank[]>;
+	getAll: (filters?: BankFilters) => Promise<Bank[]>;
 	getById: (id: string) => Promise<BankDetail>;
 	create: (payload: CreateBankPayload) => Promise<Bank>;
 	update: (id: string, payload: UpdateBankPayload) => Promise<Bank>;

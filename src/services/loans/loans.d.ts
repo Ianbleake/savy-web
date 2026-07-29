@@ -28,8 +28,13 @@ type UpdateLoanPayload = {
 	remaining?: number;
 };
 
+type LoanFilters = {
+	sortBy?: "createdAt" | "remaining" | "principal";
+	order?: "asc" | "desc";
+};
+
 type LoanService = {
-	getAll: () => Promise<Loan[]>;
+	getAll: (filters?: LoanFilters) => Promise<Loan[]>;
 	getById: (id: string) => Promise<Loan>;
 	create: (payload: CreateLoanPayload) => Promise<Loan>;
 	update: (id: string, payload: UpdateLoanPayload) => Promise<Loan>;

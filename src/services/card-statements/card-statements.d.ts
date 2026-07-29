@@ -29,8 +29,15 @@ type UpdateCardStatementPayload = {
 	isPaid?: boolean;
 };
 
+type CardStatementFilters = {
+	creditCardId?: string;
+	isPaid?: boolean;
+	sortBy?: "periodEnd" | "balance" | "createdAt";
+	order?: "asc" | "desc";
+};
+
 type CardStatementService = {
-	getAll: (creditCardId?: string) => Promise<CardStatement[]>;
+	getAll: (filters?: CardStatementFilters) => Promise<CardStatement[]>;
 	getById: (id: string) => Promise<CardStatement>;
 	create: (payload: CreateCardStatementPayload) => Promise<CardStatement>;
 	update: (id: string, payload: UpdateCardStatementPayload) => Promise<CardStatement>;

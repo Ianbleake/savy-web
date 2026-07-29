@@ -116,12 +116,12 @@ export const FormAsyncSelect = <T extends FieldValues>({
 								</button>
 							</PopoverTrigger>
 
-						<PopoverContent
-							className="p-0 gap-0 min-w-32 overflow-x-hidden overflow-y-auto"
-							align="start"
-							side="bottom"
-							sideOffset={4}
-						>
+							<PopoverContent
+								className="p-0 gap-0 min-w-32 overflow-x-hidden overflow-y-auto"
+								align="start"
+								side="bottom"
+								sideOffset={4}
+							>
 								<div className="flex items-center gap-2 px-2 py-2 sticky top-0 bg-white border-b border-gray-100 z-10">
 									<Search className="size-3.5 text-gray-400 shrink-0" />
 									<Input
@@ -136,9 +136,9 @@ export const FormAsyncSelect = <T extends FieldValues>({
 
 								<div className="max-h-56 overflow-y-auto p-1">
 									{isLoading && options.length === 0 ? (
-									<div className="py-4 text-center text-xs text-gray-400">Buscando...</div>
-								) : options.length === 0 ? (
-									<div className="py-4 text-center text-xs text-gray-400">Sin resultados</div>
+										<div className="py-4 text-center text-xs text-gray-400">Buscando...</div>
+									) : options.length === 0 ? (
+										<div className="py-4 text-center text-xs text-gray-400">Sin resultados</div>
 									) : (
 										options.map((option) => {
 											const isSelected = field.value === option.value;

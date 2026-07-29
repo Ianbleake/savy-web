@@ -74,12 +74,12 @@ export const ConfirmDialog = ({
 			open={open}
 			onOpenChange={setOpen}
 		>
-		<AlertDialogTrigger
-			asChild
-			disabled={disabled}
-		>
-			{children}
-		</AlertDialogTrigger>
+			<AlertDialogTrigger
+				asChild
+				disabled={disabled}
+			>
+				{children}
+			</AlertDialogTrigger>
 
 			<AlertDialogContent className="max-w-md p-0 overflow-hidden">
 				<AlertDialogHeader className="px-0 pt-6 pb-4 space-y-2">
@@ -107,9 +107,9 @@ export const ConfirmDialog = ({
 						{cancelText}
 					</AlertDialogCancel>
 
-				<AlertDialogAction
-					variant={buttonVariant}
-					className="min-w-32"
+					<AlertDialogAction
+						variant={buttonVariant}
+						className="min-w-32"
 						disabled={loading}
 						onClick={handleConfirm}
 					>

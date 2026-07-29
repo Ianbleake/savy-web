@@ -104,8 +104,8 @@ export const Modal = ({
 								size="sm"
 								onClick={handleClose}
 							>
-							<Ban />
-							Cancelar
+								<Ban />
+								Cancelar
 							</Button>
 						)}
 

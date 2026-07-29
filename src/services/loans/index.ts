@@ -3,8 +3,10 @@ import { httpClient, unwrap } from "../http-client";
 export const LOANS_QUERY_KEY = ["loans"] as const;
 
 export const loanService: LoanService = {
-	getAll: async (): Promise<Loan[]> => {
-		const response = await httpClient.get<APIResponse<Loan[]>>("/loans");
+	getAll: async (filters?: LoanFilters): Promise<Loan[]> => {
+		const response = await httpClient.get<APIResponse<Loan[]>>("/loans", {
+			params: filters,
+		});
 		return unwrap<Loan[]>(response);
 	},
 

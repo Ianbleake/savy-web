@@ -43,19 +43,19 @@ const LightboxDialog = ({
 									onClick={() => onSideChange("front")}
 									disabled={!hasFront}
 								>
-								Frente
-							</Button>
-							<Button
-								variant="ghost"
-								size="sm"
-								className={merge(
-									"text-xs h-7 px-3 rounded-md",
-									side === "back" ? "bg-primary/10 text-primary font-medium" : "text-gray-500",
-								)}
-								onClick={() => onSideChange("back")}
-								disabled={!hasBack}
-							>
-								Reverso
+									Frente
+								</Button>
+								<Button
+									variant="ghost"
+									size="sm"
+									className={merge(
+										"text-xs h-7 px-3 rounded-md",
+										side === "back" ? "bg-primary/10 text-primary font-medium" : "text-gray-500",
+									)}
+									onClick={() => onSideChange("back")}
+									disabled={!hasBack}
+								>
+									Reverso
 								</Button>
 							</div>
 						)}

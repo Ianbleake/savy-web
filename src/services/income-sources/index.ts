@@ -3,8 +3,10 @@ import { httpClient, unwrap } from "../http-client";
 export const INCOME_SOURCES_QUERY_KEY = ["income-sources"] as const;
 
 export const incomeSourceService: IncomeSourceService = {
-	getAll: async (): Promise<IncomeSource[]> => {
-		const response = await httpClient.get<APIResponse<IncomeSource[]>>("/income-sources");
+	getAll: async (filters?: IncomeSourceFilters): Promise<IncomeSource[]> => {
+		const response = await httpClient.get<APIResponse<IncomeSource[]>>("/income-sources", {
+			params: filters,
+		});
 		return unwrap<IncomeSource[]>(response);
 	},
 

@@ -69,17 +69,39 @@ export const router = createBrowserRouter([
 									import("@/screens/app/accounts").then((m) => ({ Component: m.Accounts })),
 							},
 							{
+								path: ROUTES.APP.ACCOUNTS_NEW,
+								lazy: () =>
+									import("@/screens/app/accounts/new").then((m) => ({ Component: m.AccountNew })),
+							},
+							{
 								path: ROUTES.APP.TRANSACTIONS,
 								lazy: () =>
 									import("@/screens/app/transactions").then((m) => ({ Component: m.Transactions })),
+							},
+							{
+								path: ROUTES.APP.TRANSACTIONS_NEW,
+								lazy: () =>
+									import("@/screens/app/transactions/new").then((m) => ({
+										Component: m.TransactionNew,
+									})),
 							},
 							{
 								path: ROUTES.APP.BUDGETS,
 								lazy: () => import("@/screens/app/budgets").then((m) => ({ Component: m.Budgets })),
 							},
 							{
+								path: ROUTES.APP.BUDGETS_NEW,
+								lazy: () =>
+									import("@/screens/app/budgets/new").then((m) => ({ Component: m.BudgetNew })),
+							},
+							{
 								path: ROUTES.APP.GOALS,
 								lazy: () => import("@/screens/app/goals").then((m) => ({ Component: m.Goals })),
+							},
+							{
+								path: ROUTES.APP.GOALS_NEW,
+								lazy: () =>
+									import("@/screens/app/goals/new").then((m) => ({ Component: m.GoalNew })),
 							},
 							{
 								path: ROUTES.APP.CREDITS,

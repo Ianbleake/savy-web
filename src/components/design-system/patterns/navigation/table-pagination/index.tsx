@@ -1,6 +1,12 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import type React from "react";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select";
 
 const PAGE_SIZE_OPTIONS = [10, 20, 50] as const;
 
@@ -32,10 +38,10 @@ export const TablePagination = ({
 			{showPageSizeSelector ? (
 				<div className="flex items-center gap-2">
 					<span className="text-xs text-muted-foreground">Mostrar</span>
-				<Select
-					value={String(pageSize)}
-					onValueChange={(value) => onPageSizeChange(Number(value))}
-				>
+					<Select
+						value={String(pageSize)}
+						onValueChange={(value) => onPageSizeChange(Number(value))}
+					>
 						<SelectTrigger className="h-8 w-17.5 text-xs">
 							<SelectValue />
 						</SelectTrigger>

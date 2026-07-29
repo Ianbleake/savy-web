@@ -3,8 +3,10 @@ import { httpClient, unwrap } from "../http-client";
 export const BANKS_QUERY_KEY = ["banks"] as const;
 
 export const bankService: BankService = {
-	getAll: async (): Promise<Bank[]> => {
-		const response = await httpClient.get<APIResponse<Bank[]>>("/banks");
+	getAll: async (filters?: BankFilters): Promise<Bank[]> => {
+		const response = await httpClient.get<APIResponse<Bank[]>>("/banks", {
+			params: filters,
+		});
 		return unwrap<Bank[]>(response);
 	},
 

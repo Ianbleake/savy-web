@@ -38,8 +38,15 @@ type UpdateBudgetPayload = {
 	endDate?: string;
 };
 
+type BudgetFilters = {
+	isActive?: boolean;
+	period?: BudgetPeriod;
+	sortBy?: "amount" | "startDate";
+	order?: "asc" | "desc";
+};
+
 type BudgetService = {
-	getAll: () => Promise<Budget[]>;
+	getAll: (filters?: BudgetFilters) => Promise<Budget[]>;
 	getById: (id: string) => Promise<Budget>;
 	create: (payload: CreateBudgetPayload) => Promise<Budget>;
 	update: (id: string, payload: UpdateBudgetPayload) => Promise<Budget>;

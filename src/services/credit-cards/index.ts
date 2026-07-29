@@ -3,8 +3,10 @@ import { httpClient, unwrap } from "../http-client";
 export const CREDIT_CARDS_QUERY_KEY = ["credit-cards"] as const;
 
 export const creditCardService: CreditCardService = {
-	getAll: async (): Promise<CreditCard[]> => {
-		const response = await httpClient.get<APIResponse<CreditCard[]>>("/credit-cards");
+	getAll: async (filters?: CreditCardFilters): Promise<CreditCard[]> => {
+		const response = await httpClient.get<APIResponse<CreditCard[]>>("/credit-cards", {
+			params: filters,
+		});
 		return unwrap<CreditCard[]>(response);
 	},
 

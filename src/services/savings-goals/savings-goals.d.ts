@@ -28,8 +28,14 @@ type UpdateSavingsGoalPayload = {
 	color?: string;
 };
 
+type SavingsGoalFilters = {
+	isCompleted?: boolean;
+	sortBy?: "deadline" | "targetAmount" | "currentAmount";
+	order?: "asc" | "desc";
+};
+
 type SavingsGoalService = {
-	getAll: () => Promise<SavingsGoal[]>;
+	getAll: (filters?: SavingsGoalFilters) => Promise<SavingsGoal[]>;
 	getById: (id: string) => Promise<SavingsGoal>;
 	create: (payload: CreateSavingsGoalPayload) => Promise<SavingsGoal>;
 	update: (id: string, payload: UpdateSavingsGoalPayload) => Promise<SavingsGoal>;

@@ -3,8 +3,10 @@ import { httpClient, unwrap } from "../http-client";
 export const SAVINGS_GOALS_QUERY_KEY = ["savings-goals"] as const;
 
 export const savingsGoalService: SavingsGoalService = {
-	getAll: async (): Promise<SavingsGoal[]> => {
-		const response = await httpClient.get<APIResponse<SavingsGoal[]>>("/savings-goals");
+	getAll: async (filters?: SavingsGoalFilters): Promise<SavingsGoal[]> => {
+		const response = await httpClient.get<APIResponse<SavingsGoal[]>>("/savings-goals", {
+			params: filters,
+		});
 		return unwrap<SavingsGoal[]>(response);
 	},
 
