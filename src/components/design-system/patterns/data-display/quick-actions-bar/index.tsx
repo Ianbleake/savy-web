@@ -1,4 +1,14 @@
-import { ArrowLeftRight, PiggyBank, Target, TrendingUp, Wallet } from "lucide-react";
+import {
+	ArrowDownRight,
+	ArrowLeftRight,
+	ArrowUpRight,
+	BarChart3,
+	CreditCard,
+	Landmark,
+	PiggyBank,
+	Target,
+	Wallet,
+} from "lucide-react";
 import type React from "react";
 import { useNavigate } from "react-router";
 import { ROUTES } from "@/app/router/routes";
@@ -12,11 +22,15 @@ type QuickAction = {
 };
 
 const ACTIONS: QuickAction[] = [
-	{ label: "Transacción", icon: ArrowLeftRight, path: ROUTES.APP.TRANSACTIONS },
-	{ label: "Cuenta", icon: Wallet, path: ROUTES.APP.ACCOUNTS },
-	{ label: "Presupuesto", icon: PiggyBank, path: ROUTES.APP.BUDGETS },
-	{ label: "Meta", icon: Target, path: ROUTES.APP.GOALS },
-	{ label: "Ingreso", icon: TrendingUp, path: ROUTES.APP.TRANSACTIONS },
+	{ label: "Bancos", icon: Landmark, path: ROUTES.APP.BANKS },
+	{ label: "Cuentas", icon: Wallet, path: ROUTES.APP.ACCOUNTS },
+	{ label: "Transacciones", icon: ArrowLeftRight, path: ROUTES.APP.TRANSACTIONS },
+	{ label: "Ingresos", icon: ArrowUpRight, path: `${ROUTES.APP.TRANSACTIONS}?type=INCOME` },
+	{ label: "Gastos", icon: ArrowDownRight, path: `${ROUTES.APP.TRANSACTIONS}?type=EXPENSE` },
+	{ label: "Presupuestos", icon: PiggyBank, path: ROUTES.APP.BUDGETS },
+	{ label: "Metas", icon: Target, path: ROUTES.APP.GOALS },
+	{ label: "Créditos", icon: CreditCard, path: ROUTES.APP.CREDITS },
+	{ label: "Estadísticas", icon: BarChart3, path: ROUTES.APP.ANALYTICS },
 ];
 
 type QuickActionsBarProps = {
