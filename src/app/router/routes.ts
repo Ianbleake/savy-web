@@ -14,9 +14,15 @@ export const ROUTES = {
 	APP: {
 		ROOT: "/app",
 		DASHBOARD: "/app/dashboard",
+		BANKS: "/app/banks",
 		ACCOUNTS: "/app/accounts",
-		ONBOARDING: "/app/onboarding",
+		TRANSACTIONS: "/app/transactions",
+		BUDGETS: "/app/budgets",
+		GOALS: "/app/goals",
+		CREDITS: "/app/credits",
+		ANALYTICS: "/app/analytics",
 		SETTINGS: "/app/settings",
+		ONBOARDING: "/app/onboarding",
 	},
 	AUX: {
 		ROOT: "/aux",

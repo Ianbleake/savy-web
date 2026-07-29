@@ -2,6 +2,7 @@ import type { LucideIcon } from "lucide-react";
 import {
 	ArrowUpDown,
 	CreditCard,
+	Landmark,
 	LayoutDashboard,
 	PieChart,
 	Settings,
@@ -32,16 +33,17 @@ export const menuItems: MenuGroup[] = [
 	{
 		groupLabel: "Finanzas",
 		children: [
+			{ label: "Bancos", href: ROUTES.APP.BANKS, icon: Landmark },
 			{ label: "Cuentas", href: ROUTES.APP.ACCOUNTS, icon: Wallet },
-			{ label: "Movimientos", href: ROUTES.AUX.ROOT, icon: ArrowUpDown },
-			{ label: "Presupuestos", href: ROUTES.AUX.ROOT, icon: PieChart },
-			{ label: "Metas", href: ROUTES.AUX.ROOT, icon: Target },
-			{ label: "Tarjetas", href: ROUTES.AUX.ROOT, icon: CreditCard },
+			{ label: "Movimientos", href: ROUTES.APP.TRANSACTIONS, icon: ArrowUpDown },
+			{ label: "Presupuestos", href: ROUTES.APP.BUDGETS, icon: PieChart },
+			{ label: "Metas", href: ROUTES.APP.GOALS, icon: Target },
+			{ label: "Creditos", href: ROUTES.APP.CREDITS, icon: CreditCard },
 		],
 	},
 	{
 		groupLabel: "Análisis",
-		children: [{ label: "Estadísticas", href: ROUTES.AUX.ROOT, icon: TrendingUp }],
+		children: [{ label: "Estadísticas", href: ROUTES.APP.ANALYTICS, icon: TrendingUp }],
 	},
 	{
 		groupLabel: "Sistema",

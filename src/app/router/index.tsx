@@ -48,8 +48,6 @@ export const router = createBrowserRouter([
 		element: <ProtectedRoute />,
 		children: [
 			{
-				// Shared profile guard for every authenticated app route, including
-				// /app/onboarding which intentionally renders without AppLayout chrome.
 				element: <AppGuardLayout />,
 				children: [
 					{
@@ -62,14 +60,44 @@ export const router = createBrowserRouter([
 									import("@/screens/app/dashboard").then((m) => ({ Component: m.Dashboard })),
 							},
 							{
+								path: ROUTES.APP.BANKS,
+								lazy: () => import("@/screens/app/banks").then((m) => ({ Component: m.Banks })),
+							},
+							{
 								path: ROUTES.APP.ACCOUNTS,
 								lazy: () =>
 									import("@/screens/app/accounts").then((m) => ({ Component: m.Accounts })),
 							},
+							{
+								path: ROUTES.APP.TRANSACTIONS,
+								lazy: () =>
+									import("@/screens/app/transactions").then((m) => ({ Component: m.Transactions })),
+							},
+							{
+								path: ROUTES.APP.BUDGETS,
+								lazy: () => import("@/screens/app/budgets").then((m) => ({ Component: m.Budgets })),
+							},
+							{
+								path: ROUTES.APP.GOALS,
+								lazy: () => import("@/screens/app/goals").then((m) => ({ Component: m.Goals })),
+							},
+							{
+								path: ROUTES.APP.CREDITS,
+								lazy: () => import("@/screens/app/credits").then((m) => ({ Component: m.Credits })),
+							},
+							{
+								path: ROUTES.APP.ANALYTICS,
+								lazy: () =>
+									import("@/screens/app/analitycs").then((m) => ({ Component: m.Analitycs })),
+							},
+							{
+								path: ROUTES.APP.SETTINGS,
+								lazy: () =>
+									import("@/screens/app/settings").then((m) => ({ Component: m.Settings })),
+							},
 						],
 					},
 					{
-						// Onboarding wizard — clean full-screen layout, no AppLayout chrome.
 						path: ROUTES.APP.ONBOARDING,
 						lazy: () =>
 							import("@/screens/app/onboarding").then((m) => ({ Component: m.Onboarding })),
