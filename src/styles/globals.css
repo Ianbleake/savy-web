@@ -176,11 +176,13 @@
 }
 
 /* Hide TanStack Query Devtools default floating button — controlled by DevTools FAB */
+/* biome-ignore lint/complexity/noImportantStyles: override external library defaults */
 .tsqd-open-btn {
 	display: none !important;
 	visibility: hidden !important;
 }
 
+/* biome-ignore lint/complexity/noImportantStyles: override external library defaults */
 .tsqd-open-btn-container {
 	display: none !important;
 }

@@ -1,7 +1,13 @@
 import type React from "react";
 import { Fragment } from "react";
 import { Link } from "react-router";
-import { Breadcrumb, BreadcrumbItem, BreadcrumbList as BreadcrumbListPrimitive, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
+import {
+	Breadcrumb,
+	BreadcrumbItem,
+	BreadcrumbList as BreadcrumbListPrimitive,
+	BreadcrumbPage,
+	BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 
 type BreadcrumbListProps = {
 	items: BreadcrumbItemConfig[];
@@ -15,7 +21,7 @@ export const BreadcrumbList = ({ items }: BreadcrumbListProps): React.ReactEleme
 					const isLast = index === items.length - 1;
 
 					return (
-						<Fragment key={`${item.label}-${index}`}>
+						<Fragment key={item.label}>
 							<BreadcrumbItem>
 								{item.href ? (
 									<Link to={item.href}>{item.label}</Link>
