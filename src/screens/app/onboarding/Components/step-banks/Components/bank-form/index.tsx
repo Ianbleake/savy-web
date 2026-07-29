@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Check, Loader2 } from "lucide-react";
+import { Ban, Check, Loader2 } from "lucide-react";
 import type React from "react";
 import { useForm } from "react-hook-form";
 import { FormField } from "@/components/design-system/patterns/forms/form-field";
@@ -8,13 +8,14 @@ import { type BankFormValues, bankSchema } from "@/schemas/onboarding/bankSchema
 
 type BankFormProps = {
 	onSave: (values: BankFormValues) => void | Promise<void>;
+	onCancel: () => void;
 };
 
 const DEFAULT_VALUES: BankFormValues = {
 	name: "",
 };
 
-export const BankForm = ({ onSave }: BankFormProps): React.ReactElement => {
+export const BankForm = ({ onSave, onCancel }: BankFormProps): React.ReactElement => {
 	const form = useForm<BankFormValues>({
 		resolver: zodResolver(bankSchema),
 		mode: "onChange",
@@ -43,24 +44,35 @@ export const BankForm = ({ onSave }: BankFormProps): React.ReactElement => {
 				required
 			/>
 
-			<Button
-				type="button"
-				onClick={handleSave}
-				disabled={form.formState.isSubmitting}
-				className="w-full"
-			>
-				{form.formState.isSubmitting ? (
-					<>
-						<Loader2 className="animate-spin" />
-						Guardando...
-					</>
-				) : (
-					<>
-						<Check className="size-4" />
-						Guardar banco
-					</>
-				)}
-			</Button>
+			<div className="flex flex-row gap-2">
+				<Button
+					type="button"
+					variant="outline"
+					onClick={onCancel}
+					disabled={form.formState.isSubmitting}
+				>
+					<Ban />
+					Cancelar
+				</Button>
+				<Button
+					type="button"
+					onClick={handleSave}
+					disabled={form.formState.isSubmitting}
+					className="flex-1"
+				>
+					{form.formState.isSubmitting ? (
+						<>
+							<Loader2 className="animate-spin" />
+							Guardando...
+						</>
+					) : (
+						<>
+							<Check className="size-4" />
+							Guardar banco
+						</>
+					)}
+				</Button>
+			</div>
 		</div>
 	);
 };

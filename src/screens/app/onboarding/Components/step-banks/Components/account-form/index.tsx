@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Check, Loader2 } from "lucide-react";
+import { Ban, Check, Loader2 } from "lucide-react";
 import type React from "react";
 import { useForm } from "react-hook-form";
 import { FormField } from "@/components/design-system/patterns/forms/form-field";
@@ -10,6 +10,7 @@ import { type AccountFormValues, accountSchema } from "@/schemas/onboarding/acco
 
 type AccountFormProps = {
 	onSave: (values: AccountFormValues) => void | Promise<void>;
+	onCancel: () => void;
 	bankOptions: Option[];
 };
 
@@ -21,7 +22,11 @@ const DEFAULT_VALUES: AccountFormValues = {
 	balance: 0,
 };
 
-export const AccountForm = ({ onSave, bankOptions }: AccountFormProps): React.ReactElement => {
+export const AccountForm = ({
+	onSave,
+	onCancel,
+	bankOptions,
+}: AccountFormProps): React.ReactElement => {
 	const form = useForm<AccountFormValues>({
 		resolver: zodResolver(accountSchema),
 		mode: "onChange",
@@ -30,6 +35,8 @@ export const AccountForm = ({ onSave, bankOptions }: AccountFormProps): React.Re
 
 	const accountType = form.watch("type");
 	const isCash = accountType === "CASH";
+	const isCredit = accountType === "CREDIT";
+	const isLoan = accountType === "LOAN";
 
 	const handleSave = form.handleSubmit(async (values) => {
 		const payload: AccountFormValues = isCash ? { ...values, bankId: null } : values;
@@ -85,29 +92,141 @@ export const AccountForm = ({ onSave, bankOptions }: AccountFormProps): React.Re
 				name="balance"
 				form={form}
 				type="currency"
-				label="Saldo inicial"
+				label={isLoan ? "Saldo restante" : "Saldo inicial"}
 				placeholder="0"
-				helperText="Saldo actual de la cuenta."
+				helperText={
+					isLoan
+						? "Monto restante del préstamo."
+						: isCredit
+							? "Deuda actual de la tarjeta."
+							: "Saldo actual de la cuenta."
+				}
 			/>
 
-			<Button
-				type="button"
-				onClick={handleSave}
-				disabled={form.formState.isSubmitting}
-				className="w-full"
-			>
-				{form.formState.isSubmitting ? (
-					<>
-						<Loader2 className="animate-spin" />
-						Guardando...
-					</>
-				) : (
-					<>
-						<Check className="size-4" />
-						Guardar cuenta
-					</>
-				)}
-			</Button>
+			{/* Credit card fields */}
+			{isCredit && (
+				<>
+					<div className="flex flex-col gap-1">
+						<p className="text-xs font-medium text-muted-foreground">Datos de la tarjeta</p>
+					</div>
+					<FormField
+						name="creditLimit"
+						form={form}
+						type="currency"
+						label="Límite de crédito"
+						placeholder="0"
+						required
+						helperText="Monto máximo disponible en la tarjeta."
+					/>
+					<div className="flex flex-row gap-3">
+						<FormField
+							name="cutDay"
+							form={form}
+							type="number"
+							label="Día de corte"
+							placeholder="15"
+							min={1}
+							max={31}
+							required
+						/>
+						<FormField
+							name="paymentDay"
+							form={form}
+							type="number"
+							label="Día de pago"
+							placeholder="25"
+							min={1}
+							max={31}
+							required
+						/>
+					</div>
+					<FormField
+						name="interestRate"
+						form={form}
+						type="percentage"
+						label="Tasa de interés anual"
+						placeholder="36"
+						required
+						helperText="Tasa de interés anual (ej. 36%)."
+					/>
+				</>
+			)}
+
+			{/* Loan fields */}
+			{isLoan && (
+				<>
+					<div className="flex flex-col gap-1">
+						<p className="text-xs font-medium text-muted-foreground">Datos del préstamo</p>
+					</div>
+					<FormField
+						name="principal"
+						form={form}
+						type="currency"
+						label="Monto del préstamo"
+						placeholder="0"
+						required
+						helperText="Monto original del préstamo."
+					/>
+					<div className="flex flex-row gap-3">
+						<FormField
+							name="termMonths"
+							form={form}
+							type="number"
+							label="Plazo (meses)"
+							placeholder="36"
+							min={1}
+							required
+						/>
+						<FormField
+							name="monthlyPayment"
+							form={form}
+							type="currency"
+							label="Pago mensual"
+							placeholder="0"
+							required
+						/>
+					</div>
+					<FormField
+						name="interestRate"
+						form={form}
+						type="percentage"
+						label="Tasa de interés anual"
+						placeholder="15"
+						required
+						helperText="Tasa de interés anual (ej. 15%)."
+					/>
+				</>
+			)}
+
+			<div className="flex flex-row gap-2">
+				<Button
+					type="button"
+					variant="outline"
+					onClick={onCancel}
+					disabled={form.formState.isSubmitting}
+				>
+					<Ban />
+					Cancelar
+				</Button>
+				<Button
+					type="button"
+					onClick={handleSave}
+					disabled={form.formState.isSubmitting}
+					className="flex-1"
+				>
+					{form.formState.isSubmitting ? (
+						<>
+							<Loader2 className="animate-spin" />
+							Guardando...
+						</>
+					) : (
+						<>
+							<Check className="size-4" />
+							Guardar cuenta
+						</>
+					)}
+				</Button>
+			</div>
 		</div>
 	);
 };

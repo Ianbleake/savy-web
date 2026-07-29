@@ -1,4 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { LogOut } from "lucide-react";
 import type React from "react";
 import { useEffect, useMemo, useRef } from "react";
 import { FormProvider, useForm } from "react-hook-form";
@@ -6,6 +7,8 @@ import { ScaleFadeIn } from "@/components/design-system/patterns/animations/scal
 import { StaggerContainer } from "@/components/design-system/patterns/animations/stagger-container";
 import { GlassCard } from "@/components/design-system/patterns/glass-card";
 import { Brand } from "@/components/design-system/primitives/brand";
+import { Button } from "@/components/ui/button";
+import { useLogout } from "@/hooks/auth/useLogout";
 import { useQueryProfile } from "@/hooks/profile/useQueryProfile";
 import { type OnboardingFormValues, onboardingSchema } from "@/schemas/onboarding/onboardingSchema";
 import { useOnboardingController } from "@/storage/onboarding/onboardingController";
@@ -22,6 +25,7 @@ export const Onboarding = (): React.ReactElement => {
 	const { profile } = useQueryProfile();
 	const currentStep = useOnboardingController((state) => state.currentStep);
 	const reset = useOnboardingController((state) => state.reset);
+	const { mutate: logout, isPending: isLoggingOut } = useLogout();
 
 	const defaultValues = useMemo<OnboardingFormValues>(
 		() => ({
@@ -110,6 +114,18 @@ export const Onboarding = (): React.ReactElement => {
 							</GlassCard>
 						)}
 					</div>
+
+					<Button
+						type="button"
+						variant="ghost"
+						size="sm"
+						className="self-center text-muted-foreground hover:text-foreground"
+						onClick={() => logout()}
+						disabled={isLoggingOut}
+					>
+						<LogOut className="size-4" />
+						Cerrar sesión
+					</Button>
 				</ScaleFadeIn>
 			</FormProvider>
 		</div>
