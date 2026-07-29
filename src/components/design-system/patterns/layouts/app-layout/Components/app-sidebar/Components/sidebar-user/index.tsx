@@ -13,16 +13,14 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { SidebarGroup, useSidebar } from "@/components/ui/sidebar";
 import { useLogout } from "@/hooks/auth/useLogout";
-import { useAuthStorage } from "@/storage/authStorage";
+import { useProfileStorage } from "@/storage/profile/profileStorage";
 import { merge } from "@/utils/ui/mergeStyles";
 
 export const SidebarUser = (): React.ReactElement => {
-	const user = useAuthStorage((state) => state.user);
+	const profile = useProfileStorage((state) => state.profile);
 	const { open } = useSidebar();
 	const { mutate: logout, isPending: isLoggingOut } = useLogout();
 	const navigate = useNavigate();
-
-	const initial = user?.email?.[0]?.toUpperCase() ?? "?";
 
 	return (
 		<SidebarGroup className="border-t border-sidebar-border p-2">
@@ -37,15 +35,16 @@ export const SidebarUser = (): React.ReactElement => {
 					>
 						<Avatar className="size-8">
 							<AvatarFallback className="bg-primary text-primary-foreground text-sm">
-								{initial}
+								{profile?.initials}
 							</AvatarFallback>
 						</Avatar>
 						{open && (
 							<>
 								<div className="flex flex-1 flex-col overflow-hidden">
 									<span className="truncate text-sm font-medium text-foreground">
-										{user?.email ?? "Usuario"}
+										{profile?.fullName ?? "Usuario"}
 									</span>
+									<span className="truncate text-xs text-muted-foreground">{profile?.email}</span>
 								</div>
 								<ChevronsUpDown className="size-4 text-muted-foreground" />
 							</>
@@ -62,11 +61,11 @@ export const SidebarUser = (): React.ReactElement => {
 						<div className="flex items-center gap-3 px-1 py-1">
 							<Avatar className="size-8">
 								<AvatarFallback className="bg-primary text-primary-foreground text-sm">
-									{initial}
+									{profile?.initials}
 								</AvatarFallback>
 							</Avatar>
 							<div className="flex flex-col">
-								<span className="text-sm font-medium">{user?.email ?? "Usuario"}</span>
+								<span className="text-sm font-medium">{profile?.fullName ?? "Usuario"}</span>
 							</div>
 						</div>
 					</DropdownMenuLabel>
