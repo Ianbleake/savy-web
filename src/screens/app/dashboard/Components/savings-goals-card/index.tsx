@@ -2,8 +2,8 @@ import { Target } from "lucide-react";
 import type React from "react";
 import { useNavigate } from "react-router";
 import { ROUTES } from "@/app/router/routes";
+import { MiniGauge } from "@/components/design-system/patterns/data-display/mini-gauge";
 import { SummaryCard } from "@/components/design-system/patterns/data-display/summary-card";
-import { WaffleChart } from "@/components/design-system/patterns/data-display/waffle-chart";
 import { Empty } from "@/components/design-system/patterns/feedback/empty";
 import { formatCurrency } from "@/utils/formatters/formatCurrency";
 
@@ -53,13 +53,13 @@ export const SavingsGoalsCard = ({
 							onClick={() => navigate(ROUTES.APP.GOALS)}
 							className="flex flex-col items-center gap-2 rounded-lg p-2 transition-colors hover:bg-accent/40"
 						>
-							<WaffleChart
-								percentage={goal.percentage}
+							<MiniGauge
+								value={goal.currentAmount}
+								max={goal.targetAmount}
+								label={goal.name}
+								formatValue={(value) => formatCurrency(value, currency, locale)}
 								color={goal.isCompleted ? "var(--color-primary)" : undefined}
 							/>
-							<span className="max-w-full truncate text-sm font-medium text-foreground">
-								{goal.name}
-							</span>
 							<span className="text-xs tabular-nums text-muted-foreground">
 								{formatCurrency(goal.currentAmount, currency, locale)} /{" "}
 								{formatCurrency(goal.targetAmount, currency, locale)}

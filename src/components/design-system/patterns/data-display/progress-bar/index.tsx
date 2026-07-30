@@ -50,7 +50,7 @@ export const ProgressBar = ({
 	const resolvedVariant = variant ?? autoVariant(percentage);
 
 	return (
-		<div className={merge("flex flex-col gap-1.5", className)}>
+		<div className={merge("flex flex-col gap-1.5 ", className)}>
 			<div className="flex items-baseline justify-between gap-2">
 				<span className="truncate text-sm text-foreground">{label}</span>
 

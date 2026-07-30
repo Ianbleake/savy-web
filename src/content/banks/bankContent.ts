@@ -17,3 +17,19 @@ export const ACCOUNT_TYPE_LABELS: Record<string, string> = {
 	CREDIT: "Crédito",
 	LOAN: "Préstamo",
 };
+
+type PeriodOption = {
+	label: string;
+	shortLabel: string;
+	value: PeriodType;
+};
+
+export const PERIOD_OPTIONS: PeriodOption[] = [
+	{ label: "Hoy", shortLabel: "Hoy", value: "day" },
+	{ label: "Esta semana", shortLabel: "Sem", value: "week" },
+	{ label: "Este mes", shortLabel: "Mes", value: "month" },
+	{ label: "Mes anterior", shortLabel: "Mes ant", value: "other_month" },
+	{ label: "Trimestre", shortLabel: "Trim", value: "quarter" },
+	{ label: "Semestre", shortLabel: "Semest", value: "semester" },
+	{ label: "Año", shortLabel: "Año", value: "year" },
+];

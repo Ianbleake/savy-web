@@ -13,7 +13,10 @@ function Progress({
 	return (
 		<ProgressPrimitive.Root
 			data-slot="progress"
-			className={merge("relative h-2 w-full overflow-hidden rounded-full bg-primary/20", className)}
+			className={merge(
+				"relative h-2 w-full overflow-hidden rounded-full bg-primary/10!",
+				className,
+			)}
 			{...props}
 		>
 			<ProgressPrimitive.Indicator
