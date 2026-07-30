@@ -5,7 +5,7 @@ import { SummaryCard } from "@/components/design-system/patterns/data-display/su
 import { formatCurrency } from "@/utils/formatters/formatCurrency";
 
 type NetWorthCardProps = {
-	netWorth: import("@/services/dashboard/dashboard").DashboardNetWorth;
+	netWorth: DashboardNetWorth;
 	currency: string;
 	locale: string;
 	className?: string;

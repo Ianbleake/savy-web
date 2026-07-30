@@ -8,8 +8,6 @@ import { SummaryCard } from "@/components/design-system/patterns/data-display/su
 import { Empty } from "@/components/design-system/patterns/feedback/empty";
 import { formatCurrency } from "@/utils/formatters/formatCurrency";
 
-type AccountType = "DEBIT" | "CREDIT" | "LOAN" | "CASH";
-
 const TYPE_LABEL: Record<AccountType, string> = {
 	DEBIT: "Débito",
 	CREDIT: "Crédito",
@@ -25,7 +23,7 @@ const TYPE_COLOR: Record<AccountType, string> = {
 };
 
 type AccountsDistributionCardProps = {
-	distribution: import("@/services/dashboard/dashboard").DashboardAccountDistribution[];
+	distribution: DashboardAccountDistribution[];
 	currency: string;
 	locale: string;
 	className?: string;

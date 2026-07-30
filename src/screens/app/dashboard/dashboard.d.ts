@@ -6,31 +6,31 @@ type DashboardCardCommonProps = {
 type DashboardSubCardProps = DashboardCardCommonProps;
 
 type DashboardNetWorthCardProps = DashboardCardCommonProps & {
-	netWorth: import("@/services/dashboard/dashboard").DashboardNetWorth;
+	netWorth: DashboardNetWorth;
 };
 
 type DashboardAccountsDistributionCardProps = DashboardCardCommonProps & {
-	distribution: import("@/services/dashboard/dashboard").DashboardAccountDistribution[];
+	distribution: DashboardAccountDistribution[];
 };
 
 type DashboardRecentTransactionsCardProps = DashboardCardCommonProps & {
-	transactions: import("@/services/dashboard/dashboard").DashboardRecentTransaction[];
+	transactions: DashboardRecentTransaction[];
 };
 
 type DashboardActiveBudgetsCardProps = DashboardCardCommonProps & {
-	budgets: import("@/services/dashboard/dashboard").DashboardActiveBudget[];
+	budgets: DashboardActiveBudget[];
 };
 
 type DashboardSavingsGoalsCardProps = DashboardCardCommonProps & {
-	goals: import("@/services/dashboard/dashboard").DashboardSavingsGoal[];
+	goals: DashboardSavingsGoal[];
 };
 
 type DashboardCreditOverviewCardProps = DashboardCardCommonProps & {
-	creditOverview: import("@/services/dashboard/dashboard").DashboardCreditOverview;
+	creditOverview: DashboardCreditOverview;
 };
 
 type DashboardBanksCardProps = DashboardCardCommonProps & {
-	banks: import("@/services/dashboard/dashboard").DashboardBank[];
+	banks: DashboardBank[];
 };
 
 type DashboardCardDescriptor = {

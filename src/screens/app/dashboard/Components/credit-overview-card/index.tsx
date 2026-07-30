@@ -9,7 +9,7 @@ import { formatCurrency } from "@/utils/formatters/formatCurrency";
 import { formatDate } from "@/utils/formatters/formatDate";
 
 type CreditOverviewCardProps = {
-	creditOverview: import("@/services/dashboard/dashboard").DashboardCreditOverview;
+	creditOverview: DashboardCreditOverview;
 	currency: string;
 	locale: string;
 	className?: string;

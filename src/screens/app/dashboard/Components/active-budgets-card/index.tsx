@@ -7,7 +7,7 @@ import { SummaryCard } from "@/components/design-system/patterns/data-display/su
 import { Empty } from "@/components/design-system/patterns/feedback/empty";
 
 type ActiveBudgetsCardProps = {
-	budgets: import("@/services/dashboard/dashboard").DashboardActiveBudget[];
+	budgets: DashboardActiveBudget[];
 	currency: string;
 	locale: string;
 	maxItems?: number;

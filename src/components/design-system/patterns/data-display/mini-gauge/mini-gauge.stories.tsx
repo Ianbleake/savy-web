@@ -12,34 +12,31 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-	render: () => (
-		<MiniGauge
-			value={8000}
-			max={10000}
-			label="Disponible"
-			formatValue={(value) => `$${(value / 100).toFixed(2)}`}
-		/>
-	),
+	args: {
+		value: 8000,
+		max: 10000,
+		label: "Disponible",
+		formatValue: (value: number) => `$${(value / 100).toFixed(2)}`,
+	},
+	render: (args) => <MiniGauge {...args} />,
 };
 
 export const Empty: Story = {
-	render: () => (
-		<MiniGauge
-			value={0}
-			max={10000}
-			label="Disponible"
-			formatValue={(value) => `$${(value / 100).toFixed(2)}`}
-		/>
-	),
+	args: {
+		value: 0,
+		max: 10000,
+		label: "Disponible",
+		formatValue: (value: number) => `$${(value / 100).toFixed(2)}`,
+	},
+	render: (args) => <MiniGauge {...args} />,
 };
 
 export const Full: Story = {
-	render: () => (
-		<MiniGauge
-			value={10000}
-			max={10000}
-			label="Disponible"
-			formatValue={(value) => `$${(value / 100).toFixed(2)}`}
-		/>
-	),
+	args: {
+		value: 10000,
+		max: 10000,
+		label: "Disponible",
+		formatValue: (value: number) => `$${(value / 100).toFixed(2)}`,
+	},
+	render: (args) => <MiniGauge {...args} />,
 };

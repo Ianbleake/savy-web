@@ -8,7 +8,7 @@ import { Empty } from "@/components/design-system/patterns/feedback/empty";
 import { formatCurrency } from "@/utils/formatters/formatCurrency";
 
 type SavingsGoalsCardProps = {
-	goals: import("@/services/dashboard/dashboard").DashboardSavingsGoal[];
+	goals: DashboardSavingsGoal[];
 	currency: string;
 	locale: string;
 	maxItems?: number;

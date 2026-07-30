@@ -20,24 +20,26 @@ const SLICES = [
 ];
 
 export const Default: Story = {
-	render: () => (
+	args: {
+		data: SLICES,
+		centerLabel: "Cuentas",
+		centerValue: "100%",
+	},
+	render: (args) => (
 		<div className="w-80">
-			<DonutChart
-				data={SLICES}
-				centerLabel="Cuentas"
-				centerValue="100%"
-			/>
+			<DonutChart {...args} />
 		</div>
 	),
 };
 
 export const Empty: Story = {
-	render: () => (
+	args: {
+		data: [],
+		emptyIcon: PieChartIcon,
+	},
+	render: (args) => (
 		<div className="w-80">
-			<DonutChart
-				data={[]}
-				emptyIcon={PieChartIcon}
-			/>
+			<DonutChart {...args} />
 		</div>
 	),
 };

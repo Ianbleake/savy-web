@@ -15,80 +15,86 @@ const CURRENCY = "MXN";
 const LOCALE = "es-MX";
 
 export const Income: Story = {
-	render: () => (
+	args: {
+		transaction: {
+			id: "t1",
+			type: "INCOME",
+			amount: 50000,
+			description: "Salario",
+			date: "2026-07-29",
+			accountName: "Cuenta débito",
+			categoryName: "Ingresos",
+		},
+		currency: CURRENCY,
+		locale: LOCALE,
+	},
+	render: (args) => (
 		<div className="w-96 rounded-lg border border-border p-2">
-			<TransactionRow
-				transaction={{
-					id: "t1",
-					type: "INCOME",
-					amount: 50000,
-					description: "Salario",
-					date: "2026-07-29",
-					accountName: "Cuenta débito",
-					categoryName: "Ingresos",
-				}}
-				currency={CURRENCY}
-				locale={LOCALE}
-			/>
+			<TransactionRow {...args} />
 		</div>
 	),
 };
 
 export const Expense: Story = {
-	render: () => (
+	args: {
+		transaction: {
+			id: "t2",
+			type: "EXPENSE",
+			amount: 12500,
+			description: "Groceries",
+			date: "2026-07-28",
+			accountName: "Tarjeta de crédito",
+			categoryName: "Comida",
+		},
+		currency: CURRENCY,
+		locale: LOCALE,
+	},
+	render: (args) => (
 		<div className="w-96 rounded-lg border border-border p-2">
-			<TransactionRow
-				transaction={{
-					id: "t2",
-					type: "EXPENSE",
-					amount: 12500,
-					description: "Groceries",
-					date: "2026-07-28",
-					accountName: "Tarjeta de crédito",
-					categoryName: "Comida",
-				}}
-				currency={CURRENCY}
-				locale={LOCALE}
-			/>
+			<TransactionRow {...args} />
 		</div>
 	),
 };
 
 export const Transfer: Story = {
-	render: () => (
+	args: {
+		transaction: {
+			id: "t3",
+			type: "TRANSFER",
+			amount: 30000,
+			description: null,
+			date: "2026-07-27",
+			accountName: "Cuenta ahorro",
+			categoryName: null,
+		},
+		currency: CURRENCY,
+		locale: LOCALE,
+	},
+	render: (args) => (
 		<div className="w-96 rounded-lg border border-border p-2">
-			<TransactionRow
-				transaction={{
-					id: "t3",
-					type: "TRANSFER",
-					amount: 30000,
-					description: null,
-					date: "2026-07-27",
-					accountName: "Cuenta ahorro",
-					categoryName: null,
-				}}
-				currency={CURRENCY}
-				locale={LOCALE}
-			/>
+			<TransactionRow {...args} />
 		</div>
 	),
 };
 
 export const WithOnClick: Story = {
-	render: () => (
+	args: {
+		transaction: {
+			id: "t4",
+			type: "EXPENSE",
+			amount: 8900,
+			description: "Café",
+			date: "2026-07-26",
+			accountName: "Cuenta débito",
+			categoryName: "Café",
+		},
+		currency: CURRENCY,
+		locale: LOCALE,
+	},
+	render: (args) => (
 		<div className="w-96 rounded-lg border border-border p-2">
 			<TransactionRow
-				transaction={{
-					id: "t4",
-					type: "EXPENSE",
-					amount: 8900,
-					description: "Café",
-					date: "2026-07-26",
-					accountName: "Cuenta débito",
-					categoryName: "Café",
-				}}
-				currency={CURRENCY}
-				locale={LOCALE}
+				{...args}
 				onClick={() => console.log("Transaction clicked")}
 			/>
 		</div>

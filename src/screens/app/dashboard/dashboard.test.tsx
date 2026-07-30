@@ -102,9 +102,9 @@ function renderDashboard(): { client: QueryClient } {
 
 beforeEach(() => {
 	vi.clearAllMocks();
-	const state = { profile: MOCK_PROFILE };
+	const mockState = { profile: MOCK_PROFILE } as ProfileStorage;
 	vi.mocked(useProfileStorage).mockImplementation(
-		(selector: (state: typeof state) => typeof state.profile) => selector(state),
+		(selector: (state: ProfileStorage) => unknown) => selector(mockState) as unknown,
 	);
 });
 

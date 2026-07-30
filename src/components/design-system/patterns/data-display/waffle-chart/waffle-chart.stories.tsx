@@ -12,28 +12,25 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-	render: () => (
-		<WaffleChart
-			percentage={65}
-			label="Vacaciones"
-		/>
-	),
+	args: {
+		percentage: 65,
+		label: "Vacaciones",
+	},
+	render: (args) => <WaffleChart {...args} />,
 };
 
 export const Full: Story = {
-	render: () => (
-		<WaffleChart
-			percentage={100}
-			label="Laptop"
-		/>
-	),
+	args: {
+		percentage: 100,
+		label: "Laptop",
+	},
+	render: (args) => <WaffleChart {...args} />,
 };
 
 export const Zero: Story = {
-	render: () => (
-		<WaffleChart
-			percentage={0}
-			label="Fondo nuevo"
-		/>
-	),
+	args: {
+		percentage: 0,
+		label: "Fondo nuevo",
+	},
+	render: (args) => <WaffleChart {...args} />,
 };

@@ -21,49 +21,52 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-	render: () => (
+	args: {
+		bank: {
+			id: "b1",
+			name: "BBVA",
+			color: "#0266AE",
+			logo: null,
+			accountCount: 3,
+		},
+	},
+	render: (args) => (
 		<GlassBackground>
-			<BankChip
-				bank={{
-					id: "b1",
-					name: "BBVA",
-					color: "#0266AE",
-					logo: null,
-					accountCount: 3,
-				}}
-			/>
+			<BankChip {...args} />
 		</GlassBackground>
 	),
 };
 
 export const NoColor: Story = {
-	render: () => (
+	args: {
+		bank: {
+			id: "b2",
+			name: "Banco nuevo",
+			color: null,
+			logo: null,
+			accountCount: 1,
+		},
+	},
+	render: (args) => (
 		<GlassBackground>
-			<BankChip
-				bank={{
-					id: "b2",
-					name: "Banco nuevo",
-					color: null,
-					logo: null,
-					accountCount: 1,
-				}}
-			/>
+			<BankChip {...args} />
 		</GlassBackground>
 	),
 };
 
 export const WithLogo: Story = {
-	render: () => (
+	args: {
+		bank: {
+			id: "b3",
+			name: "Santander",
+			color: null,
+			logo: "https://via.placeholder.com/24",
+			accountCount: 2,
+		},
+	},
+	render: (args) => (
 		<GlassBackground>
-			<BankChip
-				bank={{
-					id: "b3",
-					name: "Santander",
-					color: null,
-					logo: "https://via.placeholder.com/24",
-					accountCount: 2,
-				}}
-			/>
+			<BankChip {...args} />
 		</GlassBackground>
 	),
 };

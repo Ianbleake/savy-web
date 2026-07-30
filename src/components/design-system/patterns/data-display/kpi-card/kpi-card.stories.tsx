@@ -22,55 +22,59 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-	render: () => (
+	args: {
+		className: "w-72",
+		label: "Patrimonio neto",
+		value: "$15,420.00",
+	},
+	render: (args) => (
 		<GlassBackground>
-			<KpiCard
-				className="w-72"
-				label="Patrimonio neto"
-				value="$15,420.00"
-			/>
+			<KpiCard {...args} />
 		</GlassBackground>
 	),
 };
 
 export const WithDelta: Story = {
-	render: () => (
+	args: {
+		className: "w-72",
+		label: "Patrimonio neto",
+		value: "$15,420.00",
+		delta: 5.2,
+		currency: "USD",
+	},
+	render: (args) => (
 		<GlassBackground>
-			<KpiCard
-				className="w-72"
-				label="Patrimonio neto"
-				value="$15,420.00"
-				delta={5.2}
-				currency="USD"
-			/>
+			<KpiCard {...args} />
 		</GlassBackground>
 	),
 };
 
 export const WithNegativeDelta: Story = {
-	render: () => (
+	args: {
+		className: "w-72",
+		label: "Patrimonio neto",
+		value: "$15,420.00",
+		delta: -3.1,
+		currency: "USD",
+	},
+	render: (args) => (
 		<GlassBackground>
-			<KpiCard
-				className="w-72"
-				label="Patrimonio neto"
-				value="$15,420.00"
-				delta={-3.1}
-				currency="USD"
-			/>
+			<KpiCard {...args} />
 		</GlassBackground>
 	),
 };
 
 export const WithIcon: Story = {
-	render: () => (
+	args: {
+		className: "w-72",
+		label: "Patrimonio neto",
+		value: "$15,420.00",
+		icon: Wallet,
+		delta: 2.4,
+	},
+	render: (args) => (
 		<GlassBackground>
-			<KpiCard
-				className="w-72"
-				label="Patrimonio neto"
-				value="$15,420.00"
-				icon={Wallet}
-				delta={2.4}
-			/>
+			<KpiCard {...args} />
 		</GlassBackground>
 	),
 };

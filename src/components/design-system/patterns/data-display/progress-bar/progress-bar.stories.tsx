@@ -12,49 +12,53 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-	render: () => (
+	args: {
+		label: "Comida",
+		current: 80000,
+		total: 100000,
+	},
+	render: (args) => (
 		<div className="w-80 space-y-4">
-			<ProgressBar
-				label="Comida"
-				current={80000}
-				total={100000}
-			/>
+			<ProgressBar {...args} />
 		</div>
 	),
 };
 
 export const Warning: Story = {
-	render: () => (
+	args: {
+		label: "Comida",
+		current: 78000,
+		total: 100000,
+	},
+	render: (args) => (
 		<div className="w-80 space-y-4">
-			<ProgressBar
-				label="Comida"
-				current={78000}
-				total={100000}
-			/>
+			<ProgressBar {...args} />
 		</div>
 	),
 };
 
 export const Danger: Story = {
-	render: () => (
+	args: {
+		label: "Comida",
+		current: 95000,
+		total: 100000,
+	},
+	render: (args) => (
 		<div className="w-80 space-y-4">
-			<ProgressBar
-				label="Comida"
-				current={95000}
-				total={100000}
-			/>
+			<ProgressBar {...args} />
 		</div>
 	),
 };
 
 export const Zero: Story = {
-	render: () => (
+	args: {
+		label: "Comida",
+		current: 0,
+		total: 100000,
+	},
+	render: (args) => (
 		<div className="w-80 space-y-4">
-			<ProgressBar
-				label="Comida"
-				current={0}
-				total={100000}
-			/>
+			<ProgressBar {...args} />
 		</div>
 	),
 };

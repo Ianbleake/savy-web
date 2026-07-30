@@ -7,7 +7,7 @@ import { TransactionRow } from "@/components/design-system/patterns/data-display
 import { Empty } from "@/components/design-system/patterns/feedback/empty";
 
 type RecentTransactionsCardProps = {
-	transactions: import("@/services/dashboard/dashboard").DashboardRecentTransaction[];
+	transactions: DashboardRecentTransaction[];
 	currency: string;
 	locale: string;
 	maxItems?: number;

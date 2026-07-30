@@ -7,7 +7,7 @@ import { SummaryCard } from "@/components/design-system/patterns/data-display/su
 import { Empty } from "@/components/design-system/patterns/feedback/empty";
 
 type BanksCardProps = {
-	banks: import("@/services/dashboard/dashboard").DashboardBank[];
+	banks: DashboardBank[];
 	currency: string;
 	locale: string;
 	className?: string;
