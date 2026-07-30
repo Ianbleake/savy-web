@@ -29,7 +29,7 @@ export const KpiCard = ({
 			variant="light"
 			className={merge("p-5", className)}
 		>
-			<div className="flex items-start justify-between gap-3">
+			<div className="flex items-center justify-between gap-3">
 				<div className="flex flex-col gap-1">
 					<span className="text-sm text-muted-foreground">{label}</span>
 					<span className="text-3xl font-bold tabular-nums text-foreground">{value}</span>

@@ -62,7 +62,10 @@ export const FilterSelect = ({
 					<SelectValue placeholder={placeholder} />
 				</SelectTrigger>
 
-				<SelectContent>
+				<SelectContent
+					side="bottom"
+					position="popper"
+				>
 					<SelectGroup>
 						{options.map((option) => (
 							<SelectItem
