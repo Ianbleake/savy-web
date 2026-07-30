@@ -25,13 +25,13 @@ export const Dashboard = (): React.ReactElement => {
 
 	const currency = profile?.currency ?? DEFAULT_CURRENCY;
 	const locale = profile?.locale ?? DEFAULT_LOCALE;
-	const firstName = profile?.firstName ?? "";
+	const fullName = `${profile?.firstName} ${profile?.lastName}`.trim();
 
 	const isLoading = query.isLoading;
 	const isError = query.isError;
 	const data = query.data;
 
-	const greeting = firstName ? `Hola, ${firstName}` : "Hola";
+	const greeting = `Bienvenido, ${fullName}`;
 	const today = formatDate(new Date());
 
 	if (isLoading) {
@@ -137,7 +137,7 @@ type DashboardGreetingProps = {
 
 const DashboardGreeting = ({ greeting, date }: DashboardGreetingProps): React.ReactElement => (
 	<div className="flex flex-col gap-1">
-		<h1 className="text-2xl font-bold text-foreground">{greeting}</h1>
+		<h1 className="text-2xl font-semibold text-primary">{greeting}</h1>
 		<p className="text-sm text-muted-foreground">{date}</p>
 	</div>
 );

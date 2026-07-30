@@ -78,7 +78,7 @@ export const Banks = (): React.ReactElement => {
 			<div className="flex items-center justify-between">
 				<AppBreadcrumbs
 					backRoute={ROUTES.APP.DASHBOARD}
-					config={[{ label: "Inicio", href: ROUTES.APP.DASHBOARD }, { label: "Bancos" }]}
+					config={[{ label: "Inicio", href: ROUTES.APP.ROOT }, { label: "Bancos" }]}
 				/>
 				<Button onClick={() => navigate(ROUTES.APP.BANKS_NEW)}>
 					<Plus className="size-4" />
