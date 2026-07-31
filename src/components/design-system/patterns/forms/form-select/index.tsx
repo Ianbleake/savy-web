@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { merge } from "@/utils/ui/mergeStyles";
 import { Optional } from "../optional";
-import { SelectOption } from "./Components/select-option";
+import { SelectOption } from "./components/select-option";
 
 type FormSelectProps<T extends FieldValues> = {
 	label: string;

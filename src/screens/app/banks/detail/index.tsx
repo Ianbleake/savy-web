@@ -7,17 +7,17 @@ import { ScaleFadeIn } from "@/components/design-system/patterns/animations/scal
 import { Empty } from "@/components/design-system/patterns/feedback/empty";
 import { AppBreadcrumbs } from "@/components/design-system/patterns/navigation/app-breadcrumbs";
 import { Button } from "@/components/ui/button";
+import { PERIOD_OPTIONS } from "@/content/banks/bankContent";
 import { useQueryBankSummary } from "@/hooks/banks/useQueryBankSummary";
 import { useProfileStorage } from "@/storage/profile/profileStorage";
 import { merge } from "@/utils/ui/mergeStyles";
-import { AccountsGrid } from "./Components/accounts-grid";
-import { BalanceChart } from "./Components/balance-chart";
-import { BankHero } from "./Components/bank-hero";
-import { DetailSkeleton } from "./Components/detail-skeleton";
-import { IncomeExpensesChart } from "./Components/income-expenses-chart";
-import { LoansSection } from "./Components/loans-section";
-import { TopCategories } from "./Components/top-categories";
-import { PERIOD_OPTIONS } from "./utils";
+import { AccountsGrid } from "./components/accounts-grid";
+import { BalanceChart } from "./components/balance-chart";
+import { BankHero } from "./components/bank-hero";
+import { DetailSkeleton } from "./components/detail-skeleton";
+import { IncomeExpensesChart } from "./components/income-expenses-chart";
+import { LoansSection } from "./components/loans-section";
+import { TopCategories } from "./components/top-categories";
 
 const DEFAULT_CURRENCY = "MXN";
 const DEFAULT_LOCALE = "es-MX";

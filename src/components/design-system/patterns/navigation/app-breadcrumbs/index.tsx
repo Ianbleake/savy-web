@@ -2,7 +2,7 @@ import { ArrowLeftCircle } from "lucide-react";
 import type React from "react";
 import { useNavigate } from "react-router";
 import { Button } from "@/components/ui/button";
-import { BreadcrumbList } from "./Components/breadcrumb-list";
+import { BreadcrumbList } from "./components/breadcrumb-list";
 
 type AppBreadcrumbsProps = {
 	backRoute: string;

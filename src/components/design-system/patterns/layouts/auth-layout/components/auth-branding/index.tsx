@@ -1,6 +1,6 @@
 import type React from "react";
 import { Brand } from "@/components/design-system/primitives/brand";
-import { UIPattern } from "./Components/ui-pattern";
+import { UIPattern } from "./components/ui-pattern";
 
 export const AuthBranding = (): React.ReactElement => {
 	return (

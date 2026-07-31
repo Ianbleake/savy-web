@@ -9,8 +9,9 @@ import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { formatDateRange } from "@/utils/formatters/formatDate";
 import { merge } from "@/utils/ui/mergeStyles";
-import { RangeDayButton } from "./Components/range-day-button";
-import { normalizeRange, resolveClickedDay } from "./utils";
+import { normalizeRange } from "@/utils/ui/normalizeRange";
+import { resolveClickedDay } from "@/utils/ui/resolveClickedDay";
+import { RangeDayButton } from "./components/range-day-button";
 import { parseDate } from "./utils/parseDate";
 
 type Props = {

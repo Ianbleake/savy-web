@@ -11,7 +11,7 @@ import {
 	ContextMenuSeparator,
 	ContextMenuTrigger,
 } from "@/components/ui/context-menu";
-import { useSkeletonStore } from "@/storage/skeletonTestStore";
+import { useSkeletonStore } from "@/storage/skeletonTestStorage";
 import { merge } from "@/utils/ui/mergeStyles";
 
 const STORAGE_KEY = "devtools-position";

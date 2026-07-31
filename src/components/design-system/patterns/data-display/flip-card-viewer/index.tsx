@@ -1,8 +1,8 @@
 import type React from "react";
 import { useState } from "react";
-import { CardFace } from "./Components/card-face";
-import { EmptyState } from "./Components/empty-state";
-import { LightboxDialog } from "./Components/lightbox-dialog";
+import { CardFace } from "./components/card-face";
+import { EmptyState } from "./components/empty-state";
+import { LightboxDialog } from "./components/lightbox-dialog";
 
 export const FlipCardViewer = ({
 	frontUrl,

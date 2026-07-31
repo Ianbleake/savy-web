@@ -71,12 +71,36 @@ Therefore:
 - Do not invent new comment styles.
 - Replicate the existing pattern exactly.
 
-Valid example:
+### Service section comments
+
+Every service file must use section comments to separate each endpoint. The format is:
+
+```ts
+//*=================== GET ACCOUNTS ===================
+export const getAccounts = async (): Promise<Account[]> => {
+  const { data } = await httpClient.get<APIResponse<Account[]>>("/accounts");
+  return unwrap(data);
+};
+
+//*=================== CREATE ACCOUNT ===================
+export const createAccount = async (payload: CreateAccountPayload): Promise<Account> => {
+  const { data } = await httpClient.post<APIResponse<Account>>("/accounts", payload);
+  return unwrap(data);
+};
 
 //*=================== UPDATE ACCOUNT ===================
+export const updateAccount = async (id: string, payload: UpdateAccountPayload): Promise<Account> => {
+  const { data } = await httpClient.put<APIResponse<Account>>(`/accounts/${id}`, payload);
+  return unwrap(data);
+};
+```
 
-- Comments in `.d.ts`, services, and hooks must follow this format if the project already uses it.
-- Maintain consistency in capitalization, spacing, and separators.
+Rules:
+- The comment marker is `//*` (slash-slash-asterisk), NOT `//` or `/*`.
+- The text is `SCREAMING_SNAKE_CASE` matching the HTTP method + resource: `GET ACCOUNTS`, `CREATE ACCOUNT`, `DELETE BANK`.
+- Padded with `=` on both sides, always 3 trailing `=` and enough leading `=` to look balanced.
+- One blank line before the comment (except the first one in the file).
+- Comments in `.d.ts`, services, and hooks must follow this format.
 
 ## 4. Project consistency
 

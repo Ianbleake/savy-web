@@ -14,12 +14,12 @@ import { type OnboardingFormValues, onboardingSchema } from "@/schemas/onboardin
 import { useOnboardingController } from "@/storage/onboarding/onboardingController";
 import { merge } from "@/utils/ui/mergeStyles";
 
-import { BackgroundDecor } from "./Components/background-decor";
-import { OnboardingProgress } from "./Components/onboarding-progress";
-import { StepBanks } from "./Components/step-banks";
-import { StepFinancial } from "./Components/step-financial";
-import { StepPersonal } from "./Components/step-personal";
-import { StepPreferences } from "./Components/step-preferences";
+import { BackgroundDecor } from "./components/background-decor";
+import { OnboardingProgress } from "./components/onboarding-progress";
+import { StepBanks } from "./components/step-banks";
+import { StepFinancial } from "./components/step-financial";
+import { StepPersonal } from "./components/step-personal";
+import { StepPreferences } from "./components/step-preferences";
 
 export const Onboarding = (): React.ReactElement => {
 	const { profile } = useQueryProfile();

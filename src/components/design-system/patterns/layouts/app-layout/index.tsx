@@ -1,8 +1,8 @@
 import type React from "react";
 import { Outlet } from "react-router";
 import { SidebarProvider } from "@/components/ui/sidebar";
-import { AppHeader } from "./Components/app-header";
-import { AppSidebar } from "./Components/app-sidebar";
+import { AppHeader } from "./components/app-header";
+import { AppSidebar } from "./components/app-sidebar";
 
 /**
  * Sidebar + header chrome for the authenticated app area. The profile guard

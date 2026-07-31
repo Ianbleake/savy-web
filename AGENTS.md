@@ -8,20 +8,19 @@ Code rules and conventions for the frontend (React + TypeScript).
 
 ### File structure
 
-- **One component per file.** If a component has sub-components, the `.tsx` file becomes a **folder** following the same convention.
-- Component folders use **kebab-case**: `account-card/`, `budget-progress/`.
+- **Strictly one component per file.** Even if a file only exports one component, no other component definitions (including inline `const SlotX = () => ...`) may exist in the same file.
+- If a component has sub-components, the `.tsx` file becomes a **folder** following the same convention.
+- **All folder names use lowercase kebab-case** — component folders, sub-component folders, everything: `account-card/`, `components/`, `balance-display/`.
 - Inside a component folder:
-  - `index.tsx` — the main component (single export)
-  - `{name}.d.ts` — component types (ambient declarations, no `export`)
-  - `utils.ts` — helper functions or utilities
-  - `Components/` — sub-components, each in its own folder with the same structure
+  - `index.tsx` — the main component (single named export)
+  - `{name}.d.ts` — shared types only (see Types section below)
+  - `components/` — sub-components, each in its own folder with the same structure
 
 ```
 account-card/
 ├── index.tsx
 ├── account-card.d.ts
-├── utils.ts
-└── Components/
+└── components/
     ├── balance-display/
     │   └── index.tsx
     └── transaction-list/
@@ -30,6 +29,7 @@ account-card/
 ```
 
 - This structure applies **recursively**: if a sub-component has its own sub-components, repeat the pattern.
+- **There is no `utils.ts` inside component folders.** Helper functions go in `src/utils/{domain}/`, constants and maps go in `src/content/{domain}/`. See the dedicated sections below.
 
 ### Exports
 
@@ -39,10 +39,13 @@ account-card/
 
 ### Types
 
-- **Domain types, service contracts, and shared types go in `.d.ts` ambient files.** Never inline.
+- **`.d.ts` files are for shared types only** — types used by **2 or more files**. They are **ambient declarations** (no `export` or `import` at top-level).
+- **Local component props** (`Props` exclusive to a single component) MUST be defined **inline in the `.tsx` file**, since they are never reused and co-location improves DX.
+- **Do NOT create a `.d.ts` for:**
+  - Props of a component that only that component uses.
+  - Local types of a hook, service, or util that are not shared.
 - Type files go inside the component/service/hook folder.
-- **Exception — local component props:** `Props` exclusive to a single component (or screen store state types) MAY be defined inline in the `.tsx`/`.ts` file, since they are never reused and co-location improves DX. As soon as a type is needed in more than one file, move it to `.d.ts`.
-- `.d.ts` files are **ambient declarations** (no `export` or `import` at top-level). Reference external types with inline `import()`:
+- Reference external types inside `.d.ts` with inline `import()`:
   ```typescript
   type MyProps = {
     account: import("@/storage/accountStorage").Account;
@@ -68,9 +71,10 @@ account-card/
 
 ### Helpers and utilities
 
-- Helper functions exclusive to a component go in `utils.ts` inside its folder.
-- Constants like label maps or static configuration also go in `utils.ts`.
-- If a helper is reusable across multiple components, it goes in `src/utils/`.
+- **There is no `utils.ts` inside component folders.** This file is prohibited.
+- Helper functions go in `src/utils/{domain}/` — one function per file, named after the function.
+- Constants, label maps, and static configuration go in `src/content/{domain}/`.
+- If a helper is generic (not domain-specific), it goes in `src/utils/ui/` or `src/utils/formatters/`.
 
 ---
 
@@ -117,6 +121,36 @@ account-card/
 - `src/types/query-meta.d.ts` — TanStack Query `Register` augmentation for `meta: { suppressToast: true }`.
 - Every mutation hook must call `getApiErrorMessage(error, "fallback")` in its `onError`.
 - The global `QueryCache.onError` handler toasts all failed queries unless `suppressToast` is set.
+
+## Storybook conventions
+
+- **Only components in `src/components/` have stories.** Screens (`src/screens/`) never have `.stories.tsx` files.
+- Every component in `src/components/` (both `ui/` and `design-system/`) MUST have a `.stories.tsx` file co-located in its folder.
+- Stories must be kept up to date. When a component's props or behavior changes, the story must be updated in the same commit.
+- Storybook uses CSF format — `export default meta` is the only accepted use of `export default` in the project.
+
+## Testing conventions
+
+- **All tests live in `test/` at the project root**, organized by domain mirroring `src/`.
+- Never place test files (`*.test.ts`, `*.test.tsx`, `*.spec.ts`, `*.spec.tsx`) inside `src/`.
+- No `__tests__/` directories anywhere.
+
+```
+test/
+├── screens/
+│   └── app/
+│       └── dashboard/
+│           └── dashboard.test.tsx
+├── hooks/
+│   └── accounts/
+│       └── useAccounts.test.ts
+├── utils/
+│   └── banks/
+│       └── enrichBanksWithStats.test.ts
+└── services/
+    └── accounts/
+        └── accountsService.test.ts
+```
 
 ## General conventions
 

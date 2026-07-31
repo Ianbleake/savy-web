@@ -1,0 +1,26 @@
+import type React from "react";
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader } from "@/components/ui/sidebar";
+import { SidebarBranding } from "./components/sidebar-branding";
+import { SidebarNavigation } from "./components/sidebar-navigation";
+import { SidebarUser } from "./components/sidebar-user";
+
+export const AppSidebar = (): React.ReactElement => {
+	return (
+		<Sidebar
+			collapsible="icon"
+			className="border-r border-sidebar-border"
+		>
+			<SidebarHeader className="p-0 gap-0">
+				<SidebarBranding />
+			</SidebarHeader>
+
+			<SidebarContent>
+				<SidebarNavigation />
+			</SidebarContent>
+
+			<SidebarFooter className="p-0 gap-0">
+				<SidebarUser />
+			</SidebarFooter>
+		</Sidebar>
+	);
+};

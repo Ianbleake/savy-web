@@ -72,7 +72,7 @@ export const FormMultiSelect = <T extends FieldValues>({
 
 					const toggleOption = (value: string) => {
 						if (selectedValues.includes(value)) {
-							field.onChange(selectedValues.filter((v) => v !== value));
+							field.onChange(selectedValues.filter((option) => option !== value));
 						} else {
 							field.onChange([...selectedValues, value]);
 						}

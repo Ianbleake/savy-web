@@ -13,18 +13,15 @@ import { SearchInput } from "@/components/design-system/patterns/filters/search-
 import { GlassCard } from "@/components/design-system/patterns/glass-card";
 import { AppBreadcrumbs } from "@/components/design-system/patterns/navigation/app-breadcrumbs";
 import { Button } from "@/components/ui/button";
+import { SORT_OPTIONS, STATUS_OPTIONS } from "@/content/banks/banksOptions";
 import { useQueryAccounts } from "@/hooks/accounts/useQueryAccounts";
 import { useQueryBanks } from "@/hooks/banks/useQueryBanks";
 import { useBanksController } from "@/storage/banksController";
-import { BankRow } from "./Components/bank-row";
-import { BanksSkeleton } from "./Components/banks-skeleton";
-import {
-	enrichBanksWithStats,
-	filterBanks,
-	SORT_OPTIONS,
-	STATUS_OPTIONS,
-	sortBanks,
-} from "./utils";
+import { enrichBanksWithStats } from "@/utils/banks/enrichBanksWithStats";
+import { filterBanks } from "@/utils/banks/filterBanks";
+import { sortBanks } from "@/utils/banks/sortBanks";
+import { BankRow } from "./components/bank-row";
+import { BanksSkeleton } from "./components/banks-skeleton";
 
 export const Banks = (): React.ReactElement => {
 	const navigate = useNavigate();

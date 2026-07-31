@@ -1,7 +1,7 @@
 import type React from "react";
 import { Outlet } from "react-router";
 
-import { Header } from "./Components/header";
+import { Header } from "./components/header";
 
 export const LandingLayout = (): React.ReactElement => {
 	return (

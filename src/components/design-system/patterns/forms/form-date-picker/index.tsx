@@ -152,8 +152,8 @@ export const FormDatePicker = <T extends FieldValues>({
 										disabled={disabled ? true : disabledDates}
 										selected={date}
 										locale={es}
-										onSelect={(d) => {
-											field.onChange(formatSingle(d));
+										onSelect={(date) => {
+											field.onChange(formatSingle(date));
 											setOpen(false);
 										}}
 									/>

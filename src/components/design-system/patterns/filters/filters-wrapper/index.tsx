@@ -1,6 +1,6 @@
 import type React from "react";
 import { useState } from "react";
-import { useIsMobile } from "@/hooks/use-mobile";
+import { useIsMobile } from "@/hooks/useIsMobile";
 import { ClearFilters } from "./clear-filters";
 import { ExpandedFilters } from "./expanded-filters";
 import { FilterButton } from "./filter-button";

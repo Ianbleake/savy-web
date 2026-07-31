@@ -1,7 +1,7 @@
 import type React from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { merge } from "@/utils/ui/mergeStyles";
-import { PreviewContent } from "./Components/preview-content";
+import { PreviewContent } from "./components/preview-content";
 
 export const ImagePreviewDialog = ({
 	src,

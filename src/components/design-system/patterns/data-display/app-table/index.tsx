@@ -1,8 +1,8 @@
 import type React from "react";
 import { Fragment } from "react";
-import { BulkActionsBar } from "./Components/bulk-actions-bar";
+import { BulkActionsBar } from "./components/bulk-actions-bar";
 
-export { BulkActionsBar } from "./Components/bulk-actions-bar";
+export { BulkActionsBar } from "./components/bulk-actions-bar";
 
 import { Empty } from "@/components/design-system/patterns/feedback/empty";
 import { Button } from "@/components/ui/button";

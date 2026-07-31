@@ -143,14 +143,75 @@ useAccountsFilters((state) => state.filters);
 
 This applies to: callbacks, iterators, Zustand selectors, reducers, and any anonymous function.
 
+**Exception**: `React.lazy(() => import(...).then((m) => ...))` callbacks in `src/app/router/index.tsx` use `(m) =>` by idiomatic React Router v6 convention. The parameter is the ESM module, not a domain entity, and `(mod) =>` adds no clarity. `(m) =>` is accepted exclusively in this context.
+
 ---
 
-## 6. Checklist before creating UI (MANDATORY for agents)
+## 6. `utils.ts` is prohibited
+
+There must be **no `utils.ts` file inside any component, screen, or hook folder**. This file is banned from the project.
+
+### Where helpers go instead
+
+| What | Where | Example |
+|---|---|---|
+| Domain functions | `src/utils/{domain}/functionName.ts` | `src/utils/banks/enrichBanksWithStats.ts` |
+| Generic UI helpers | `src/utils/ui/functionName.ts` | `src/utils/ui/resolveClickedDay.ts` |
+| Formatters | `src/utils/formatters/functionName.ts` | `src/utils/formatters/formatCurrency.ts` |
+| Static constants, label maps, options | `src/content/{domain}/fileName.ts` | `src/content/banks/banksOptions.ts` |
+
+One function per file. The file name matches the function name.
+
+### Why
+
+- `utils.ts` becomes a dumping ground for unrelated logic.
+- Functions inside component folders are invisible to other parts of the codebase.
+- Separating by domain makes functions discoverable, testable, and reusable.
+
+---
+
+## 7. Storybook
+
+- **Only components in `src/components/`** (both `ui/` and `design-system/`) have `.stories.tsx` files.
+- **Screens (`src/screens/`) never have stories.** If a screen needs visual testing, extract the visual parts into reusable components in `src/components/` and write stories for those.
+- Every component in `src/components/` MUST have a co-located `.stories.tsx` file.
+- Stories must be kept up to date — when a component's props or behavior change, the story must be updated in the same commit.
+
+---
+
+## 8. Tests
+
+- **All tests live in `test/` at the project root**, organized by domain mirroring `src/`.
+- Never place test files inside `src/`.
+- No `__tests__/` directories anywhere.
+
+```
+test/
+├── screens/
+│   └── app/
+│       └── dashboard/
+│           └── dashboard.test.tsx
+├── hooks/
+│   └── accounts/
+│       └── useAccounts.test.ts
+├── utils/
+│   └── banks/
+│       └── enrichBanksWithStats.test.ts
+└── services/
+    └── accounts/
+        └── accountsService.test.ts
+```
+
+---
+
+## 9. Checklist before creating UI (MANDATORY for agents)
 
 Before writing any component that involves presentation logic, verify in order:
 
-1. **`src/utils/`** — Does the function I need exist, or can one be extended?
-2. **`src/content/`** — Do the label maps, options, or static configuration exist?
-3. **`src/content/tables/`** — Do the table headers exist?
-4. **`AGENTS.md`** — When does a `.d.ts` apply? What component conventions apply?
-5. Only after those checks, create the missing files.
+1. **`src/components/design-system/`** — Does a design-system component already solve this? (`SearchInput`, `AppTable`, `GlassCard`, `Empty`, etc.)
+2. **`src/utils/`** — Does the function I need exist, or can one be extended?
+3. **`src/content/`** — Do the label maps, options, or static configuration exist?
+4. **`src/content/tables/`** — Do the table headers exist?
+5. **`AGENTS.md`** — When does a `.d.ts` apply? What component conventions apply?
+6. **`docs/dev/UI-usage.md`** — Reference for all available design-system components and their usage.
+7. Only after those checks, create the missing files.

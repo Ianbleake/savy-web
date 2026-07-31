@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/sheet";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { useIsMobile } from "@/hooks/use-mobile";
+import { useIsMobile } from "@/hooks/useIsMobile";
 import { merge } from "@/utils/ui/mergeStyles";
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state";
@@ -61,11 +61,11 @@ function SidebarProvider({
 	onOpenChange?: (open: boolean) => void;
 }) {
 	const isMobile = useIsMobile();
-	const [openMobile, setOpenMobile] = React.useState(false);
+	const [openMobile, setOpenMobile] = React.useState<boolean>(false);
 
 	// This is the internal state of the sidebar.
 	// We use openProp and setOpenProp for control from outside the component.
-	const [_open, _setOpen] = React.useState(defaultOpen);
+	const [_open, _setOpen] = React.useState<boolean>(defaultOpen);
 	const open = openProp ?? _open;
 	const setOpen = React.useCallback(
 		(value: boolean | ((value: boolean) => boolean)) => {
