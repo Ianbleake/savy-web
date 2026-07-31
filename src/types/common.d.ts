@@ -4,15 +4,6 @@ type Option = {
 	description?: string;
 };
 
-type AppTabItem<TData> = {
-	label: string;
-	value: string;
-	icon?: import("lucide-react").LucideIcon;
-	content: (data: TData) => import("react").ReactNode;
-};
-
-type AppTabsConfig<TData> = AppTabItem<TData>[];
-
 type NavigatorItem = {
 	sectionId: string;
 	label: string;

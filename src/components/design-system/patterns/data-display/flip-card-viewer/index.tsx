@@ -4,6 +4,12 @@ import { CardFace } from "./components/card-face";
 import { EmptyState } from "./components/empty-state";
 import { LightboxDialog } from "./components/lightbox-dialog";
 
+type FlipCardViewerProps = {
+	frontUrl?: string;
+	backUrl?: string;
+	ownerName?: string;
+};
+
 export const FlipCardViewer = ({
 	frontUrl,
 	backUrl,

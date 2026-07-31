@@ -1,17 +1,3 @@
-type SavingsGoal = {
-	id: string;
-	profileId: string;
-	accountId: string;
-	name: string;
-	targetAmount: number;
-	deadline: string | null;
-	color: string | null;
-	currentAmount: number;
-	isCompleted: boolean;
-	createdAt: string;
-	updatedAt: string;
-};
-
 type CreateSavingsGoalPayload = {
 	accountId: string;
 	name: string;
@@ -28,16 +14,3 @@ type UpdateSavingsGoalPayload = {
 	color?: string;
 };
 
-type SavingsGoalFilters = {
-	isCompleted?: boolean;
-	sortBy?: "deadline" | "targetAmount" | "currentAmount";
-	order?: "asc" | "desc";
-};
-
-type SavingsGoalService = {
-	getAll: (filters?: SavingsGoalFilters) => Promise<SavingsGoal[]>;
-	getById: (id: string) => Promise<SavingsGoal>;
-	create: (payload: CreateSavingsGoalPayload) => Promise<SavingsGoal>;
-	update: (id: string, payload: UpdateSavingsGoalPayload) => Promise<SavingsGoal>;
-	remove: (id: string) => Promise<void>;
-};

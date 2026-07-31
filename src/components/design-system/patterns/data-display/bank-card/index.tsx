@@ -4,6 +4,15 @@ import type React from "react";
 import { formatCurrency } from "@/utils/formatters/formatCurrency";
 import { merge } from "@/utils/ui/mergeStyles";
 
+type BankCardProps = {
+	account: Account;
+	bankName: string;
+	bankColor: string | null;
+	creditCard?: import("@/services/credit-cards/credit-cards").CreditCard;
+	onClick?: () => void;
+	className?: string;
+};
+
 const ACCOUNT_TYPE_ICON: Record<string, LucideIcon> = {
 	DEBIT: Wallet,
 	CASH: Wallet,

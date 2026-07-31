@@ -3,6 +3,14 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { merge } from "@/utils/ui/mergeStyles";
 import { PreviewContent } from "./components/preview-content";
 
+type ImagePreviewDialogProps = {
+	title?: string;
+	src: string;
+	alt?: string;
+	className?: string;
+	previewClassName?: string;
+};
+
 export const ImagePreviewDialog = ({
 	src,
 	alt = "image",

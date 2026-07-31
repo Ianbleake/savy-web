@@ -5,6 +5,12 @@ import { DialogTitle } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
 import { merge } from "@/utils/ui/mergeStyles";
 
+type PreviewContentProps = {
+	title?: string;
+	src: string;
+	alt?: string;
+};
+
 export const PreviewContent = ({ title, src, alt }: PreviewContentProps): React.ReactElement => {
 	const [isLoading, setIsLoading] = useState<boolean>(true);
 	const [hasError, setHasError] = useState<boolean>(false);

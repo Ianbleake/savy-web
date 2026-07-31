@@ -2,6 +2,24 @@ import { httpClient, unwrap } from "../http-client";
 
 export const BANKS_QUERY_KEY = ["banks"] as const;
 
+type BankFilters = {
+	isActive?: boolean;
+	sortBy?: "name" | "createdAt";
+	order?: "asc" | "desc";
+};
+
+type BankService = {
+	getAll: (filters?: BankFilters) => Promise<Bank[]>;
+	getById: (id: string) => Promise<BankDetail>;
+	create: (payload: CreateBankPayload) => Promise<Bank>;
+	update: (id: string, payload: UpdateBankPayload) => Promise<Bank>;
+	remove: (id: string) => Promise<void>;
+};
+
+type BankServiceWithSummary = BankService & {
+	getSummary: (id: string, period: PeriodType) => Promise<BankSummary>;
+};
+
 export const bankService: BankServiceWithSummary = {
 	getAll: async (filters?: BankFilters): Promise<Bank[]> => {
 		const response = await httpClient.get<APIResponse<Bank[]>>("/banks", {

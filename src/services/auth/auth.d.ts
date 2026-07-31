@@ -3,12 +3,9 @@ type AuthUser = {
 	email: string;
 };
 
-type AuthTokens = {
+type AuthResponse = {
 	accessToken: string;
 	refreshToken: string;
-};
-
-type AuthResponse = AuthTokens & {
 	user: AuthUser;
 };
 
@@ -24,10 +21,6 @@ type RegisterPayload = {
 	lastName: string;
 };
 
-type RefreshPayload = {
-	refreshToken: string;
-};
-
 type ForgotPasswordPayload = {
 	email: string;
 };
@@ -38,12 +31,3 @@ type ResetPasswordPayload = {
 	newPassword: string;
 };
 
-type AuthService = {
-	login: (payload: LoginPayload) => Promise<AuthResponse>;
-	register: (payload: RegisterPayload) => Promise<AuthResponse>;
-	refresh: (refreshToken: string) => Promise<AuthTokens>;
-	logout: () => Promise<void>;
-	getMe: () => Promise<AuthUser>;
-	forgotPassword: (payload: ForgotPasswordPayload) => Promise<void>;
-	resetPassword: (payload: ResetPasswordPayload) => Promise<void>;
-};

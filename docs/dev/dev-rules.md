@@ -10,16 +10,19 @@
 
 `.d.ts` files are **global ambient declarations**. They have a cost: they pollute the project's global namespace.
 
-**Create `.d.ts` ONLY when** the defined types will be used in **more than one file**.
+**Create `.d.ts` ONLY when** the defined types will be used by **2 or more files**.
 
 **Do NOT create `.d.ts` for:**
 - Props of a component that only that component uses.
 - Local types of a hook, service, or util that are not shared.
+- Types that compose a parent type in the same `.d.ts` but are not directly consumed by any `.ts`/`.tsx` file.
+- Service interface types (e.g. `AccountService`) used only by the service `index.ts`.
+- Filter types (e.g. `AccountFilters`) used only by the service `index.ts`.
 
 **In those cases**, define the type directly in the `.tsx` or `.ts` file that uses it:
 
 ```tsx
-// ✅ Correct — the type is only used by this component
+// ✅ Correct — Props only used by this component, defined inline
 type AccountRowProps = {
   account: Account;
 };
@@ -28,10 +31,43 @@ export const AccountRow = ({ account }: AccountRowProps) => { ... };
 ```
 
 ```ts
-// ✅ Correct — goes to .d.ts because multiple files need it
-// src/services/accounts/accounts.d.ts
-type Account = { ... };
+// ✅ Correct — service-local types defined in the service file
+// src/services/accounts/index.ts
+type AccountFilters = {
+  type?: AccountType;
+  bank_id?: string;
+};
+
+type AccountService = {
+  getAll: (filters?: AccountFilters) => Promise<Account[]>;
+  // ...
+};
 ```
+
+```ts
+// ✅ Correct — goes to .d.ts because 2+ files need it
+// src/services/accounts/accounts.d.ts
+type Account = { ... };        // used by service + 5 components
+type AccountType = "checking" | "savings" | "credit"; // used by service + content maps
+```
+
+### How to audit `.d.ts` files
+
+For every type in a `.d.ts`, count how many `.ts`/`.tsx` files directly reference that type name (the `.d.ts` file itself does not count). If the count is:
+
+| Count | Action |
+|---|---|
+| 0 | **Dead type** — delete it |
+| 1 | **Violation** — inline it in the single consumer file |
+| 2+ | **Valid** — keep in `.d.ts` |
+
+### Common violation patterns
+
+- **`*Service` types** — always used by only 1 file (the service `index.ts`). Inline them.
+- **`*Filters` types** — usually used by only 1 file (the service `index.ts`). Inline unless a hook also uses it directly.
+- **`*Props` types for components** — always inline. Props are local to the component.
+- **Sub-types that only compose a parent type** — if `DashboardCreditCard` is only used inside `DashboardCreditOverview` in the same `.d.ts`, but `DashboardCreditOverview` IS used by 2+ files, keep both. If `DashboardCreditCard` is also used directly by a `.tsx` file, it's valid on its own.
+- **Cross-reference with `import()`** — if another `.d.ts` references a type via `import("@/services/X/X").TypeName`, that type MUST stay ambient in the `.d.ts` for the import path to resolve.
 
 ---
 

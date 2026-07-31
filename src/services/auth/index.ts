@@ -6,6 +6,21 @@ const API_BASE_URL =
 		? import.meta.env.VITE_DEV_API_BASE_URL
 		: import.meta.env.VITE_PROD_API_BASE_URL;
 
+type AuthTokens = {
+	accessToken: string;
+	refreshToken: string;
+};
+
+type AuthService = {
+	login: (payload: LoginPayload) => Promise<AuthResponse>;
+	register: (payload: RegisterPayload) => Promise<AuthResponse>;
+	refresh: (refreshToken: string) => Promise<AuthTokens>;
+	logout: () => Promise<void>;
+	getMe: () => Promise<AuthUser>;
+	forgotPassword: (payload: ForgotPasswordPayload) => Promise<void>;
+	resetPassword: (payload: ResetPasswordPayload) => Promise<void>;
+};
+
 export const authService: AuthService = {
 	// ====================== LOGIN =========================
 	// Uses raw axios — login happens before any token exists.

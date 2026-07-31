@@ -1,5 +1,15 @@
+import type { LucideIcon } from "lucide-react";
 import type React from "react";
 import { merge } from "@/utils/ui/mergeStyles";
+
+type InfoItemProps = {
+	icon?: LucideIcon;
+	title: string;
+	description?: string;
+	children?: React.ReactNode;
+	action?: React.ReactNode;
+	className?: string;
+};
 
 export const InfoItem = ({
 	icon: Icon,

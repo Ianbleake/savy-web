@@ -1,5 +1,17 @@
 import { httpClient, unwrap } from "../http-client";
 
+type OnboardingValidation = {
+	valid: boolean;
+	missingFields: string[];
+};
+
+type ProfileService = {
+	getProfile: () => Promise<Profile>;
+	updateProfile: (payload: UpdateProfilePayload) => Promise<Profile>;
+	validateOnboarding: () => Promise<OnboardingValidation>;
+	completeOnboarding: () => Promise<Profile>;
+};
+
 export const profileService: ProfileService = {
 	// ====================== GET PROFILE =========================
 	getProfile: async (): Promise<Profile> => {

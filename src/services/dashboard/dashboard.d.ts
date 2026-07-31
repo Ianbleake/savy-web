@@ -1,7 +1,3 @@
-type AccountType = "DEBIT" | "CREDIT" | "LOAN" | "CASH";
-
-type TransactionType = "INCOME" | "EXPENSE" | "TRANSFER" | "PAYMENT";
-
 type DashboardNetWorth = {
 	total: number;
 	assets: number;
@@ -86,6 +82,3 @@ type DashboardSummary = {
 	generatedAt: string;
 };
 
-type DashboardService = {
-	getSummary: () => Promise<DashboardSummary>;
-};

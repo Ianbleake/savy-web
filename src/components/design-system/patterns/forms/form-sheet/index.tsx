@@ -9,6 +9,23 @@ import {
 	SheetTitle,
 } from "@/components/ui/sheet";
 
+type FormSheetProps = {
+	open: boolean;
+	onOpenChange: (open: boolean) => void;
+	/** Icon shown in the header next to the title */
+	icon: React.ElementType;
+	/** Sheet title text */
+	title: string;
+	/** Optional description shown below the title */
+	description?: string;
+	/** Maximum width of the sheet panel (default: "28rem") */
+	maxWidth?: string;
+	/** Sheet body — form fields, content, etc. */
+	children: React.ReactNode;
+	/** Footer actions — buttons, etc. If omitted, no footer is rendered */
+	footer?: React.ReactNode;
+};
+
 export const FormSheet = ({
 	open,
 	onOpenChange,

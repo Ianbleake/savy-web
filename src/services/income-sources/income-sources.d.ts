@@ -23,23 +23,4 @@ type CreateIncomeSourcePayload = {
 
 type UpdateIncomeSourcePayload = Partial<CreateIncomeSourcePayload>;
 
-type IncomeSourceFilters = {
-	isActive?: boolean;
-	sortBy?: "name" | "amount" | "createdAt";
-	order?: "asc" | "desc";
-};
 
-type BulkCreateResponse = {
-	creationState: "success" | "partial" | "failed";
-	total: number;
-	successful: IncomeSource[];
-	failed: { input: CreateIncomeSourcePayload; errors: string[] }[];
-};
-
-type IncomeSourceService = {
-	getAll: (filters?: IncomeSourceFilters) => Promise<IncomeSource[]>;
-	create: (payload: CreateIncomeSourcePayload) => Promise<IncomeSource>;
-	bulkCreate: (payload: { sources: CreateIncomeSourcePayload[] }) => Promise<BulkCreateResponse>;
-	update: (id: string, payload: UpdateIncomeSourcePayload) => Promise<IncomeSource>;
-	remove: (id: string) => Promise<void>;
-};

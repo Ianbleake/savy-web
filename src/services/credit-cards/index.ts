@@ -2,6 +2,19 @@ import { httpClient, unwrap } from "../http-client";
 
 export const CREDIT_CARDS_QUERY_KEY = ["credit-cards"] as const;
 
+type CreditCardFilters = {
+	sortBy?: "createdAt" | "creditLimit";
+	order?: "asc" | "desc";
+};
+
+type CreditCardService = {
+	getAll: (filters?: CreditCardFilters) => Promise<CreditCard[]>;
+	getById: (id: string) => Promise<CreditCard>;
+	create: (payload: CreateCreditCardPayload) => Promise<CreditCard>;
+	update: (id: string, payload: UpdateCreditCardPayload) => Promise<CreditCard>;
+	remove: (id: string) => Promise<void>;
+};
+
 export const creditCardService: CreditCardService = {
 	getAll: async (filters?: CreditCardFilters): Promise<CreditCard[]> => {
 		const response = await httpClient.get<APIResponse<CreditCard[]>>("/credit-cards", {

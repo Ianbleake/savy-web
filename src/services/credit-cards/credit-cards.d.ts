@@ -27,15 +27,3 @@ type UpdateCreditCardPayload = {
 	noInterestMonths?: number;
 };
 
-type CreditCardFilters = {
-	sortBy?: "createdAt" | "creditLimit";
-	order?: "asc" | "desc";
-};
-
-type CreditCardService = {
-	getAll: (filters?: CreditCardFilters) => Promise<CreditCard[]>;
-	getById: (id: string) => Promise<CreditCard>;
-	create: (payload: CreateCreditCardPayload) => Promise<CreditCard>;
-	update: (id: string, payload: UpdateCreditCardPayload) => Promise<CreditCard>;
-	remove: (id: string) => Promise<void>;
-};

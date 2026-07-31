@@ -27,20 +27,6 @@ type UpdateBankPayload = {
 	logo?: string;
 };
 
-type BankFilters = {
-	isActive?: boolean;
-	sortBy?: "name" | "createdAt";
-	order?: "asc" | "desc";
-};
-
-type BankService = {
-	getAll: (filters?: BankFilters) => Promise<Bank[]>;
-	getById: (id: string) => Promise<BankDetail>;
-	create: (payload: CreateBankPayload) => Promise<Bank>;
-	update: (id: string, payload: UpdateBankPayload) => Promise<Bank>;
-	remove: (id: string) => Promise<void>;
-};
-
 type PeriodType = "day" | "week" | "month" | "other_month" | "quarter" | "semester" | "year";
 
 type BankSummary = {
@@ -88,6 +74,3 @@ type BankSummary = {
 	currency: string;
 };
 
-type BankServiceWithSummary = BankService & {
-	getSummary: (id: string, period: PeriodType) => Promise<BankSummary>;
-};

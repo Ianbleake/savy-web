@@ -34,18 +34,3 @@ type UpdateAccountPayload = {
 	icon?: string;
 };
 
-type AccountFilters = {
-	type?: AccountType;
-	bankId?: string;
-	isActive?: boolean;
-	sortBy?: "balance" | "name" | "createdAt";
-	order?: "asc" | "desc";
-};
-
-type AccountService = {
-	getAll: (filters?: AccountFilters) => Promise<Account[]>;
-	getById: (id: string) => Promise<Account>;
-	create: (payload: CreateAccountPayload) => Promise<Account>;
-	update: (id: string, payload: UpdateAccountPayload) => Promise<Account>;
-	remove: (id: string) => Promise<void>;
-};

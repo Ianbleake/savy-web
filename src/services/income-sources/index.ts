@@ -2,6 +2,27 @@ import { httpClient, unwrap } from "../http-client";
 
 export const INCOME_SOURCES_QUERY_KEY = ["income-sources"] as const;
 
+type IncomeSourceFilters = {
+	isActive?: boolean;
+	sortBy?: "name" | "amount" | "createdAt";
+	order?: "asc" | "desc";
+};
+
+type BulkCreateResponse = {
+	creationState: "success" | "partial" | "failed";
+	total: number;
+	successful: IncomeSource[];
+	failed: { input: CreateIncomeSourcePayload; errors: string[] }[];
+};
+
+type IncomeSourceService = {
+	getAll: (filters?: IncomeSourceFilters) => Promise<IncomeSource[]>;
+	create: (payload: CreateIncomeSourcePayload) => Promise<IncomeSource>;
+	bulkCreate: (payload: { sources: CreateIncomeSourcePayload[] }) => Promise<BulkCreateResponse>;
+	update: (id: string, payload: UpdateIncomeSourcePayload) => Promise<IncomeSource>;
+	remove: (id: string) => Promise<void>;
+};
+
 export const incomeSourceService: IncomeSourceService = {
 	getAll: async (filters?: IncomeSourceFilters): Promise<IncomeSource[]> => {
 		const response = await httpClient.get<APIResponse<IncomeSource[]>>("/income-sources", {

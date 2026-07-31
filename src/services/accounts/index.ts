@@ -2,6 +2,22 @@ import { httpClient, unwrap } from "../http-client";
 
 export const ACCOUNTS_QUERY_KEY = ["accounts"] as const;
 
+type AccountFilters = {
+	type?: AccountType;
+	bankId?: string;
+	isActive?: boolean;
+	sortBy?: "balance" | "name" | "createdAt";
+	order?: "asc" | "desc";
+};
+
+type AccountService = {
+	getAll: (filters?: AccountFilters) => Promise<Account[]>;
+	getById: (id: string) => Promise<Account>;
+	create: (payload: CreateAccountPayload) => Promise<Account>;
+	update: (id: string, payload: UpdateAccountPayload) => Promise<Account>;
+	remove: (id: string) => Promise<void>;
+};
+
 export const accountService: AccountService = {
 	getAll: async (filters?: AccountFilters): Promise<Account[]> => {
 		const response = await httpClient.get<APIResponse<Account[]>>("/accounts", {

@@ -2,6 +2,19 @@ import { PenLine } from "lucide-react";
 import type React from "react";
 import { Button } from "@/components/ui/button";
 
+type SectionTitleProps = {
+	icon: React.ElementType;
+	title: string;
+	/** Optional description below the title (settings variant — large icon) */
+	description?: string;
+	/** Optional action node on the right (button, menu, etc.) */
+	action?: React.ReactNode;
+	/** Optional callback for inline edit button (candidates variant — small icon) */
+	onEdit?: () => void;
+	/** Edit button label (default: "Editar") */
+	editLabel?: string;
+};
+
 export const SectionTitle = ({
 	icon: Icon,
 	title,

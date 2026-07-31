@@ -2,6 +2,34 @@ import { httpClient, unwrap } from "../http-client";
 
 export const SAVINGS_GOALS_QUERY_KEY = ["savings-goals"] as const;
 
+type SavingsGoal = {
+	id: string;
+	profileId: string;
+	accountId: string;
+	name: string;
+	targetAmount: number;
+	deadline: string | null;
+	color: string | null;
+	currentAmount: number;
+	isCompleted: boolean;
+	createdAt: string;
+	updatedAt: string;
+};
+
+type SavingsGoalFilters = {
+	isCompleted?: boolean;
+	sortBy?: "deadline" | "targetAmount" | "currentAmount";
+	order?: "asc" | "desc";
+};
+
+type SavingsGoalService = {
+	getAll: (filters?: SavingsGoalFilters) => Promise<SavingsGoal[]>;
+	getById: (id: string) => Promise<SavingsGoal>;
+	create: (payload: CreateSavingsGoalPayload) => Promise<SavingsGoal>;
+	update: (id: string, payload: UpdateSavingsGoalPayload) => Promise<SavingsGoal>;
+	remove: (id: string) => Promise<void>;
+};
+
 export const savingsGoalService: SavingsGoalService = {
 	getAll: async (filters?: SavingsGoalFilters): Promise<SavingsGoal[]> => {
 		const response = await httpClient.get<APIResponse<SavingsGoal[]>>("/savings-goals", {

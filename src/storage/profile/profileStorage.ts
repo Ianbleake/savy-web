@@ -1,6 +1,12 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
+type ProfileStorage = {
+	profile: Profile | null;
+	setProfile: (profile: Profile | null) => void;
+	clearProfile: () => void;
+};
+
 export const useProfileStorage = create<ProfileStorage>()(
 	persist(
 		(set) => ({

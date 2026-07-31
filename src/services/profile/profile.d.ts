@@ -29,14 +29,3 @@ type UpdateProfilePayload = {
 	timezone?: string;
 };
 
-type OnboardingValidation = {
-	valid: boolean;
-	missingFields: string[];
-};
-
-type ProfileService = {
-	getProfile: () => Promise<Profile>;
-	updateProfile: (payload: UpdateProfilePayload) => Promise<Profile>;
-	validateOnboarding: () => Promise<OnboardingValidation>;
-	completeOnboarding: () => Promise<Profile>;
-};

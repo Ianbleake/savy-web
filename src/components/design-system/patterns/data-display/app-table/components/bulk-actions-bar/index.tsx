@@ -1,9 +1,17 @@
 import { X } from "lucide-react";
+import type { ReactNode } from "react";
 import { Children, cloneElement, isValidElement, type ReactElement } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { BulkActionsGroup } from "./components/bulk-actions-group";
+
+type BulkActionsBarProps = {
+	selectedCount: number;
+	entityLabel: string;
+	onClear: () => void;
+	children: ReactNode;
+};
 
 export const BulkActionsBarInner = ({
 	selectedCount,

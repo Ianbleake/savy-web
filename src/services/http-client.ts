@@ -58,6 +58,11 @@ export function unwrap<T>(axiosApiResponse: AxiosResponse<APIResponse<T>>): T {
 // All requests that fail with 401 while refreshing are queued
 // and resumed (or rejected) when refresh completes.
 
+type QueuedRequest = {
+	resolve: (token: string) => void;
+	reject: (error: unknown) => void;
+};
+
 let isRefreshing = false;
 let failedQueue: QueuedRequest[] = [];
 

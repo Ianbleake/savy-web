@@ -3,6 +3,18 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { merge } from "@/utils/ui/mergeStyles";
 
+type LightboxDialogProps = {
+	open: boolean;
+	onOpenChange: (open: boolean) => void;
+	side: "front" | "back";
+	onSideChange: (side: "front" | "back") => void;
+	frontUrl: string | undefined;
+	backUrl: string | undefined;
+	hasFront: boolean;
+	hasBack: boolean;
+	ownerName: string;
+};
+
 const LightboxDialog = ({
 	open,
 	onOpenChange,

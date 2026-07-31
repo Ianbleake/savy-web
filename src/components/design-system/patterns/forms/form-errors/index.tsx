@@ -14,6 +14,11 @@ type FormError = {
 	message: string;
 };
 
+type FormErrorsProps = {
+	sectionTitles: Record<string, string>;
+	crossErrors?: FormError[];
+};
+
 const getSectionTitle = (fieldName: string, sectionTitles: Record<string, string>): string => {
 	const topLevelKey = fieldName.split(".")[0];
 	return sectionTitles[topLevelKey] ?? "Form error";
@@ -54,7 +59,7 @@ const collectSchemaErrors = <T extends FieldValues>(
 export const FormErrors = <T extends FieldValues>({
 	sectionTitles,
 	crossErrors = [],
-}: FormErrorsProps<T>): React.ReactElement => {
+}: FormErrorsProps): React.ReactElement => {
 	const form = useFormContext<T>();
 
 	const schemaErrors = form.formState.errors;

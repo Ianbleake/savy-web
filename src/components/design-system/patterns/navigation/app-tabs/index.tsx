@@ -1,7 +1,17 @@
+import type { LucideIcon } from "lucide-react";
 import type React from "react";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { merge } from "@/utils/ui/mergeStyles";
+
+type AppTabItem<TData> = {
+	label: string;
+	value: string;
+	icon?: LucideIcon;
+	content: (data: TData) => React.ReactNode;
+};
+
+type AppTabsConfig<TData> = AppTabItem<TData>[];
 
 type AppTabsProps<TData> = {
 	config: AppTabsConfig<TData>;
